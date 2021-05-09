@@ -1,0 +1,51 @@
+\documentclass[10pt,t]{beamer}
+
+\usetheme[progressbar=frametitle]{metropolis}
+\usepackage{appendixnumberbeamer}
+
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\usepackage{xspace}
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+\newcommand{\titleskip}{15pt}
+\newcommand{\secondskip}{15pt}
+
+\usepackage{graphicx} %Loading the package
+\graphicspath{{figures/}} %Setting the graphicspath
+
+\usepackage{marvosym} 	% bold rightarrow
+\usepackage{xcolor}		% colored text
+\usepackage{hyperref}   % insert hyperlinks
+\usepackage{appendixnumberbeamer} % to identify start of appendix
+
+\newcommand\setItemnumber[1]{\setcounter{enumi}{\numexpr#1-1\relax}} %set item number enumerate
+
+\title{Machine learning the parton distribution functions}
+\subtitle{Reducing methodological bias}
+
+\date{\vspace{-0.3cm} Congresso Nazionale SIF \\ 14-18 September 2020}
+\author{Roy Stegeman}
+\institute{University of Milan and INFN Milan}
+
+\titlegraphic{\vspace*{145pt}
+		\includegraphics[height=1.1cm]{LOGO-ERC.jpg} \hspace{1.0cm}
+		\includegraphics[height=1.1cm]{n3pdflogo_noback.png} \hspace{1.0cm}
+		\includegraphics[height=1.1cm]{Logo_Università_degli_Studi_di_Milano(not_mandatory).png}
+		\includegraphics[height=1.1cm]{INFN_logo.png}
+        \vspace{0.1cm} \\
+		\centering{ \fontsize{6.0pt}{6.0pt}\selectfont This project has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No 740006.}
+	}
+
+\begin{document}
+
+\setbeamercolor{background canvas}{bg=white}
+\maketitle
+
+\input{slides}
+
+
+\end{document}
