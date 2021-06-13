@@ -1,0 +1,35 @@
+
+Topics for talk:
+
+NNPDF3.1 -> NNPDF4.0 (general overview)
+n3fit model
+performance improvements
+Hyperoptimization
+Correlations
+Future tests
+
+
+
+Abstract for talk:
+
+We present the machine learning methodology that is the backbone of the new (upcoming?) release of the NNPDF family of parton distribution functions. The new methodology introduces state of the art machine learning techniques such as stochastic gradient descent for neural network training which results in a major reduction in computational costs, and an automated optimization of the hyperparameters which reduces a source of bias. We further show how correlations between PDF sets can be used to assess the efficiency of the methodology, and why the use of correlations for the combination of different PDFs into a joint set could lead to severely distorted results. We discuss the "future test", a recently developed method of validating the generalization power of the methodology, which checks whether the uncertainty on PDFs, in regions in which they are not constrained by current data, are compatible with future data.
+
+
+
+
+Other abstracts for ideas
+-------------------------
+
+n3fit abstract:
+
+Parton Distribution Functions (PDFs) model the parton content of the proton. Of the many collaborations which focus on PDF determination in the last 20 years, NNPDF was pioneer on the use of Neural Networks to model the probability of finding partons (quarks and gluons) inside the proton with a given energy and momentum.
+
+In this work we introduce state of the art techniques to modernize the NNPDF methodology and study different models and architectures in a systematic way which allows as to assess the quality of the PDF fit: overtraining, model complexity, hyperparameter setup, optimization algorithm...
+
+We show a fully automatized pipeline to achieve a best model setup finding good improvements in both the quality and efficiency of the fits.
+
+
+
+NNPDF4.0 abstract
+
+We present a new release of the NNPDF family of global analyses of the proton's parton distribution functions: NNPDF4.0. It includes a wealth of new experimental data from HERA and the LHC, from dijet cross-sections and isolated photons to single-top and top-quark pair differential distributions. The NNPDF4.0 methodology benefits from improved machine learning algorithms, in particular automated hyperparameter optimisation and stochastic gradient descent for neural network training, which has been validated extensively by means of closure tests and future tests. We demonstrate the stability of the results with respect to the choice of parameterisation basis. We compare NNPDF4.0 with its predecessor NNPDF3.1 as well as to other recent global fits, and study its phenomenological implications for representative collider observables. We assess the impact of representative datasets on specific PDF flavour combinations, such as the dijet and top quark data on the gluon, the Drell-Yan and neutrino DIS data on strangeness, and electroweak measurements on charm and quark flavour separation.
