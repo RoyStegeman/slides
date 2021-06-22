@@ -1,0 +1,109 @@
+\documentclass[aspectratio=169]{beamer}
+
+% Theme settings
+\usetheme{Madrid}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}     % removes navigation symbols such as 'next page'
+\setbeamertemplate{footline}{}     % remove line with name, date, page nr. 
+\setbeamercolor*{frametitle}{bg=white}    % remove background from frametitle
+\usepackage{pifont}
+
+
+
+\addtobeamertemplate{navigation symbols}{}{ \hspace{1em}    \usebeamerfont{footline}%
+    \insertframenumber / \inserttotalframenumber }
+
+%======================= import packages =======================
+\usepackage{graphicx}     %Loading the package
+\graphicspath{{figures/}} %Setting the graphicspath
+
+
+
+%=================================== colors ===================================
+\definecolor{RoyBlue}{RGB}{22, 46, 69}
+\definecolor{RoyGrey}{RGB}{64, 88, 128} 
+
+\setbeamercolor{structure}{fg=RoyBlue} % itemize, enumerate, etc
+\setbeamercolor{frametitle}{fg=RoyGrey}
+ \setbeamercolor{section in head/foot}{bg=RoyBlue}
+
+
+%======================= add progress dots to headline =======================
+\setbeamertemplate{headline}{%
+    \begin{beamercolorbox}[ht=2.25ex,dp=3.75ex]{section in head/foot}
+        \insertnavigation{\paperwidth}
+    \end{beamercolorbox}%
+}%
+\makeatother
+
+
+
+%=================================== titlepage ===================================
+\title{Towards a new generation of PDFs using ML}
+\date{ML4Jets2021, 6 July 2021}
+\author{Roy Stegeman}
+\institute{University of Milan and INFN Milan}
+\titlegraphic{\vspace*{6mm}
+    \includegraphics[height=1.1cm]{LOGO-ERC.jpg} \hspace{15mm}
+	\includegraphics[height=1.1cm]{n3pdflogo_noback.png} \hspace{15mm}
+	\includegraphics[height=1.1cm]{Logo_Università_degli_Studi_di_Milano(not_mandatory).png}
+	\includegraphics[height=1.1cm]{INFN_logo.png}
+    \vspace*{1mm} \\
+	\centering{ 
+	\fontsize{6.0pt}{6.0pt}\selectfont This project has received funding from the European Union’s 
+	Horizon 2020 research and innovation programme under grant agreement No 740006.
+	}
+}
+
+
+
+
+
+
+
+\begin{document}
+
+
+{
+\setbeamertemplate{headline}{} % remove headline from titlepage
+\begin{frame}
+  \titlepage
+\end{frame}
+}
+
+
+\section{PDF fitting challenges}
+
+
+\begin{frame}{test}
+  hoi
+\end{frame}
+
+
+\section{The NNPDF4.0 model}
+
+\begin{frame}{\texttt{n3fit}}
+  hoi
+\end{frame}
+
+
+\section{Tuning the model}
+
+\begin{frame}{Hyperoptimization}
+  hoi
+\end{frame}
+
+
+\section{Testing the model}
+
+
+\begin{frame}{Future test}
+  hoi
+\end{frame}
+
+\begin{frame}{correlations}
+  hoi
+\end{frame}
+
+
+\end{document}
