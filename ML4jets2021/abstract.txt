@@ -1,6 +1,7 @@
 
 Topics for talk:
 
+PDFs as an ML problem
 NNPDF3.1 -> NNPDF4.0 (general overview)
 n3fit model
 performance improvements

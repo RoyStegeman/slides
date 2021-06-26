@@ -1,22 +1,24 @@
 \documentclass[aspectratio=169]{beamer}
+\graphicspath{{figures/}} % Setting the graphicspath
 
 % Theme settings
 \usetheme{Madrid}
 \usecolortheme{default}
-\setbeamertemplate{navigation symbols}{}     % removes navigation symbols such as 'next page'
-\setbeamertemplate{footline}{}     % remove line with name, date, page nr. 
-\setbeamercolor*{frametitle}{bg=white}    % remove background from frametitle
-\usepackage{pifont}
+\setbeamertemplate{navigation symbols}{}   % removes navigation symbols such as 'next page'
+\setbeamertemplate{footline}{}             % remove line with name, date, page nr. 
+\setbeamercolor*{frametitle}{bg=white}     % remove background from frametitle
 
-
-
-\addtobeamertemplate{navigation symbols}{}{ \hspace{1em}    \usebeamerfont{footline}%
-    \insertframenumber / \inserttotalframenumber }
 
 %======================= import packages =======================
-\usepackage{graphicx}     %Loading the package
-\graphicspath{{figures/}} %Setting the graphicspath
+\usepackage{pifont}       % Pi fonts (Digbats, symbol, etc.)
+\usepackage{graphicx}     % More options for \includegraphics
 
+
+
+%======================= page numbering =======================
+\addtobeamertemplate{navigation symbols}{}{ \usebeamerfont{footline}
+  \insertframenumber / \inserttotalframenumber \hspace*{2mm} \\ \vspace*{1mm} 
+}
 
 
 %=================================== colors ===================================
@@ -30,7 +32,7 @@
 
 %======================= add progress dots to headline =======================
 \setbeamertemplate{headline}{%
-    \begin{beamercolorbox}[ht=2.25ex,dp=3.75ex]{section in head/foot}
+    \begin{beamercolorbox}[ht=4mm,dp=4mm]{section in head/foot}
         \insertnavigation{\paperwidth}
     \end{beamercolorbox}%
 }%
@@ -44,14 +46,16 @@
 \author{Roy Stegeman}
 \institute{University of Milan and INFN Milan}
 \titlegraphic{\vspace*{6mm}
-    \includegraphics[height=1.1cm]{LOGO-ERC.jpg} \hspace{15mm}
-	\includegraphics[height=1.1cm]{n3pdflogo_noback.png} \hspace{15mm}
-	\includegraphics[height=1.1cm]{Logo_Università_degli_Studi_di_Milano(not_mandatory).png}
-	\includegraphics[height=1.1cm]{INFN_logo.png}
-    \vspace*{1mm} \\
+    \includegraphics[height=0.8cm]{LOGO-ERC.jpg} \hspace{10mm}
+	\includegraphics[height=0.8cm]{n3pdflogo_noback.png} \hspace{10mm}
+	\includegraphics[height=0.6cm]{nnpdf_logo_official.pdf} \hspace{10mm}
+	\includegraphics[height=0.8cm]{Logo_Università_degli_Studi_di_Milano(not_mandatory).png}
+	\includegraphics[height=0.8cm]{INFN_logo.png}
+    \vspace*{5mm} \\
 	\centering{ 
-	\fontsize{6.0pt}{6.0pt}\selectfont This project has received funding from the European Union’s 
-	Horizon 2020 research and innovation programme under grant agreement No 740006.
+	\fontsize{7.0pt}{0.0pt}\selectfont This project has received funding from the European Union’s Horizon 2020 \\	
+    \vspace*{-1mm}
+	research and innovation programme under grant agreement No 740006.
 	}
 }
 
@@ -72,38 +76,140 @@
 }
 
 
-\section{PDF fitting challenges}
+\section{Introduction}
 
 
-\begin{frame}{test}
-  hoi
+\begin{frame}{PDFs as an ML problem}
+    \begin{itemize}
+        \item cannot be obtained from theory $\rightarrow$ inferred from data
+        \item well defined input(x)-output(obs)
+        \item show general NNPDF methodology
+    \end{itemize}
 \end{frame}
 
 
-\section{The NNPDF4.0 model}
-
-\begin{frame}{\texttt{n3fit}}
-  hoi
+\begin{frame}{NNPDF3.1 methodology}
+    \begin{itemize}
+        \item GA
+        \item custom c++ code
+        \item manual parameter tuning
+    \end{itemize}
 \end{frame}
 
 
-\section{Tuning the model}
 
-\begin{frame}{Hyperoptimization}
-  hoi
+\begin{frame}{Need for modernization}
+With modern ML techniques available, we would like to apply them to our problem
+    \begin{itemize}
+        \item reduce fit time
+        \item tuning the methodology
+        \item solve by using tf backend
+        \item solve by making code modular
+    \end{itemize}
 \end{frame}
 
 
-\section{Testing the model}
+\section{NNPDF4.0 methodology}
+
+\begin{frame}{NNPDF4.0 model}
+    \begin{itemize}
+        \item show the n3fit model
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Improved performance}
+    \begin{itemize}
+        \item easier development
+        \item faster, modularity allows use of new technologies
+        \item conclusion: faster research, able to test many parameter configurations
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Fitting the methodology}
+    \begin{itemize}
+        \item reduction of of human bias
+        \item faster, modularity allows use of new technologies
+        \item conclusion: faster research, able to test many parameter configurations
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{K-folding}
+    \begin{itemize}
+        \item show figure
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Hyperparameter scan}
+    \begin{itemize}
+        \item show figure
+    \end{itemize}
+\end{frame}
+
+
+
+\section{PDF validation}
+
+\begin{frame}{Trusting uncertainties outside the data region}
+    \begin{itemize}
+        \item Smaller uncertainties because of new methodology
+        \item Accuracy of uncertainties confirmed by experimental data in data ergion
+        \item Ideally use data in the extrapolation region
+        \item Chronologically 'future test'
+    \end{itemize}
+\end{frame}
 
 
 \begin{frame}{Future test}
-  hoi
+    \begin{itemize}
+        \item show that chi2 decreases to value of just above 1
+    \end{itemize}
 \end{frame}
 
-\begin{frame}{correlations}
-  hoi
+
+
+\section{Methodology correlations}
+
+\begin{frame}{Self-correlation of PDF sets}
+      \begin{itemize}
+        \item explain concept of self-correlation
+    \end{itemize}
 \end{frame}
+
+
+\section{Conclusions}
+
+
+\begin{frame}{Summary}
+    \begin{itemize}
+        \item Faster and more stable results
+        \item automatic parameter selection
+        \item small uncertainties truthful(?)
+        \item NNPDF code will be made publicly available with documentation
+    \end{itemize}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \end{document}
