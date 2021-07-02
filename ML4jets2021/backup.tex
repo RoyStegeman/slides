@@ -2,6 +2,20 @@
 \appendix
 
 \section{Backup}
+
+
+\begin{frame}{The $\chi^2$ loss function}
+The fitting strategy is based on the minimization of $\chi^2$:
+\begin{equation}
+\chi^2=\frac{1}{N}\sum_{i}(\mathcal{O}^i-\mathcal{D}^i)\sigma_{ij}^{-1}(\mathcal{P}^i-\mathcal{D}^i),
+\end{equation}
+$N$: number of datapoints, \\
+$\mathcal{D}^i$: experimental data point, \\
+$\mathcal{O}^i$: theoreical prediction, \\
+$\sigma_{ij}$: covariance matrix.
+\end{frame}
+
+
 \begin{frame}{K-folding}
 \begin{figure}[t]
   \centering
@@ -67,29 +81,29 @@
 \end{frame}
 
 
-
-\begin{frame}[t]{Self-correlation of PDF sets}
-The PDF$_i$-PDF$_j$ correlation for a given flavour is defined as
-$$corr_{i,j}(x)= \frac{\sum_{n=1}^{N_{rep}} (f_{i,n}(x) -  f_{i,0}(x) )(f_{j,n}(x) -  f_{j,0}(x)) }{\sqrt{\sum_{n=1}^{N_{rep}}(f_{i,n}(x) - f_{i,0}(x))^2} \sqrt{\sum_{n=1}^{N_{rep}}(f_{j,n}(x) -  f_{j,0}(x))^2}}$$
-where $f_{i,n}(x)$ is a PDF replica, and $n=0$ corresponds to the central value of the PDF set. 
-
-\end{frame}
-
-\begin{frame}[t]{Correlated combination of PDFs}
-
-When combining PDF sets $f_i$ in a correlated way, for each momentum fraction $x$ and flavour, the central value is calculated using
-$$
-\left\langle f\right\rangle_{comb}=\sum_{i=1}^{N_{sets}} w_{i} f_{i,0}
-$$
-
-and the variance using
-$$
-V_{comb}=\sum_{i, j=1}^{N_{sets}} w_{i} \sigma_{i j} w_{j}
-$$
-
-where $\sigma$ is the covariance matrix, $f_{0,i}$ is the central value of PDF set $i$, and $w_i$ are the weights 
-$$
-w_{i}=\frac{\sum_{j=1}^{N_{sets}}\left(\sigma^{-1}\right)_{i j}}{\sum_{k, l=1}^{N_{sets}}\left(\sigma^{-1}\right)_{k l}}
-$$
-
-\end{frame}
+%
+%\begin{frame}[t]{Self-correlation of PDF sets}
+%The PDF$_i$-PDF$_j$ correlation for a given flavour is defined as
+%$$corr_{i,j}(x)= \frac{\sum_{n=1}^{N_{rep}} (f_{i,n}(x) -  f_{i,0}(x) )(f_{j,n}(x) -  f_{j,0}(x)) }{\sqrt{\sum_{n=1}^{N_{rep}}(f_{i,n}(x) - f_{i,0}(x))^2} \sqrt{\sum_{n=1}^{N_{rep}}(f_{j,n}(x) -  f_{j,0}(x))^2}}$$
+%where $f_{i,n}(x)$ is a PDF replica, and $n=0$ corresponds to the central value of the PDF set. 
+%
+%\end{frame}
+%
+%\begin{frame}[t]{Correlated combination of PDFs}
+%
+%When combining PDF sets $f_i$ in a correlated way, for each momentum fraction $x$ and flavour, the central value is calculated using
+%$$
+%\left\langle f\right\rangle_{comb}=\sum_{i=1}^{N_{sets}} w_{i} f_{i,0}
+%$$
+%
+%and the variance using
+%$$
+%V_{comb}=\sum_{i, j=1}^{N_{sets}} w_{i} \sigma_{i j} w_{j}
+%$$
+%
+%where $\sigma$ is the covariance matrix, $f_{0,i}$ is the central value of PDF set $i$, and $w_i$ are the weights 
+%$$
+%w_{i}=\frac{\sum_{j=1}^{N_{sets}}\left(\sigma^{-1}\right)_{i j}}{\sum_{k, l=1}^{N_{sets}}\left(\sigma^{-1}\right)_{k l}}
+%$$
+%
+%\end{frame}
