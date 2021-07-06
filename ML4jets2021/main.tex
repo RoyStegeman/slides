@@ -215,6 +215,9 @@
         \item Unknown functional form which needs to be inferred from data
         \item Well defined input and output
         \item[$\Rightarrow$] Supervised learning problem
+        \begin{itemize}
+            \item PDFs parametrized by NNs
+        \end{itemize}
     \end{itemize}
     \vspace*{1em}
      %Unique: learning uncertainties
@@ -239,25 +242,25 @@
 %\end{frame}
 
 
-\begin{frame}[t]{Key improvements since NNPDF3.1}
+\begin{frame}[t]{PDF challenges}
 
-%Key points of the technology used in \textbf{NNPDF3.1} addressed in this talk:
-%    \begin{itemize}
-%        \item Genetic algorithm for optimization
-%        \item Implemented in in-house \texttt{c++} code
-%        \item Manual tuning of fit parameters
-%    \end{itemize}
-%\vspace*{1em}
-
-Improvements in \textbf{NNPDF4.0}:
-\begin{itemize}
-    \item Learning the methodology
+Key points of the technology used in \textbf{NNPDF3.1}:
     \begin{itemize}
-        \item Systematically determine the {best model} for our data and theory
+        \item Genetic algorithm for optimization
+        \item Implemented in in-house \texttt{c++} code
+        \item Manual tuning of fit parameters
     \end{itemize}
-    \item Increase {fit speed}
+\vspace*{1em}
+
+\textbf{Challenges}:
+\begin{itemize}
+    \item Can we increase the fit speed?
     \begin{itemize}
-        \item Shorter fit time $\Rightarrow$ more fits
+        \item Faster fits $\Rightarrow$ Speed-up of research
+    \end{itemize}
+    \item Can we learn the methodology?
+    \begin{itemize}
+        \item Systematically determine the {best model hyperparameters} for our data and theory
     \end{itemize}
 %    \begin{itemize}
 %        \item Accumulated knowledge is slow and biased
@@ -266,8 +269,8 @@ Improvements in \textbf{NNPDF4.0}:
 %    \begin{itemize}
 %        \item Phenomenological studies require an estimation of PDFs outside the data domain
 %    \end{itemize}
-    \item Reduction of the PDF uncertainty
-    \item Validation of the {extrapolation behaviour}
+%    \item Reduction of the PDF uncertainty
+%    \item Validation of the {extrapolation behaviour}
 %    \begin{itemize}
 %        \item Testing the generalization of power the methodology
 %    \end{itemize}
@@ -275,6 +278,12 @@ Improvements in \textbf{NNPDF4.0}:
 %        \item Part of the PDF uncertainty is methodological
 %    \end{itemize}
 \end{itemize}
+
+\vspace*{1em}
+\begin{itemize}
+\item[$\Rightarrow$] Use technologies from the deep learning community
+\end{itemize}
+
 \end{frame}
 
 
@@ -366,7 +375,7 @@ Improvements in \textbf{NNPDF4.0}:
 \end{figure}
 \textbf{Main changes:}
 \begin{itemize}
-    \item Modular \texttt{Python} codebase
+    \item \texttt{Python} codebase
         \begin{itemize}
             \item Easier and faster development
             %\item Object oriented for increased flexibility
@@ -376,7 +385,7 @@ Improvements in \textbf{NNPDF4.0}:
 %            \item Gains on speed and efficiency
 %            \item Use of Gradient Descent methods
 %        \end{itemize}
-    \item Ability to vary all aspects of the methodology
+            \item Modularity $\Rightarrow$ ability to vary all aspects of the methodology
 \end{itemize}
 
 \end{frame}
@@ -413,7 +422,7 @@ Improvements in \textbf{NNPDF4.0}:
 %\end{frame}
 
 
-\begin{frame}{Improved performance}
+\begin{frame}{Performance benefit - time per replica}
 \begin{table}
    \renewcommand{\arraystretch}{1.50}
 	\centering
@@ -426,12 +435,14 @@ Improvements in \textbf{NNPDF4.0}:
 	\end{tabular}
 \end{table}
 \vspace*{1em}
-\textbf{Benefits}:
+%\textbf{Benefits}:
+%More fits in less time
     \begin{itemize}
-        \item Fewer CPU hours for a fit
-        \item Use of gradient descent optimization $\Rightarrow$ more stable results\\
-        \vspace*{1em}
-        \item[$\Rightarrow$] Possibility to learn the methodology
+%        \item Fewer CPU hours for a fit
+%        \item Use of gradient descent optimization $\Rightarrow$ more stable results\\
+%        \vspace*{1em}
+%        \item[$\Rightarrow$] Scan over thousands of hyperparameter combinations and select the best one
+         \item[$\Rightarrow$] More fits in less time
     \end{itemize}
     
 %    \begin{itemize}
@@ -448,14 +459,13 @@ Improvements in \textbf{NNPDF4.0}:
 \section*{Learning the methodology}
 
 \begin{frame}{Finding the best methodology: hyperoptimization}
-
+Scan over thousands of hyperparameter combinations and select the best one
 \begin{center}
 \includegraphics[width=0.9\textwidth]{methodology/hyperopt_scan}
 \end{center}
     \begin{itemize}
-        \item \textbf{Scan} parameter space
         \item \textbf{Optimize} figure of merit: validation $\chi^2$
-        %\item Use \textbf{Bayesian} updating (\texttt{hyperopt})
+%        \item Use \textbf{Bayesian} updating (\texttt{hyperopt})
     \end{itemize}
 \end{frame}
 
@@ -496,7 +506,7 @@ Using the validation set $\chi^2$ as figure of merit leads to overfitting:
             \end{pgfonlayer}
         \end{tikzpicture}
     \end{figure}
-    $\Rightarrow$ Define a proper quality control!
+    $\Rightarrow$ Define a proper quality control criterion
 \end{frame}
 
 
@@ -505,7 +515,7 @@ Using the validation set $\chi^2$ as figure of merit leads to overfitting:
     Define an uncorrelated {\color{red} test set} to test generalization power on unseen data\\
     \begin{figure}
         \centering
-        	\resizebox{0.6\textwidth}{!}{%
+        	\resizebox{0.5\textwidth}{!}{%
         \begin{tikzpicture}[node distance = 3.9cm, scale = 0.92] 
             \node (a) {PDF fit optimization};
             \node [below = 2cm of a] (b) {stable $\chi^{2}_{\text{val}}$};
@@ -534,13 +544,17 @@ Using the validation set $\chi^2$ as figure of merit leads to overfitting:
         \end{tikzpicture}
         }
     \end{figure}
-
+How to choose the test set?
 \end{frame}
 
 
 \begin{frame}{Removing overfitting: k-fold cross-validation}
+
 \begin{columns}
 \column{0.48\linewidth}
+We avoid choosing a test set\\
+\vspace*{2em}
+
 The basic idea of \textbf{k-fold cross-validation}:
 \begin{enumerate}
     \item Divide the data into $k$ {representative subsets}
@@ -581,7 +595,8 @@ The basic idea of \textbf{k-fold cross-validation}:
 \begin{frame}{Trusting uncertainties outside the data region}
 
 \begin{itemize}
-        \item The improved methodology and extended dataset result in a reduction of the PDF uncertainties.
+        \item The improved methodology and extended dataset result in a reduction of the PDF uncertainties
+        \item `Closure test' to validate uncertainty in the data region: \href{https://arxiv.org/abs/1410.8849}{\color{blue} arxiv:1410.8849}
         \item Can we trust the uncertainties in the extrapolation region?
 \end{itemize}
 
@@ -595,7 +610,8 @@ The basic idea of \textbf{k-fold cross-validation}:
     \end{enumerate}
 
     \column{0.48\linewidth}
-     \includegraphics[width=0.9\textwidth]{future_test/NNPDF31_vs_NNPDF40}
+%     \includegraphics[width=0.9\textwidth]{future_test/NNPDF31_vs_NNPDF40}
+      \includegraphics[width=0.9\textwidth]{future_test/kincov}
 \end{columns}
 \end{frame}
 
@@ -708,68 +724,75 @@ The basic idea of \textbf{k-fold cross-validation}:
 
 
 
-\section{Future challenges}
+\section{Open problems}
 
 \begin{frame}{Preprocessing}
 \begin{columns}[t]
-\column{0.58\linewidth}
+\column{0.61\linewidth}
 
-The current model parametrization uses \textbf{preprocessing}:\\
-$\mathrm{PDF}=x^\alpha(1-x)^\beta \mathrm{NN}({x,\log x})$
+In future test, extrapolation based on \textbf{preprocessing}:\\
+$\mathrm{PDF}=x^\alpha(1-x)^\beta \mathrm{NN}({x,\log x})$\\
+{\footnotesize \textit{$\alpha$, $\beta$ randomly varied with uniform distribution} }
 
 \vspace*{0.2cm}
-If preprocessing is removed, we observe freezing at small-x:
+If preprocessing is removed, we observe saturation at small-x:
 \begin{center}
-$\mathrm{PDF}= \mathrm{NN}(x)$ \\
+%$\mathrm{PDF}= \mathrm{NN}(x)$ \\
 \includegraphics[width=0.48\textwidth]{feature_scaling/flatdbar}
 \includegraphics[width=0.48\textwidth]{feature_scaling/gluon_saturation}
 \end{center}
 
-\column{0.38\linewidth}
-\textbf{Challenges:}
+\vspace*{-1em}
 \begin{itemize}
-    \item Modify the {neural network} \\ \textbf{input architecture}
-    \item Generate {pseudodata} in the \textbf{extrapolation region}
+    \item Modify input scaling
+    \item Model the extrapolation behaviour
 \end{itemize}
 
-\end{columns}
-\end{frame}
-
-
-
-\begin{frame}{Modify the input}
-\begin{columns}
-\column{0.58\linewidth}
-Solution:
-\begin{enumerate}
-\item<1-|alert@1-2> Scale the input such that it is homogeneously distributed
-\item<1-|alert@3> Select one in $n$ points  
-\item<1-|alert@4> Provide a monotonically increasing interpolation
-\end{enumerate}
-
-\only<1-4>{{ Result: $\mathrm{PDF}=\left(\text{NN}(x')-\text{NN}(1)\right)$}}
-%\only<5>{\alert{ Result: $\mathrm{PDF}={A} \text{NN}(x')$}}
-\only<5>{\alert{ Result: $\mathrm{PDF}= \left(\text{NN}(x')-\text{NN}(1)\right)$}}
-
 \column{0.38\linewidth}
-\only<5>{\\
-\textbf{Pro:} removed $x$, $\log x$\\
-\textbf{Con:} no control in the extrapolation region
-}
+%\textbf{Challenges:}
+%\begin{itemize}
+%    \item Modify the {neural network} \\ \textbf{input architecture}
+%    \item Generate {pseudodata} in the \textbf{extrapolation region}
+%\end{itemize}
+
 \end{columns}
-
-% figures of xgrid histogram, or maybe simple example of 1D grid of points
-\begin{center}
-\only<1>{\includegraphics[height=0.25\textwidth]{feature_scaling/feature_scaling_1}}
-\only<2>{\includegraphics[height=0.25\textwidth]{feature_scaling/feature_scaling_2}}
-%\only<3>{\includegraphics[height=0.3\textwidth]{feature_scaling/feature_scaling_1}}
-\only<3>{\includegraphics[height=0.25\textwidth]{feature_scaling/feature_scaling_3}}
-\only<4>{\includegraphics[height=0.25\textwidth]{feature_scaling/feature_scaling_4}}
-\only<5>{\includegraphics[height=0.25\textwidth]{feature_scaling/flat_to_feature}
-}
-\end{center}
-
 \end{frame}
+
+
+%
+%\begin{frame}{Modify the input}
+%\begin{columns}
+%\column{0.58\linewidth}
+%Solution:
+%\begin{enumerate}
+%\item<1-|alert@1-2> Scale the input such that it is homogeneously distributed
+%\item<1-|alert@3> Select one in $n$ points  
+%\item<1-|alert@4> Provide a monotonically increasing interpolation
+%\end{enumerate}
+%
+%\only<1-4>{{ Result: $\mathrm{PDF}=\text{NN}(x')-\text{NN}(1)$}}
+%%\only<5>{\alert{ Result: $\mathrm{PDF}={A} \text{NN}(x')$}}
+%\only<5>{\alert{ Result: $\mathrm{PDF}= \text{NN}(x')-\text{NN}(1)$}}
+%
+%\column{0.40\linewidth}
+%\only<5>{\\
+%\textbf{Pro:} Simpler architecture\\
+%\textbf{Con:} no control in the extrapolation region
+%}
+%\end{columns}
+%
+%% figures of xgrid histogram, or maybe simple example of 1D grid of points
+%\begin{center}
+%\only<1>{\includegraphics[height=0.25\textwidth]{feature_scaling/feature_scaling_1}}
+%\only<2>{\includegraphics[height=0.25\textwidth]{feature_scaling/feature_scaling_2}}
+%%\only<3>{\includegraphics[height=0.3\textwidth]{feature_scaling/feature_scaling_1}}
+%\only<3>{\includegraphics[height=0.25\textwidth]{feature_scaling/feature_scaling_3}}
+%\only<4>{\includegraphics[height=0.25\textwidth]{feature_scaling/feature_scaling_4}}
+%\only<5>{\includegraphics[height=0.25\textwidth]{feature_scaling/flat_to_feature}
+%}
+%\end{center}
+%
+%\end{frame}
 
 
 \begin{frame}{ The extrapolation region}
@@ -777,20 +800,21 @@ Solution:
 \column{0.58\linewidth}
     \textbf{Idea:}
     \begin{enumerate}
-        \item Use {Gaussian Process} to model {DIS observables}
+        \item Use Gaussian Process to model DIS observables
         \item Propagate a Gaussian prior into the {extrapolation region}
         \item Generate {Gaussian pseudodata} and include in in a fit
     \end{enumerate}
 \column{0.38\linewidth}
-    \textbf{Challenges:}
+%    \textbf{Challenges:}
     \begin{itemize}
-        \item Large uncertainty $\Rightarrow$ low weight in $\chi^2$
-        \item Generating {accurate predictions}
+%        \item Generating more precise predictions
+         \item No preprocessing needed
+         \item $x$, $\log x$ replaced by a single scaled input
     \end{itemize}
 \end{columns}
         \begin{center}
-            \includegraphics[width=0.35\textwidth]{feature_scaling/GP}
-            %\includegraphics[width=0.45\textwidth]{feature_scaling/DIS_pseudodata}
+            \includegraphics[width=0.35\textwidth]{feature_scaling/GP} \hspace*{1em}
+            \includegraphics[width=0.4\textwidth]{feature_scaling/psuedodata_fit}
         \end{center}
 \end{frame}
 
@@ -798,17 +822,22 @@ Solution:
 \section*{Conclusions}
 
 
-\begin{frame}{Summary}
+\begin{frame}[t]{Summary}
     \begin{itemize}
         \item Faster and more stable results
         \item Possibility to learn the methodology 
-        \item Faithful reduction of uncertainties
+        \item Faithful reduction of uncertainties in the extrapolation region
         %\item Correlations can be used to assess the efficiency of the methodology
         \vspace*{1em}
         \item NNPDF code will be made publicly available with documentation
     \end{itemize}
+    \vspace*{2em}
+    \only<2>{
+    \begin{center}
+        {\Large \textbf{Thank you!}}
+    \end{center}
+    }
 \end{frame}
-
 
 
 \input{backup}
