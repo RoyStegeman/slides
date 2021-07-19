@@ -1,0 +1,9 @@
+assume lhc experimentalis intersted in PDFs
+
+half methodlogy half result
+
+hyperopt/kfolding
+results: small uncertainties
+christpher plots 
+2D lumis compare old to new 3% to 1% uncertainties
+emphasise the new data 

@@ -1,0 +1,16 @@
+
+Topics for talk:
+
+PDFs as an ML problem
+NNPDF3.1 -> NNPDF4.0 (general overview)
+n3fit model
+performance improvements
+Hyperoptimization
+Correlations
+Future tests
+mention open souce
+
+
+Abstract for talk:
+
+We present the machine learning methodology that is the backbone of the new release of the NNPDF family of parton distribution functions. The new methodology introduces state of the art machine learning techniques such as stochastic gradient descent for neural network training which results in a major reduction in computational costs, and an automated optimization of the hyperparameters which reduces a source of bias. We further show how correlations between PDF sets can be used to assess the efficiency of the methodology, and why the use of correlations for the combination of different PDFs into a joint set could lead to severely distorted results. We discuss the "future test", a recently developed method of validating the generalization power of the methodology, which checks whether the uncertainty on PDFs, in regions in which they are not constrained by current data, are compatible with future data.
