@@ -1,2 +1,1 @@
-# Talks in this repo
 
