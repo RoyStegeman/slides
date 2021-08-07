@@ -8,7 +8,7 @@
 \setbeamertemplate{footline}{}             % remove line with name, date, page nr. 
 \setbeamercolor*{frametitle}{bg=white}     % remove background from frametitle
 \usepackage{caption}
-\captionsetup[figure]{labelformat=empty}% redefines the caption setup of the figures environment in the beamer class.
+% \captionsetup[figure]{labelformat=empty}% redefines the caption setup of the figures environment in the beamer class.
 \setbeamersize{text margin left=20pt,text margin right=10pt}
 
 \usefonttheme[onlymath]{serif} % makes beamer math look like article math
@@ -301,9 +301,8 @@
         \begin{column}{0.48\textwidth}
             \begin{itemize}
                 \item \textbf{Stochastic Gradient Descent} for NN training using TensorFlow
-%                \item Factor $\sim$ 25 \textbf{reduction in fit time}
-                \item Automated \textbf{hyperparameter optimization}
-                \item Accuracy of the \textbf{uncertainty is validated} using 
+                \item Automated optimization of \\ \textbf{ model hyperparameters}
+                \item Methodology is validated using 
                 {\bf closure tests} (data region), {\bf future tests} (extrapolation region), and {\bf parametrization basis independence}
             \end{itemize}
         \vspace*{1em}
@@ -314,85 +313,66 @@
         \end{itemize}
         \end{column}
         \begin{column}{0.48\textwidth}
+            \vspace*{-3em}
             \includegraphics[width=1.0\textwidth]{NNarch}
             \begin{equation*}
                 f_{i}\left(x, Q_{0}\right)=x^{-\alpha_{i}}(1-x)^{\beta_{i}} \mathrm{NN}_{i}(x)
             \end{equation*}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-
-\begin{frame}{Parametrization basis independence}
-    \begin{columns}
-        \begin{column}[T]{0.48\textwidth}
-        \vspace*{0pt}%
-	        \begin{center}
-	            \includegraphics[width=0.8\textwidth]{flavour_evolution_V} \\
-	        \end{center}
-%            Evolution Basis:
-%            {\footnotesize
-%            \begin{equation*}
-%				\begin{array}{l}
-%				    q_{k}\left(x, Q_{0}\right) \propto x^{-\alpha_{k}}(1-x)^{\beta_{k}} N N(x) \\
-%				    q_{k}=\left\{V, V_{3}, V_{8}, T_{3}, T_{8}, T_{15}, \Sigma, g\right\}
-%				\end{array}
-%            \end{equation*}
-
-%            }
-%            Evolution Basis:
-%            {\footnotesize
-%			\begin{equation*}
-%				\begin{array}{l}
-%					q_{k}\left(x, Q_{0}\right) \propto(1-x)^{\beta_k} N N(x) \\
-%					q_{k}=\{u, \bar{u}, d, \bar{d}, s, \bar{s}, c, g\}
-%				\end{array}
-%			\end{equation*}
-%        }
-        \end{column}
-        \begin{column}[t]{0.48\textwidth}
-        \vspace{0pt}%
-	        \begin{center}
-	            \includegraphics[width=0.8\textwidth]{flavour_evolution_T3} \\
-	        \end{center}
-%	        Physical constraint:
-%	        \begin{itemize}
-%	            \item PDF positivity
-%	            \item Integrability of nonsinglet distributions
-%	        \end{itemize}
-        \end{column}
-    \end{columns}
-    \begin{columns}
-        \column{0.4\linewidth}
-		    Evolution Basis:
-		    {\footnotesize
-		    \begin{fleqn}
-		    \begin{align*}
-		       \qquad x V\left(x, Q_{0}\right) &\propto \mathrm{NN}_{V}(x)\\
-		        x T_{3}\left(x, Q_{0}\right) &\propto \mathrm{NN}_{T_{3}}(x)
-		    \end{align*}
-		    \end{fleqn}
-		    }
-        \column{0.55\linewidth}
+            \vspace*{-1em}
             \begin{block}{}
                 \textbf{Different strategies} to parametrize the quark PDF flavour combinations lead to \textbf{identical results}
             \end{block}
+        \end{column}
     \end{columns}
-    \vspace*{-0.5em}
-    Flavour Basis:
-    {\footnotesize
-    \begin{fleqn}
-    \begin{align*}
-        \qquad x V\left(x, Q_{0}\right) &\propto\left(\mathrm{NN}_{u}(x)-\mathrm{NN}_{\bar{u}}(x)+\mathrm{NN}_{d}(x)-\mathrm{NN}_{\bar{d}}(x)+\mathrm{NN}_{s}(x)-\mathrm{NN}_{\bar{s}}(x)\right) \\
-        x T_{3}\left(x, Q_{0}\right) &\propto\left(\mathrm{NN}_{u}(x)+\mathrm{NN}_{\bar{u}}(x)-\mathrm{NN}_{d}(x)-\mathrm{NN}_{\bar{d}}(x)\right)
-    \end{align*}
-    \end{fleqn}
-    }
 \end{frame}
 
 
+%\begin{frame}{Parametrization basis independence}
+%     \begin{columns}
+%         \begin{column}[T]{0.48\textwidth}
+%         \vspace*{0pt}%
+% 	        \begin{center}
+% 	            \includegraphics[width=0.8\textwidth]{flavour_evolution_V} \\
+% 	        \end{center}
+%         \end{column}
+%         \begin{column}[t]{0.48\textwidth}
+%         \vspace{0pt}%
+% 	        \begin{center}
+% 	            \includegraphics[width=0.8\textwidth]{flavour_evolution_T3} \\
+% 	        \end{center}
+%         \end{column}
+%     \end{columns}
+%     \begin{columns}
+%         \column{0.4\linewidth}
+% 		    Evolution Basis:
+% 		    {\footnotesize
+% 		    \begin{fleqn}
+% 		    \begin{align*}
+% 		       \qquad x V\left(x, Q_{0}\right) &\propto \mathrm{NN}_{V}(x)\\
+% 		        x T_{3}\left(x, Q_{0}\right) &\propto \mathrm{NN}_{T_{3}}(x)
+% 		    \end{align*}
+% 		    \end{fleqn}
+% 		    }
+%         \column{0.55\linewidth}
+%             \begin{block}{}
+%                 \textbf{Different strategies} to parametrize the quark PDF flavour combinations lead to \textbf{identical results}
+%             \end{block}
+%     \end{columns}
+%     \vspace*{-0.5em}
+%     Flavour Basis:
+%     {\footnotesize
+%     \begin{fleqn}
+%     \begin{align*}
+%         \qquad x V\left(x, Q_{0}\right) &\propto\left(\mathrm{NN}_{u}(x)-\mathrm{NN}_{\bar{u}}(x)+\mathrm{NN}_{d}(x)-\mathrm{NN}_{\bar{d}}(x)+\mathrm{NN}_{s}(x)-\mathrm{NN}_{\bar{s}}(x)\right) \\
+%         x T_{3}\left(x, Q_{0}\right) &\propto\left(\mathrm{NN}_{u}(x)+\mathrm{NN}_{\bar{u}}(x)-\mathrm{NN}_{d}(x)-\mathrm{NN}_{\bar{d}}(x)\right)
+%     \end{align*}
+%     \end{fleqn}
+%     }
+% \end{frame}
 
-\begin{frame}[t]{Learning the methodology}
+
+
+\begin{frame}[t]{Automated model selection}
 	NNPDF aims to minimize sources of bias in the PDF:
 	\begin{itemize}
 	    \item Functional form $\rightarrow$ Neural Network
@@ -401,7 +381,7 @@
 \end{frame}
 
 
-\begin{frame}[t]{Learning the methodology}
+\begin{frame}[t]{Automated model selection}
 	NNPDF aims to minimize sources of bias in the PDF:
 	\begin{itemize}
 	    \item Functional form $\rightarrow$ Neural Network
@@ -411,7 +391,7 @@
 	    \includegraphics[width=0.9\textwidth]{hyperopt_scan}
 	\end{center}
     Scan over thousands of hyperparameter combinations and select the best one \\
-    {\bf k-fold cross-validation}: used to define the reward function based on {\bf test dataset}
+    {\bf k-fold cross-validation}: used to define the reward function based on a {\bf test dataset}
 \end{frame}
 
 
@@ -658,7 +638,7 @@
     \vspace*{2em}
     \begin{block}{}
         \centering
-        {\bf NNPDF code} will be made {\bf publicly available} along with user-friendly documentation
+        The {\bf NNPDF code} will be made {\bf publicly available} along with user-friendly documentation
     \end{block}
     \vspace*{2em}
     \only<2>{

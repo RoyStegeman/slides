@@ -3,6 +3,49 @@
 
 \section{Backup}
 
+\begin{frame}{Parametrization basis independence}
+    \begin{columns}
+        \begin{column}[T]{0.48\textwidth}
+        \vspace*{0pt}%
+	        \begin{center}
+	            \includegraphics[width=0.8\textwidth]{flavour_evolution_V} \\
+	        \end{center}
+        \end{column}
+        \begin{column}[t]{0.48\textwidth}
+        \vspace{0pt}%
+	        \begin{center}
+	            \includegraphics[width=0.8\textwidth]{flavour_evolution_T3} \\
+	        \end{center}
+        \end{column}
+    \end{columns}
+    \begin{columns}
+        \column{0.4\linewidth}
+		    Evolution Basis:
+		    {\footnotesize
+		    \begin{fleqn}
+		    \begin{align*}
+		       \qquad x V\left(x, Q_{0}\right) &\propto \mathrm{NN}_{V}(x)\\
+		        x T_{3}\left(x, Q_{0}\right) &\propto \mathrm{NN}_{T_{3}}(x)
+		    \end{align*}
+		    \end{fleqn}
+		    }
+        \column{0.55\linewidth}
+            \begin{block}{}
+                \textbf{Different strategies} to parametrize the quark PDF flavour combinations lead to \textbf{identical results}
+            \end{block}
+    \end{columns}
+    \vspace*{-0.5em}
+    Flavour Basis:
+    {\footnotesize
+    \begin{fleqn}
+    \begin{align*}
+        \qquad x V\left(x, Q_{0}\right) &\propto\left(\mathrm{NN}_{u}(x)-\mathrm{NN}_{\bar{u}}(x)+\mathrm{NN}_{d}(x)-\mathrm{NN}_{\bar{d}}(x)+\mathrm{NN}_{s}(x)-\mathrm{NN}_{\bar{s}}(x)\right) \\
+        x T_{3}\left(x, Q_{0}\right) &\propto\left(\mathrm{NN}_{u}(x)+\mathrm{NN}_{\bar{u}}(x)-\mathrm{NN}_{d}(x)-\mathrm{NN}_{\bar{d}}(x)\right)
+    \end{align*}
+    \end{fleqn}
+    }
+\end{frame}
+
 
 \begin{frame}[t]{Hyperoptimization: the reward function}
     \begin{columns}[T]
