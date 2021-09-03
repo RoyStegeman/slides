@@ -1,0 +1,242 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+\graphicspath{{figures/}} % Setting the graphicspath
+
+% Theme settings
+\usetheme{Madrid}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}   % removes navigation symbols such as 'next page'
+\setbeamertemplate{footline}{}             % remove line with name, date, page nr. 
+\setbeamercolor*{frametitle}{bg=white}     % remove background from frametitle
+\usepackage{caption}
+% \captionsetup[figure]{labelformat=empty}% redefines the caption setup of the figures environment in the beamer class.
+\setbeamersize{text margin left=20pt,text margin right=10pt}
+
+\usefonttheme[onlymath]{serif} % makes beamer math look like article math
+
+
+%======================= import packages =======================
+\usepackage{pifont}       % Pi fonts (Digbats, symbol, etc.)
+\usepackage{graphicx}     % More options for \includegraphics
+\usepackage{appendixnumberbeamer} % separate appendix numbering
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{amsmath, nccmath}
+
+%======================= define new commands =======================
+\newcommand{\nn}{\vspace*{1em}}
+
+%======================= page numbering =======================
+\addtobeamertemplate{navigation symbols}{}{ \usebeamerfont{footline}
+  \insertframenumber / \inserttotalframenumber \hspace*{2mm} \\ \vspace*{1mm} 
+}
+
+
+%=================================== colors ===================================
+\definecolor{RoyBlue}{RGB}{22, 46, 69}
+\definecolor{RoyGrey}{RGB}{64, 88, 128} 
+
+\newcommand{\hlme}[1]{{\color{red}\bf #1}} % highlihgt me
+
+\setbeamercolor{structure}{fg=RoyBlue} % itemize, enumerate, etc
+\setbeamercolor{frametitle}{fg=RoyGrey}
+\setbeamercolor{section in head/foot}{bg=RoyBlue}
+
+
+%======================= add progress dots to headline =======================
+\setbeamertemplate{headline}{%
+    \begin{beamercolorbox}[ht=4mm,dp=4mm]{section in head/foot}
+        \insertnavigation{\paperwidth}
+    \end{beamercolorbox}%
+}%
+\makeatother
+
+
+%======================= add section title page =======================
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+    \usebeamerfont{title}\insertsectionhead\par%
+  \vfill
+  \end{frame}
+}
+
+
+%=================================== titlepage ===================================
+\title{Can the NNPDF architecture be simplified?}
+\date{NNPDF Meeting, 7 September 2021}
+\author{Roy Stegeman}
+\institute{University of Milan and INFN Milan}
+\titlegraphic{\vspace*{6mm}
+  \includegraphics[height=0.8cm]{logos/LOGO-ERC.jpg} \hspace{10mm}
+	\includegraphics[height=0.8cm]{logos/n3pdflogo_noback.png} \hspace{10mm}
+	\includegraphics[height=0.6cm]{logos/nnpdf_logo_official.pdf} \hspace{10mm}
+	\includegraphics[height=0.8cm]{logos/Logo_Università_degli_Studi_di_Milano(not_mandatory).png}
+	\includegraphics[height=0.8cm]{logos/INFN_logo.png}
+  \vspace*{5mm} \\
+	\centering{ 
+    \fontsize{7.0pt}{0.0pt}\selectfont This project has received funding from the European Union’s Horizon 2020 \\	
+    \vspace*{-1mm}
+    research and innovation programme under grant agreement No 740006.
+	}
+}
+
+
+\begin{document}
+{
+\setbeamertemplate{headline}{} % remove headline from titlepage
+\begin{frame}
+  \titlepage
+\end{frame}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{The NNPDF model}
+
+
+
+\begin{frame}[t]{The NNPDF model}
+  \only<1> {$$ xf_k(x) = A_k x^{1-\alpha_k}(1-x)^{\beta_k} \mathrm{NN}_k(x,\log x) $$}
+  \only<2-> {{\bf Preprocessing} exists for historic reasons, it is still used to improve convergence and to model the extrapolation region. \\ \nn}
+  \only<3-> {$(x,\log x)$ mixes objects with different orders of magnitude, which is poor practice from an ML standpoint \\ \nn}
+  \only<2> {$$ xf_k(x) = A_k {\color{red} x^{1-\alpha_k}(1-x)^{\beta_k}} \mathrm{NN}_k(x,\log x) $$}
+  \only<3-> {$$ xf_k(x) = A_k {\color{red} x^{1-\alpha_k}(1-x)^{\beta_k}} \mathrm{NN}_k({\color{red} x,\log x}) $$}
+  \only<4> {\\ \vspace*{1.5cm} \bf \centering Can we simplify this architecture?}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Input scaling}
+
+
+
+\begin{frame}[t]{Input scaling: The problem}
+  Starting from the FK-tables xgrid distribution:\\
+  \begin{center}
+    \includegraphics[height=0.4\textheight]{figures/default_xgrid.png}
+  \end{center}
+  The optimizer is not sensitive for input across multiple orders of magnitude, and without any scaling will only be able to fit features on a linear scale. \\ \nn
+  The $(x,\log x)$ input scaling makes the optimizer sensitive to input on a logarithmic scale as well \\ \nn
+  We can do better!
+\end{frame}
+
+
+\begin{frame}[t]{Input scaling: The idea}
+  Let us take a page from the ML community's playbook.\\
+  Equalize the histogram using the empirical cumulative distribution function (CDF):
+  \begin{center}
+    \includegraphics[height=0.4\textheight]{figures/default_xgrid.png} \hspace*{1cm}
+    \includegraphics[height=0.4\textheight]{figures/ecdf_xgrid.png}
+  \end{center}
+  Now data is no longer distributed across many orders of magnitude \\ \nn
+  Add an interpolation function and we're done!
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Removing preprocessing}
+
+
+\begin{frame}[t]{Obstacles to removing preprocessing}
+  Getting rid of preprocessing simplifies the model architecture and results in an increased stability between replicas. \\ \nn
+  A specific example where this can be beneficial is hyperoptimization (see Juan CM's talk) \\ \vspace*{1.2cm}
+
+  The suggestion of removing preprocessing raises two obvious questions:
+  \begin{enumerate}
+    \item Can it be done without ruining convergence?
+    \item Can the extrapolation region still be trusted?
+  \end{enumerate}
+  \nn
+  \begin{center}
+    Let's {\color{blue} \underline{\href{https://vp.nnpdf.science/TVyAUeiNTk26IMYAfRNqLw==}{compare}}} `feature scaling' to NNPDF4.0
+  \end{center}
+\end{frame}
+
+
+\begin{frame}[t]{Convergence}
+  Statistics are unchanged:\\
+  \begin{center}
+    \includegraphics[height=0.5\textheight]{figures/summary_feature_vs_nnpdf40.png}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}[t]{Convergence}
+  PDFs are similar:\\
+  \begin{center}
+    \includegraphics[height=0.5\textheight]{figures/pdf_sbar_log_feature_vs_nnpdf40.pdf}
+    \includegraphics[height=0.5\textheight]{figures/pdf_u_lin_feature_vs_nnpdf40.pdf}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}[t]{The extrapolation region}
+  Uncertainty in the extrapolation region is the same:\\
+  \begin{center}
+    \includegraphics[height=0.5\textheight]{figures/pdf_extra_dbar_feature_vs_nnpdf40.pdf}
+    \includegraphics[height=0.5\textheight]{figures/pdf_extra_g_feature_vs_nnpdf40.pdf}
+  \end{center}
+  Note the plotted range of $x$, LHAPDF grids are provided up to $x=10^{-9}$
+\end{frame}
+
+\begin{frame}[t]{Future test}
+  Let's compare the future tests of {\color{blue} \underline{ \href{https://vp.nnpdf.science/TVyAUeiNTk26IMYAfRNqLw==}{feature scaling}}} and {\color{blue} \underline{\href{https://vp.nnpdf.science/ArCroD6xRxmTAGHSBJoD3Q==/}{NNPDF4.0}}}
+  \begin{center}
+    \begin{figure}
+      \minipage{0.49\textwidth}
+        \includegraphics[width=1\textwidth]{figures/futuretest_nnpdf40.png}
+        \captionsetup{labelformat=empty}
+        \caption{NNPDF4.0}
+      \endminipage\hfill
+      \minipage{0.49\textwidth}
+        \includegraphics[width=1\textwidth]{figures/futuretest_feature.png}
+        \captionsetup{labelformat=empty}
+        \caption{feature scaling}
+      \endminipage
+    \end{figure}
+    \vspace*{1em}
+    \only<2> {The future test is successful}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}[t]{Towards phenomenology: luminosities}
+  Good agreement at the level of luminosities:
+  \begin{center}
+    \includegraphics[height=0.5\textheight]{figures/1dlumi_gg_feature_vs_nnpdf40.pdf}
+    \includegraphics[height=0.5\textheight]{figures/1dlumi_qq_feature_vs_nnpdf40.pdf}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}[t]{Phenomenology}
+  Most importantly - good agreement at the level of observables:
+  \begin{center}
+    \includegraphics[width=0.48\textwidth]{figures/pheno_w.png} \hfill
+    \includegraphics[width=0.48\textwidth]{figures/pheno_z.png}
+  \end{center}
+  {\it Thanks Christopher for these {\color{blue} \underline{ \href{https://vp.nnpdf.science/de96i8VBQ9Gc-zxl75AMfw==/pheno_featurescaling.pdf}{plots}}}}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bgroup
+  \setbeamercolor{background canvas}{bg=RoyBlue}
+  \setbeamertemplate{navigation symbols}{}
+  \begin{frame}[plain,noframenumbering]{}
+    \color{white}
+    \huge
+    \begin{center}
+      \textbf{Thank you!}
+    \end{center}
+  \end{frame}
+\egroup
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{backup.tex}
+
+\end{document}
