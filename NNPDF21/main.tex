@@ -107,9 +107,18 @@
 \end{frame}
 
 
+\begin{frame}[t]{A naive attempt}
+  An obvious solution might be to replace $(x,\log x)$ with $(x)$, but this results in saturation of the activation functions:
+  \begin{center}
+    \includegraphics[height=0.6\textheight]{pdf_sbar_log_saturated.pdf} 
+    \includegraphics[height=0.6\textheight]{pdf_u_log_saturated.pdf}
+    % \\ \nn {\bf What has happened here?}
+  \end{center}
+\end{frame}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Input scaling}
-
 
 
 \begin{frame}[t]{Input scaling: The problem}
@@ -132,6 +141,16 @@
   \end{center}
   Now data is no longer distributed across many orders of magnitude \\ \nn
   Add an interpolation function and we're done!
+\end{frame}
+
+
+\begin{frame}[t]{Result}
+  There appear to be no saturation in the data region:\\
+  \begin{center}
+    \includegraphics[height=0.5\textheight]{figures/pdf_sbar_log_feature_vs_nnpdf40.pdf}
+    \includegraphics[height=0.5\textheight]{pdf_u_log_feature_vs_nnpdf40.pdf}
+  \end{center}
+  The results shown in this talk remove both preprocessing and $(x,\log x)$, but they should be thought of as independent ideas.
 \end{frame}
 
 
@@ -164,10 +183,10 @@
 
 
 \begin{frame}[t]{Convergence}
-  PDFs are similar:\\
+  Remember that the PDFs are similar:\\
   \begin{center}
     \includegraphics[height=0.5\textheight]{figures/pdf_sbar_log_feature_vs_nnpdf40.pdf}
-    \includegraphics[height=0.5\textheight]{figures/pdf_u_lin_feature_vs_nnpdf40.pdf}
+    \includegraphics[height=0.5\textheight]{figures/pdf_u_log_feature_vs_nnpdf40.pdf}
   \end{center}
 \end{frame}
 
@@ -175,14 +194,14 @@
 \begin{frame}[t]{The extrapolation region}
   Uncertainty in the extrapolation region is the same:\\
   \begin{center}
-    \includegraphics[height=0.5\textheight]{figures/pdf_extra_dbar_feature_vs_nnpdf40.pdf}
-    \includegraphics[height=0.5\textheight]{figures/pdf_extra_g_feature_vs_nnpdf40.pdf}
+    \includegraphics[height=0.5\textheight]{figures/pdf_extra_sbar_feature_vs_nnpdf40.pdf}
+    \includegraphics[height=0.5\textheight]{figures/pdf_extra_u_feature_vs_nnpdf40.pdf}
   \end{center}
-  Note the plotted range of $x$, LHAPDF grids are provided up to $x=10^{-9}$
+  Note the plotted range of $x$, LHAPDF grids are provided for $x\geq 10^{-9}$
 \end{frame}
 
 \begin{frame}[t]{Future test}
-  Let's compare the future tests of {\color{blue} \underline{ \href{https://vp.nnpdf.science/TVyAUeiNTk26IMYAfRNqLw==}{feature scaling}}} and {\color{blue} \underline{\href{https://vp.nnpdf.science/ArCroD6xRxmTAGHSBJoD3Q==/}{NNPDF4.0}}}
+  Let's compare the future tests of {\color{blue} \underline{\href{https://vp.nnpdf.science/TVyAUeiNTk26IMYAfRNqLw==}{feature scaling}}} and {\color{blue} \underline{\href{https://vp.nnpdf.science/ArCroD6xRxmTAGHSBJoD3Q==/}{NNPDF4.0}}}
   \begin{center}
     \begin{figure}
       \minipage{0.49\textwidth}
@@ -211,13 +230,64 @@
 \end{frame}
 
 
-\begin{frame}[t]{Phenomenology}
+\begin{frame}[t]{Phenomenology}{Thanks Christopher for these {\color{blue} \underline{\href{https://vp.nnpdf.science/de96i8VBQ9Gc-zxl75AMfw==/pheno_featurescaling.pdf}{plots}}}}
   Most importantly - good agreement at the level of observables:
   \begin{center}
-    \includegraphics[width=0.48\textwidth]{figures/pheno_w.png} \hfill
-    \includegraphics[width=0.48\textwidth]{figures/pheno_z.png}
+    \includegraphics[width=0.45\textwidth]{figures/pheno_w.png} \hfill
+    \includegraphics[width=0.45\textwidth]{figures/pheno_z.png}
   \end{center}
-  {\it Thanks Christopher for these {\color{blue} \underline{ \href{https://vp.nnpdf.science/de96i8VBQ9Gc-zxl75AMfw==/pheno_featurescaling.pdf}{plots}}}}
+  Feature scaling consistency results in larger uncertainties, while other measures do not deteriorate
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Cartomancy: Predicting the extrapolation region}
+
+
+\begin{frame}[t]{Modelling experimental data}
+  Based on an idea proposed during the NNPDF meeting in Amsterdam 2020: see 
+  {\color{blue} \underline{\href{https://www.wiki.ed.ac.uk/download/attachments/432523942/carrazza.pdf?version=1&modificationDate=1581344104000&api=v2}{slides}}} \\ \nn
+  The proposed small-$x$ strategy is as follows:
+  \begin{enumerate}
+    \item Select DIS datasets with small-$x$ points
+    \item Build a Gaussian Process (GP) model which learns the DIS dataset
+    \item Create an xgrid in the small-$x$ extrapolation region
+    \item Generate pseudo-data at small-$x$ using the GP model
+    \item Compute FK tables for those points
+  \end{enumerate} 
+\end{frame}
+
+
+
+\begin{frame}[t]{Modelling experimental data: Example}
+  \begin{center}
+    \includegraphics[height=0.6\textheight]{figures/gp_hera.png}
+  \end{center}
+  Observe that the uncertainty of the psuedo-data is much larger than of the experimental data
+\end{frame}
+
+
+\begin{frame}[t]{Fitting psuedo-data}
+  With `help' (fitted preprocessing or increased weight) the psuedo-data can be fitted:
+  \begin{center}
+    \includegraphics[height=0.5\textheight]{figures/extradata_fitted.pdf}
+  \end{center}
+  But, even if there is no friction with other datasets, without such help the uncertainties are too large and other datasets dominate the $\chi^2$
+\end{frame}
+
+
+\begin{frame}[t]{Problems}
+  \begin{enumerate}
+    \item Is the prediction accurate (choice of kernel and parameters)?
+    \begin{itemize}
+      \item `Future test' the kernels
+    \end{itemize}
+    \item Is there a way to fit data with large uncertainties?
+    \begin{itemize}
+      \item Perhaps something along the line of Zahari's ensemble of fits with weighed datasets
+    \end{itemize}
+  \end{enumerate}
 \end{frame}
 
 
@@ -237,6 +307,6 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\input{backup.tex}
+% \input{backup.tex}
 
 \end{document}
