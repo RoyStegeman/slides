@@ -64,7 +64,7 @@
 
 
 %=================================== titlepage ===================================
-\title{Can the NNPDF architecture be simplified?}
+\title{Can the NNPDF model be simplified?}
 \date{NNPDF Meeting, 6-8 September 2021, Gargnano}
 \author{Roy Stegeman}
 \institute{University of Milan and INFN Milan}
@@ -108,10 +108,10 @@
 
 
 \begin{frame}[t]{A naive attempt}
-  An obvious solution might be to replace $(x,\log x)$ with $(x)$, but this results in saturation of the activation functions:
+  An obvious first attempt is $$ xf_k(x) = A_k \mathrm{NN}_k(x), $$ but this results in saturation of the activation functions:
   \begin{center}
-    \includegraphics[height=0.6\textheight]{pdf_sbar_log_saturated.pdf} 
-    \includegraphics[height=0.6\textheight]{pdf_u_log_saturated.pdf}
+    \includegraphics[height=0.55\textheight]{pdf_sbar_log_saturated.pdf} 
+    \includegraphics[height=0.55\textheight]{pdf_u_log_saturated.pdf}
     % \\ \nn {\bf What has happened here?}
   \end{center}
 \end{frame}
@@ -236,7 +236,7 @@
     \includegraphics[width=0.45\textwidth]{figures/pheno_w.png} \hfill
     \includegraphics[width=0.45\textwidth]{figures/pheno_z.png}
   \end{center}
-  Feature scaling consistency results in larger uncertainties, while other measures do not deteriorate
+  Removing the constraints on the model results in larger uncertainties, while other measures do not deteriorate
 \end{frame}
 
 
