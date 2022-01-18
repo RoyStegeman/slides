@@ -10,6 +10,20 @@ Based on introductory machine learning lectures:
 
 [Stanford lecture notes on GPs](http://cs229.stanford.edu/section/cs229-gaussian_processes.pdf)
 
+# Content
+
+1. Goal: Estimating probabilities from data
+1. Linear Regression
+2. Bayesian linear regression
+3. Gaussian processes
+4. Kernel trick
+5. Gaussian Process Kernels
+6. Hyperoptimisation
+7. Prediction
+8. Example: CO2 concentrations
+
+
+
 # Estimating probabilities from data
 
 If we are provided with $P(X,Y)$ we can predict the most likely label for $\bf x$, formally $\argmax_yP(y|\mathbf{x})$. It is therefore worth considering if we can estimate $P(X,Y)$ directly from the training data. If this is possible (to a good approximation) we could then use the Bayes Optimial classifier in practice on our estimate of $P(X,Y)$. 
@@ -57,6 +71,8 @@ Observation: $w$ is only used to make a prediction. Once the prediction is made,
 
 # Gaussian Process Regression
 
+## Posterior Predictive Distribution
+
 We want to predict $P(y|x)$ without making an assumption about the model. We simply ask "given a test point $x$, what is the distirbution of $y$?". In order to make predictions, we do need a model, but we can marganilize it out:
 $$ 
 \overbrace{P(x|y,D)}^{\rm Gaussian}
@@ -68,7 +84,23 @@ $$
 $$
 is Gaussian. Where the conjugate prior $P(w)$ is chosen/defined such that it is Gaussian.
 
-So what we have done is essentally is to allow us to make predictions without commiting to a single choice of $w$, but instead we consider all possible values of $w$. But $w$ resulting in a poor fit will hardly affect the prediction while $w$ that result in a good fit to the data have a large impact on the prediction.
+So what we have done is essentally is to allow us to make predictions without commiting to a single choice of $w$, but instead we consider all possible values of $w$. But $w$ resulting in a poor fit will hardly affect the prediction while $w$ that result in a good fit to the data have a large impact on the prediction. **SHOW POSSIBLE LINES TO DATA, DARKER COLOR FOR CLOSER FIT**
+
+Unfortunately, the above is often intractable in closed form. However, for the special case of having a Gaussian likelihood and prior (those are the ridge regression assumptions), this expression is Gaussian and we can derive its mean and covariance. So,
+$$
+P(y_*|D,{\bf x})\sim \mathcal{N}(\mu_{y_*|D},\Sigma_{y_*|D}),
+$$
+where 
+$$
+\mu_{y_{*} \mid D}=K_{*}^{T}\left(K+\sigma^{2} I\right)^{-1} y
+$$
+and
+$$
+\Sigma_{y_{*} \mid D}=K_{* *}-K_{*}^{T}\left(K+\sigma^{2} I\right)^{-1} K_{*}.
+$$
+So, instead of doing MAP (as in ridge regression) let's model the entire distribution and let's forget about $w$ and the kernel trick by modelling $f$ directly (instead of $y$)!
 
 
+## Gaussian Processes - Definition
 
+To model this distribution we need a Kernel function

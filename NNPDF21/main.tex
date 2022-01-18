@@ -160,7 +160,9 @@
 
 \begin{frame}[t]{Obstacles to removing preprocessing}
   Getting rid of preprocessing simplifies the model architecture and results in an increased stability between replicas. \\ \nn
-  A specific example where this can be beneficial is hyperoptimization (see Juan CM's talk) \\ \vspace*{1.2cm}
+  A specific example where this can be beneficial is hyperoptimization (see Juan CM's talk) \\ \nn
+  $f(x=1)=0$ is enforced by subtracting the network at $x=1$:\\
+  $xf(x)=A_k\left(\mathrm{NN}_k(x) - \mathrm{NN}_k(x=1) \right)$ \\ \nn
 
   The suggestion of removing preprocessing raises two obvious questions:
   \begin{enumerate}
@@ -201,7 +203,7 @@
 \end{frame}
 
 \begin{frame}[t]{Future test}
-  Let's compare the future tests of {\color{blue} \underline{\href{https://vp.nnpdf.science/TVyAUeiNTk26IMYAfRNqLw==}{feature scaling}}} and {\color{blue} \underline{\href{https://vp.nnpdf.science/ArCroD6xRxmTAGHSBJoD3Q==/}{NNPDF4.0}}}
+  Let's compare the future tests of {\color{blue} \underline{\href{https://vp.nnpdf.science/ArCroD6xRxmTAGHSBJoD3Q==/}{NNPDF4.0}}} and {\color{blue} \underline{\href{https://vp.nnpdf.science/TVyAUeiNTk26IMYAfRNqLw==}{feature scaling}}} 
   \begin{center}
     \begin{figure}
       \minipage{0.49\textwidth}
@@ -233,8 +235,8 @@
 \begin{frame}[t]{Phenomenology}{Thanks Christopher for these {\color{blue} \underline{\href{https://vp.nnpdf.science/de96i8VBQ9Gc-zxl75AMfw==/pheno_featurescaling.pdf}{plots}}}}
   Most importantly - good agreement at the level of observables:
   \begin{center}
-    \includegraphics[width=0.45\textwidth]{figures/pheno_w.png} \hfill
-    \includegraphics[width=0.45\textwidth]{figures/pheno_z.png}
+    \includegraphics[width=0.4\textwidth]{figures/pheno_w.png} \hfill
+    \includegraphics[width=0.4\textwidth]{figures/pheno_z.png}
   \end{center}
   Removing the constraints on the model results in larger uncertainties, while other measures do not deteriorate
 \end{frame}
@@ -269,7 +271,7 @@
 
 
 \begin{frame}[t]{Fitting psuedo-data}
-  With `help' (fitted preprocessing or increased weight) the psuedo-data can be fitted:
+  Only with `help' (e.g. artificially increased weight) the psuedo-data can be fitted:
   \begin{center}
     \includegraphics[height=0.5\textheight]{figures/extradata_fitted.pdf}
   \end{center}
@@ -279,14 +281,14 @@
 
 \begin{frame}[t]{Problems}
   \begin{enumerate}
+    \item Is there a way to fit data with large uncertainties?
     \item Is the prediction accurate (choice of kernel and parameters)?
     \begin{itemize}
       \item `Future test' the kernels
     \end{itemize}
-    \item Is there a way to fit data with large uncertainties?
-    \begin{itemize}
-      \item Perhaps something along the line of Zahari's ensemble of fits with weighed datasets
-    \end{itemize}
+    % \begin{itemize}
+    %   \item Perhaps something along the line of Zahari's ensemble of fits with weighed datasets
+    % \end{itemize}
   \end{enumerate}
 \end{frame}
 
