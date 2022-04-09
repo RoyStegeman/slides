@@ -1,0 +1,56 @@
+Q: 1.65
+
+hyperopt_choice_charm:
+  flavours: [c]
+  pdfs:
+    - {id: hyperopt_0, label: "chosen by hyperopt"}
+
+hyperopt_choice_strange:
+  flavours: [s]
+  xscale: linear
+  pdfs:
+    - {id: hyperopt_0, label: "chosen by hyperopt"}
+
+better_fit_charm:
+  flavours: [c]
+  pdfs:
+    - {id: hyperopt_8, label: "Ranked #8 by hyperopt"}
+
+clipnorm_fit_charm:
+  flavours: [c]
+  pdfs:
+    - {id: 210127-n3fit-001, label: "clipnorm bugged fit"}
+
+NNPDF40_fit_charm:
+  flavours: [c]
+  pdfs:
+    - {id: NNPDF40_nnlo_as_01180_1000, label: "NNPDF4.0"}
+
+better_fit_strange:
+  xscale: linear
+  flavours: [s]
+  pdfs:
+    - {id: hyperopt_8, label: "Ranked #8 by hyperopt"}
+
+clipnorm_fit_strange:
+  xscale: linear
+  flavours: [s]
+  pdfs:
+    - {id: 210127-n3fit-001, label: "clipnorm bugged fit"}
+
+NNPDF40_fit_strange:
+  xscale: linear
+  flavours: [s]
+  pdfs:
+    - {id: NNPDF40_nnlo_as_01180_1000, label: "NNPDF4.0"}
+
+
+actions_:
+  - hyperopt_choice_charm plot_pdfs
+  - hyperopt_choice_strange plot_pdfs
+  - better_fit_charm plot_pdfs
+  - clipnorm_fit_charm plot_pdfs
+  - NNPDF40_fit_charm plot_pdfs
+  - better_fit_strange plot_pdfs
+  - clipnorm_fit_strange plot_pdfs
+  - NNPDF40_fit_strange plot_pdfs

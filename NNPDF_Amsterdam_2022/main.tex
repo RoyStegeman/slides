@@ -1,0 +1,257 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+\graphicspath{{figures/}} % Setting the graphicspath
+
+% Theme settings
+\usetheme{Madrid}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}   % removes navigation symbols such as 'next page'
+\setbeamertemplate{footline}{}             % remove line with name, date, page nr. 
+\setbeamercolor*{frametitle}{bg=white}     % remove background from frametitle
+\usepackage{caption}
+% \captionsetup[figure]{labelformat=empty}% redefines the caption setup of the figures environment in the beamer class.
+\setbeamersize{text margin left=20pt,text margin right=10pt}
+
+\usefonttheme[onlymath]{serif} % makes beamer math look like article math
+
+
+%======================= import packages =======================
+\usepackage{graphicx}     % More options for \includegraphics
+\usepackage{appendixnumberbeamer} % separate appendix numbering
+\usepackage{hyperref}
+
+
+%======================= page numbering =======================
+\addtobeamertemplate{navigation symbols}{}{ \usebeamerfont{footline}
+  \insertframenumber / \inserttotalframenumber \hspace*{2mm} \\ \vspace*{1mm} 
+}
+
+
+%=================================== colors ===================================
+\definecolor{RoyBlue}{RGB}{22, 46, 69}
+\definecolor{RoyGrey}{RGB}{64, 88, 128} 
+
+\newcommand{\hlme}[1]{{\color{red}\bf #1}} % highlihgt me
+
+\setbeamercolor{structure}{fg=RoyBlue} % itemize, enumerate, etc
+\setbeamercolor{frametitle}{fg=RoyGrey}
+\setbeamercolor{section in head/foot}{bg=RoyBlue}
+
+
+%======================= add progress dots to headline =======================
+\setbeamertemplate{headline}{%
+    \begin{beamercolorbox}[ht=4mm,dp=4mm]{section in head/foot}
+        \insertnavigation{\paperwidth}
+    \end{beamercolorbox}%
+}%
+\makeatother
+
+
+%======================= add section title page =======================
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+    \usebeamerfont{title}\insertsectionhead\par%
+  \vfill
+  \end{frame}
+}
+
+
+%================================== TITLEPAGE ==================================
+\title{Hyperoptimization - detecting overfitting}
+\date{NNPDF meeting, 11 April 2022, Amsterdam}
+\author{Roy Stegeman}
+\institute{University of Milan and INFN Milan}
+\titlegraphic{\vspace*{6mm}
+    \includegraphics[height=0.8cm]{logos/LOGO-ERC.jpg} \hspace{10mm}
+	\includegraphics[height=0.8cm]{logos/n3pdflogo_noback.png} \hspace{10mm}
+	\includegraphics[height=0.6cm]{logos/nnpdf_logo_official.pdf} \hspace{10mm}
+	\includegraphics[height=0.8cm]{logos/Logo_Università_degli_Studi_di_Milano(not_mandatory).png}
+	\includegraphics[height=0.8cm]{logos/INFN_logo.png}
+    \vspace*{5mm} \\
+	\centering{ 
+	\fontsize{7.0pt}{0.0pt}\selectfont This project has received funding from the European Union’s Horizon 2020 \\	
+    \vspace*{-1mm}
+	research and innovation programme under grant agreement No 740006.
+	}
+}
+
+
+
+
+%================================== SLIDES ==================================
+
+\begin{document}
+{
+\setbeamertemplate{headline}{} % remove headline from titlepage
+\begin{frame}
+  \titlepage
+\end{frame}
+}
+
+
+
+
+\section*{Current status}
+
+\begin{frame}[t]{Hyperparameter selection}
+  \begin{columns}[T]
+    \begin{column}{0.6\textwidth}
+      Currently: k-folds Hyperoptimization\\\vspace*{1em}
+
+      This results in the possiblity of overfitted or underfitted setups, in part due to fluctuations (think preprocessing exponents)\\\vspace*{1em}
+
+      To get a ``nice'' PDF we do a manual selection after the automated hyperoptimization, re-introducing human bias\\\vspace*{1em}
+
+      To reduce bias we would like a numerical objective metric for overfitting or underfitting
+
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \vspace*{-12mm}
+      \includegraphics[height=0.45\textheight]{hyperopt_choice_charm_plot_pdfs_c.pdf}\\
+      \includegraphics[height=0.45\textheight]{hyperopt_choice_strange_plot_pdfs_s.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+
+
+
+
+\section*{A new metric}
+
+\begin{frame}[t]{The idea}
+
+  Ideally, we have an objective metric that is not relative (such as arc-length), but absolute\\\vspace*{1em}
+
+  Correlation between PDFs and validation data suggests overfitting\\\vspace*{1em}
+
+  \textbf{How can we detect when this happens?}
+\end{frame}
+
+
+\begin{frame}[t]{The idea}
+
+  \textbf{Realization: for any PDF the validation loss $\chi^{r}_\text{val}$ should be equal to the ``validation loss'' calculated for any other pseudodata set  $\chi^{\hat{r}}_\text{val}$ (with the same tr/vl mask)}\\\vspace*{1em}
+
+  % For an overfitted PDF we \textbf{expect} $\chi^{r}_\text{val} < \chi^{\hat{r}}_\text{val}$\\\vspace*{1em}
+
+  Thus as a metric for overfitting we might consider
+  $$
+  \Delta\chi^2_{\text{overfit}}=\langle \chi^{2}_\text{val,$\hat{r}$} - \chi^{2}_\text {val,r}\rangle\quad (<0 \text{ if overfitted})
+  $$
+
+  % Though we will need to account for statistical fluctuations:
+  % $$ 
+  % R_{\text{overfit}}= 
+  % \frac{\langle \chi^{\hat{r}}_\text{val} - \chi^{r}_\text {val}\rangle_{\hat{r}}}
+  % {\sqrt{\langle ( \chi^{\hat{r}}_\text{val} - \chi^{r}_\text {val}-\langle \chi^{\hat{r}}_\text{val} - \chi^{r}_\text {val}\rangle_{\hat{r}})^2 \rangle_{\hat{r}}}}
+  % = \frac{\langle \chi^{\hat{r}}_\text{val} - \chi^{r}_\text {val}\rangle_{\hat{r}}}{\sigma_\text{bootstrap}}
+  % $$\\\vspace*{1em}
+
+  While \textbf{underfitted} setups will be filtered due to their higher $\chi^2$ values 
+
+\end{frame}
+
+
+\section*{Examples}
+
+\begin{frame}[t]{(How) does this work?}
+
+  Let's have a look at a clearly overfitted PDF (preferred by hyperopt):
+
+  \begin{center}
+    \includegraphics[width=0.4\textwidth]{hyperopt_choice_charm_plot_pdfs_c.pdf}
+    \includegraphics[width=0.4\textwidth]{hyperopt_choice_strange_plot_pdfs_s.pdf}
+  \end{center}
+
+  \begin{center}
+    $\Delta\chi^2_{\text{overfit}}=-0.0459 \pm 0.0078$ \quad $5.9\sigma$ from 0
+  \end{center}
+  \textit{The $\Delta\chi^2_{\text{overfit}}$ values and bootstrap errors in these slides are determined using PDFs with $N_{\text{rep}}=100$}
+
+\end{frame}
+
+
+\begin{frame}[t]{(How) does this work?}
+
+  And now for a PDF that is a bit smoother (ranked \#8 by hyperopt):
+
+  \begin{center}
+    \includegraphics[width=0.4\textwidth]{better_fit_charm_plot_pdfs_c.pdf}
+    \includegraphics[width=0.4\textwidth]{better_fit_strange_plot_pdfs_s.pdf}
+  \end{center}
+
+  \begin{center}
+    $\Delta\chi^2_{\text{overfit}}=-0.0168 \pm 0.0105$ \quad $1.6\sigma$ from 0
+  \end{center}
+  The distance from 0 decreases as expected
+
+\end{frame}
+
+
+\begin{frame}[t]{(How) does this work?}
+
+  In the past we have had a scenario where this metric would have helped a lot:
+
+  \begin{center}
+    \includegraphics[width=0.4\textwidth]{clipnorm_fit_charm_plot_pdfs_c.pdf}
+    \includegraphics[width=0.4\textwidth]{clipnorm_fit_strange_plot_pdfs_s.pdf}
+  \end{center}
+
+  \begin{center}
+    $\Delta\chi^2_{\text{overfit}}=-0.0236 \pm 0.0126$ \quad $1.9\sigma$ from 0
+  \end{center}
+
+  A clear indicator that the clipnorm bugged fit is overfitted!
+
+\end{frame}
+
+
+\begin{frame}[t]{(How) does this work?}
+
+  And what about NNPDF4.0?
+
+  \begin{center}
+    \includegraphics[width=0.4\textwidth]{NNPDF40_fit_charm_plot_pdfs_c.pdf}
+    \includegraphics[width=0.4\textwidth]{NNPDF40_fit_strange_plot_pdfs_s.pdf}
+  \end{center}
+
+  \begin{center}
+    $\Delta\chi^2_{\text{overfit}}=-0.0012 \pm 0.0130$ \quad $0.1\sigma$ from 0
+  \end{center}
+
+\end{frame}
+
+
+\begin{frame}[t]{How can this be used in NNPDF?}
+
+  As an a-posteriory check similar to (but cheaper than) the closure test\\\vspace*{1em}
+
+  \setbeamertemplate{enumerate items}[default]
+  \begin{enumerate}
+    \item Run hyperoptimization
+    \item Select N best setups and do full ~100 replica fits for each
+    \item Calculate the estimators for all
+    \item Discard setups with e.g. $R_{\text{overfit}} < -1$
+    \item
+    \begin{enumerate}
+      \item Increase number of replicas and repeat...
+      \item or select the best of the remaining fit
+    \end{enumerate}
+  \end{enumerate}\vspace*{1em}
+
+  5.1: If the bootstrap error becomes small enough we will likely always get a negative $\Delta\chi^2_{\text{overfit}}$
+
+  5.2: What is an acceptable $\Delta\chi^2_{\text{overfit}}$? \\
+  \qquad How do we define the best fit ($\chi^2_{\text{val}}$, $\chi^2_{\text{tr}}$, $\chi^2_{\text{exp}}$, \ldots)?\\\vspace*{1em}
+
+  \only<1>{\color{white}Conclusion: The $\Delta\chi^2_{\text{overfit}}$ provides a metric for overfitting that can be used to flag overfitted hyperparameter setups and thereby reduce human bias}
+  \only<2>{Conclusion: The $\Delta\chi^2_{\text{overfit}}$ provides a metric for overfitting that can be used to flag overfitted hyperparameter setups and thereby reduce human bias}
+\end{frame}
+
+
+\input{backup.tex}
+
+\end{document}
