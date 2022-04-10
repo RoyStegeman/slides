@@ -1,0 +1,163 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\graphicspath{{figures/}} % Setting the graphicspath
+
+% Theme settings
+\usetheme{Madrid}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}   % removes navigation symbols such as 'next page'
+\setbeamertemplate{footline}{}             % remove line with name, date, page nr. 
+\setbeamercolor*{frametitle}{bg=white}     % remove background from frametitle
+\usepackage{caption}
+% \captionsetup[figure]{labelformat=empty}% redefines the caption setup of the figures environment in the beamer class.
+\setbeamersize{text margin left=20pt,text margin right=10pt}
+
+\usefonttheme[onlymath]{serif} % makes beamer math look like article math
+
+
+%======================= import packages =======================
+\usepackage{graphicx}     % More options for \includegraphics
+\usepackage{appendixnumberbeamer} % separate appendix numbering
+\usepackage{hyperref}
+
+
+%======================= page numbering =======================
+\addtobeamertemplate{navigation symbols}{}{ \usebeamerfont{footline}
+  \insertframenumber / \inserttotalframenumber \hspace*{2mm} \\ \vspace*{1mm} 
+}
+
+
+%=================================== colors ===================================
+\definecolor{RoyBlue}{RGB}{22, 46, 69}
+\definecolor{RoyGrey}{RGB}{64, 88, 128} 
+
+\newcommand{\hlme}[1]{{\color{red}\bf #1}} % highlihgt me
+
+\setbeamercolor{structure}{fg=RoyBlue} % itemize, enumerate, etc
+\setbeamercolor{frametitle}{fg=RoyGrey}
+\setbeamercolor{section in head/foot}{bg=RoyBlue}
+
+
+%======================= add progress dots to headline =======================
+\setbeamertemplate{headline}{%
+    \begin{beamercolorbox}[ht=4mm,dp=4mm]{section in head/foot}
+        \insertnavigation{\paperwidth}
+    \end{beamercolorbox}%
+}%
+\makeatother
+
+
+%======================= add section title page =======================
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+    \usebeamerfont{title}\insertsectionhead\par%
+  \vfill
+  \end{frame}
+}
+
+
+%================================== TITLEPAGE ==================================
+\title{Simultaneous PDF+$\alpha_s$ fits: quick status update}
+\date{NNPDF meeting, 11 April 2022, Amsterdam}
+\author{Roy Stegeman}
+\institute{University of Milan and INFN Milan}
+\titlegraphic{\vspace*{6mm}
+    \includegraphics[height=0.8cm]{logos/LOGO-ERC.jpg} \hspace{10mm}
+	\includegraphics[height=0.8cm]{logos/n3pdflogo_noback.png} \hspace{10mm}
+	\includegraphics[height=0.6cm]{logos/nnpdf_logo_official.pdf} \hspace{10mm}
+	\includegraphics[height=0.8cm]{logos/Logo_Università_degli_Studi_di_Milano(not_mandatory).png}
+	\includegraphics[height=0.8cm]{logos/INFN_logo.png}
+    \vspace*{5mm} \\
+	\centering{ 
+	\fontsize{7.0pt}{0.0pt}\selectfont This project has received funding from the European Union’s Horizon 2020 \\	
+    \vspace*{-1mm}
+	research and innovation programme under grant agreement No 740006.
+	}
+}
+
+
+
+
+%================================== SLIDES ==================================
+
+\begin{document}
+{
+\setbeamertemplate{headline}{} % remove headline from titlepage
+\begin{frame}
+  \titlepage
+\end{frame}
+}
+
+
+
+
+\section*{Previous status}
+
+\begin{frame}[t]{Status at last PC discussion - \underline{\href{https://vp.nnpdf.science/AkI8zEchR4qU5tn7zxUZ0g==/}{validphys report}}}
+  NNPDF3.1-like dataset w/o nucl. uncertainties\\\vspace*{0.5em}
+
+  High training-validation losses and non-homogenous distribution of $\alpha_s$ in the tr-vl plot \\
+  $\rightarrow$ problem with optimization\\\vspace*{0.5em}
+
+  Two peaks in the $\alpha_s$ distribution \\
+  $\rightarrow$ peak at lower $\alpha_s$ corresponds to worse $\chi^2$ \\
+  $\rightarrow$ problem with optimization
+
+  \vspace*{-8mm}
+  \includegraphics[width=0.32\textwidth]{PDFnormalize0_Basespecs0_PDFscalespecs0_plot_pdfs_g_prev.pdf}
+  \includegraphics[width=0.32\textwidth]{alphas_hist_prev.pdf}
+  \includegraphics[width=0.32\textwidth]{plot_training_validation_prev.pdf}
+
+  \textbf{Idea:} freeze $\alpha_s$ during the initial training to improve stability
+
+\end{frame}
+
+
+
+
+
+\section*{Freezing $\alpha_s$}
+
+\begin{frame}[t]{Freezing $\alpha_s$ - \underline{\href{https://vp.nnpdf.science/J-wRSP3IRxeAMYoImWktBQ==/}{validphys report}}}
+
+  $\alpha_s$ distribution only a single peak - though small sample size and course binning\\\vspace*{0.5em}
+  
+  tr-vl losses improved and no apparent correlations between loss and $\alpha_s$ value\\\vspace*{0.5em}
+
+  Validation loss of 2.33 compared to 2.31 for fit with $\alpha_s$ fixed at 0.119\\\vspace*{0.5em}
+
+  Correlated replica method found $\alpha_s= 0.11888 \pm 0.00053$\\\vspace*{0.5em}
+
+  Gluon uncertainty decreased compared to not freezing $\alpha_s$
+
+  \vspace*{-8mm}
+  \includegraphics[width=0.32\textwidth]{PDFnormalize0_Basespecs0_PDFscalespecs0_plot_pdfs_g_frac75.pdf}  
+  \includegraphics[width=0.32\textwidth]{alphas_hist_frac75.pdf}
+  \includegraphics[width=0.32\textwidth]{plot_training_validation_frac75.pdf}
+
+\end{frame}
+
+
+
+\section*{Freezing $\alpha_s$}
+
+\begin{frame}[t]{Freezing $\alpha_s$ with training frac 0.50 - \underline{\href{https://vp.nnpdf.science/J-wRSP3IRxeAMYoImWktBQ==/}{validphys report}}}
+
+  validation loss 2.32 vs 2.32 for fit with $\alpha_s$ fixed at 0.118 (training fraction did not significantly affect the losses of the fit with fixed alphas)\\\vspace*{1em}
+
+  $\alpha_s$ values different for the training fraction of 0.75\\\vspace*{1em}
+
+  Conclusion: Getting there but more tests needed
+
+  \includegraphics[width=0.32\textwidth]{PDFnormalize0_Basespecs0_PDFscalespecs0_plot_pdfs_g_frac50.pdf}  
+  \includegraphics[width=0.32\textwidth]{alphas_hist_frac50.pdf}
+  \includegraphics[width=0.32\textwidth]{plot_training_validation_frac50.pdf}
+
+\end{frame}
+
+
+
+% \input{backup.tex}
+
+\end{document}
