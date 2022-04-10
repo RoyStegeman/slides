@@ -121,7 +121,7 @@
 
 \begin{frame}[t]{Freezing $\alpha_s$ - \underline{\href{https://vp.nnpdf.science/J-wRSP3IRxeAMYoImWktBQ==/}{validphys report}}}
 
-  $\alpha_s$ distribution only a single peak - though small sample size and course binning\\\vspace*{0.5em}
+  $\alpha_s$ distribution only a single peak - though small sample size and coarse binning\\\vspace*{0.5em}
   
   tr-vl losses improved and no apparent correlations between loss and $\alpha_s$ value\\\vspace*{0.5em}
 
@@ -144,12 +144,17 @@
 
 \begin{frame}[t]{Freezing $\alpha_s$ with training frac 0.50 - \underline{\href{https://vp.nnpdf.science/J-wRSP3IRxeAMYoImWktBQ==/}{validphys report}}}
 
-  validation loss 2.32 vs 2.32 for fit with $\alpha_s$ fixed at 0.118 (training fraction did not significantly affect the losses of the fit with fixed alphas)\\\vspace*{1em}
+  Validation loss 2.32 compared to 2.32 for fit with $\alpha_s$ fixed at 0.118 (training fraction did not significantly affect the losses of the fit with fixed alphas: \underline{\href{https://vp.nnpdf.science/K9yvnY0wQGuUSmj2wsRXNQ==/}{validphys report}})\\\vspace*{0.5em}
 
-  $\alpha_s$ values different for the training fraction of 0.75\\\vspace*{1em}
+  $\alpha_s$ values changed as the training fraction changed from 0.75 to 0.50\\\vspace*{0.5em}
 
-  Conclusion: Getting there but more tests needed
+  Conclusion: Getting there but more things still to be done:\\
+  - check impact of initial $\alpha_s$, \\
+  - increase number of replicas, \\
+  - understand the spread in loss at training fraction 0.75, \\
+  - \ldots
 
+  \vspace*{-8.5mm}
   \includegraphics[width=0.32\textwidth]{PDFnormalize0_Basespecs0_PDFscalespecs0_plot_pdfs_g_frac50.pdf}  
   \includegraphics[width=0.32\textwidth]{alphas_hist_frac50.pdf}
   \includegraphics[width=0.32\textwidth]{plot_training_validation_frac50.pdf}
