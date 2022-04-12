@@ -97,7 +97,8 @@
 \begin{frame}[t]{Status at last PC discussion - \underline{\href{https://vp.nnpdf.science/AkI8zEchR4qU5tn7zxUZ0g==/}{validphys report}}}
   NNPDF3.1-like dataset w/o nucl. uncertainties\\\vspace*{0.5em}
 
-  High training-validation losses and non-homogenous distribution of $\alpha_s$ in the tr-vl plot \\
+  High training-validation losses\\
+  % and non-homogenous distribution of $\alpha_s$ in the tr-vl plot \\
   $\rightarrow$ problem with optimization\\\vspace*{0.5em}
 
   Two peaks in the $\alpha_s$ distribution \\
@@ -109,7 +110,7 @@
   \includegraphics[width=0.32\textwidth]{alphas_hist_prev.pdf}
   \includegraphics[width=0.32\textwidth]{plot_training_validation_prev.pdf}
 
-  \textbf{Idea:} freeze $\alpha_s$ during the initial training to improve stability
+  \textbf{Idea:} freeze $\alpha_s$ during the initial training to improve stability and then small learning rate
 
 \end{frame}
 
@@ -129,7 +130,7 @@
 
   Correlated replica method found $\alpha_s= 0.11888 \pm 0.00053$\\\vspace*{0.5em}
 
-  Gluon uncertainty decreased compared to not freezing $\alpha_s$
+  Gluon uncertainty decreased wrt the fit without early freezing of $\alpha_s$
 
   \vspace*{-8mm}
   \includegraphics[width=0.32\textwidth]{PDFnormalize0_Basespecs0_PDFscalespecs0_plot_pdfs_g_frac75.pdf}  
@@ -142,16 +143,15 @@
 
 \section*{Freezing $\alpha_s$}
 
-\begin{frame}[t]{Freezing $\alpha_s$ with training frac 0.50 - \underline{\href{https://vp.nnpdf.science/J-wRSP3IRxeAMYoImWktBQ==/}{validphys report}}}
+\begin{frame}[t]{Freezing $\alpha_s$ with training frac 0.50 - \underline{\href{https://vp.nnpdf.science/UklUxd06R7iHjZULhKPkHQ==/}{validphys report}}}
 
-  Validation loss 2.32 compared to 2.32 for fit with $\alpha_s$ fixed at 0.118 (training fraction did not significantly affect the losses of the fit with fixed alphas: \underline{\href{https://vp.nnpdf.science/K9yvnY0wQGuUSmj2wsRXNQ==/}{validphys report}})\\\vspace*{0.5em}
+  Validation loss 2.33 compared to 2.32 for fit with $\alpha_s$ fixed at 0.118 (training fraction did not significantly affect the losses of the fit with fixed alphas: \underline{\href{https://vp.nnpdf.science/K9yvnY0wQGuUSmj2wsRXNQ==/}{validphys report}})\\\vspace*{0.5em}
 
   $\alpha_s$ values changed as the training fraction changed from 0.75 to 0.50\\\vspace*{0.5em}
 
-  Conclusion: Getting there but more things still to be done:\\
+  Conclusion: getting there but more things still to be done\\
   - check impact of initial $\alpha_s$, \\
-  - increase number of replicas, \\
-  - understand the spread in loss at training fraction 0.75, \\
+  - understand the tr-vl plot at training fraction 0.75, \\
   - \ldots
 
   \vspace*{-8.5mm}
