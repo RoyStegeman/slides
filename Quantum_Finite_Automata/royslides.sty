@@ -1,0 +1,50 @@
+\usepackage{appendixnumberbeamer} % separate appendix numbering
+
+
+% Theme settings
+\usetheme{Madrid}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}   % removes navigation symbols such as 'next page'
+\setbeamertemplate{footline}{}             % remove line with name, date, page nr. 
+\setbeamercolor*{frametitle}{bg=white}     % remove background from frametitle
+\usepackage{caption}
+% \captionsetup[figure]{labelformat=empty}% redefines the caption setup of the figures environment in the beamer class.
+\setbeamersize{text margin left=20pt,text margin right=10pt}
+
+\usefonttheme[onlymath]{serif} % makes beamer math look like article math
+
+%======================= page numbering =======================
+\addtobeamertemplate{navigation symbols}{}{ \usebeamerfont{footline}
+  \insertframenumber / \inserttotalframenumber \hspace*{2mm} \\ \vspace*{1mm} 
+}
+
+
+%=================================== colors ===================================
+\definecolor{RoyBlue}{RGB}{22, 46, 69}
+\definecolor{RoyGrey}{RGB}{64, 88, 128} 
+
+\newcommand{\hlme}[1]{{\color{red}\bf #1}} % highlihgt me
+
+\setbeamercolor{structure}{fg=RoyBlue} % itemize, enumerate, etc
+\setbeamercolor{frametitle}{fg=RoyGrey}
+\setbeamercolor{section in head/foot}{bg=RoyBlue}
+
+
+%======================= add progress dots to headline =======================
+\setbeamertemplate{headline}{%
+    \begin{beamercolorbox}[ht=4mm,dp=4mm]{section in head/foot}
+        \insertnavigation{\paperwidth}
+    \end{beamercolorbox}%
+}%
+\makeatother
+
+
+%======================= add section title page =======================
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+    \usebeamerfont{title}\insertsectionhead\par%
+  \vfill
+  \end{frame}
+}
