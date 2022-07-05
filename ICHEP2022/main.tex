@@ -109,7 +109,7 @@
 	\vspace*{8pt}
 	\begin{beamercolorbox}[sep=0pt,center,#1]{author}
 		On behalf of the NNPDF Collaboration \\
-        {\small \href{https://arxiv.org/abs/2109.02653}{Eur.Phys.J.C 82 (2022);\quad arXiv:2109.02653}}
+        {\small \href{https://arxiv.org/abs/2109.02653}{Eur.Phys.J.C 82 (2022) 5, 428;\quad arXiv:2109.02653}}
 	\end{beamercolorbox}
 	\vspace*{16pt}
     \begin{beamercolorbox}[sep=0pt,center,#1]{date}
@@ -200,27 +200,26 @@
 % INTRO ========================================================================
 \section*{NNPDF4.0}
 
+% \begin{frame}{Status of modern PDF sets}
+% 	\begin{center}
+%         \begin{tikzpicture}
+%             \node[anchor=south west,inner sep=0] (image) at (0,0) {
+%                 \includegraphics[width=0.45\textwidth]{ZH_xsec_wrong}\includegraphics[width=0.45\textwidth]{HttbarH_xsec_wrong}
+%                 };
+%                 \begin{scope}[x={(image.south east)},y={(image.north west)}]
+%                     \node[align=center, text=gray,font=\bfseries\fontsize{30}{0}\selectfont] at (0.5,0.7) {BUGGED FIGURES};
+%                 \end{scope}
+%         \end{tikzpicture}
+%         % \includegraphics[width=0.45\textwidth]{ZH_xsec_wrong}
+% 		% \includegraphics[width=0.45\textwidth]{HttbarH_xsec_wrong}
+% 	\end{center}
+%     Plots as shown in Snowmass 2021, 2203.13923\textbf{v1}\\
+%     Error in the calculation of correlations for Monte Carlo PDFs!
+% \end{frame}
+
+
 \begin{frame}{Status of modern PDF sets}
-
-	\begin{center}
-        \begin{tikzpicture}
-            \node[anchor=south west,inner sep=0] (image) at (0,0) {
-                \includegraphics[width=0.45\textwidth]{ZH_xsec_wrong}\includegraphics[width=0.45\textwidth]{HttbarH_xsec_wrong}
-                };
-                \begin{scope}[x={(image.south east)},y={(image.north west)}]
-                    \node[align=center, text=gray,font=\bfseries\fontsize{30}{0}\selectfont] at (0.5,0.7) {BUGGED FIGURES};
-                \end{scope}
-        \end{tikzpicture}
-        % \includegraphics[width=0.45\textwidth]{ZH_xsec_wrong}
-		% \includegraphics[width=0.45\textwidth]{HttbarH_xsec_wrong}
-	\end{center}
-    Plots as shown in Snowmass 2021, 2203.13923\textbf{v1}\\
-    Error in the calculation of correlations for Monte Carlo PDFs!
-\end{frame}
-
-
-\begin{frame}{Status of modern PDF sets}
-    PDF predictions are consistent but with different uncertainties
+    PDF predictions are {\bfseries consistent} but with {\bfseries different uncertainties}
 	\begin{center}
 		\includegraphics[width=0.45\textwidth]{ZH_xsec_fixed.png}
 		\includegraphics[width=0.45\textwidth]{HttbarH_xsec_fixed.png}
@@ -235,19 +234,21 @@
 % DATA ========================================================================
 \section{Data}
 
-\begin{frame}{Data from NNPDF1.0 to NNPDF4.0}
-	\begin{center}
-		\includegraphics[width=0.5\textwidth]{NNPDF_data_history.pdf}
-	\end{center}
-	The number of datasets -- normally corresponding to different processes -- is generally more relevant than the number of datapoints
-\end{frame}
+% \begin{frame}{Data from NNPDF1.0 to NNPDF4.0}
+% 	\begin{center}
+% 		\includegraphics[width=0.5\textwidth]{NNPDF_data_history.pdf}
+% 	\end{center}
+% 	The number of datasets -- normally corresponding to different processes -- is generally more relevant than the number of datapoints
+% \end{frame}
 
 
 \begin{frame}{Experimental data in NNPDF4.0}
     \begin{columns}
         \column{0.7\linewidth}
             \includegraphics[width=1.0\textwidth]{Markers0_plot_xq2}
-        \column{0.25\linewidth}
+        \column{0.3\linewidth}
+            More than 4000 datapoints!\\
+            \vspace*{1em}
             New processes:
             \begin{itemize}
                 \item direct photon
@@ -256,11 +257,11 @@
                 \item W+jet
                 \item DIS jet
             \end{itemize}
-    \begin{block}{\footnotesize Theoretical improvement}
-    {\footnotesize
-    Nuclear uncertainties are included
-    }
-    \end{block}
+    % \begin{block}{\footnotesize Theoretical improvement}
+    % {\footnotesize
+    % Nuclear uncertainties are included
+    % }
+    % \end{block}
     \end{columns}
 \end{frame}
 
@@ -269,26 +270,143 @@
 % METHODOLOGY ==================================================================
 \section{Methodology}
 
-\begin{frame}[t]{Improved fitting methodology}
+\begin{frame}{The NNPDF4.0 model}{See  \href{https://arxiv.org/pdf/1907.05075}{\color{blue} EPJ\,C79\,(2019)\,676}}
+    \begin{figure}[t]
+      \centering
+      \resizebox{0.8\textwidth}{!}{%
+        \begin{tikzpicture}[node distance = 1.0cm]\scriptsize
+        % Input node
+        \node (xinput) {$\{\mathrm{xgrid}_n\}$};
+    
+        % PDF basis
+        \coordinate [right = 1.5cm of xinput] (NNghost) {};
+        \node[fitted, above = 1.0cm of NNghost, minimum width=1.7cm, minimum height=0.7cm] (pdf) { Neural Net};
+        \node[fitted, below = 1.0cm of NNghost, minimum width=1.7cm, minimum height=0.7cm] (preproc) { $x^{\alpha}$ $(1-x)^{\beta}$};
+        \node[above = 0.6cm of pdf, minimum width=1.7cm, minimum height=0.3cm] (fform) 
+        {\color{red} {\fontsize{10pt}{0}\selectfont $\mathrm{PDF}=Ax^\alpha(1-x)^\beta \mathrm{NN}(x,\log x)$} };
+    
+        % PDF production
+        \node[operations, fill=violet!40, minimum width=1.2cm, minimum height=0.7cm, right = 1.5cm of NNghost]
+            (fitbasis) {$\overline{\mathrm{PDF}}_n$};
+        \node[operations, fill=violet!40, minimum width=1.2cm, minimum height=0.7cm, right = 0.6cm of fitbasis]
+            (normalizer) {normalization};
+    
+        % PDFs 1 to n
+        \node[right = 0.9cm of normalizer] (pdfdots) {\vdots};
+        \node[above = 0.7cm of pdfdots] (pdf1) {PDF$_1$};
+        \node[below = 0.7cm of pdfdots] (pdfn) {PDF$_n$};
+    
+        % Convolutions 1 to n
+        \node[right = 0.2cm of pdf1] (conv1) {$\otimes$};
+        \node[right = 0.2cm of pdfn] (convn) {$\otimes$};
+        \node at ($(conv1)!0.5!(convn)$) (convdots) {$\otimes$};
+    
+        % FK Tables 1 to n
+        \node[blue, right = 0.6cm of conv1] (f1) {$\hat{\sigma}_1$};
+        \node[blue, right = 0.6cm of convn] (fn) {$\hat{\sigma}_n$};
+        \node[blue] at ($(f1)!0.5!(fn)$) (fd) {\vdots};
+        \draw[draw=blue, rounded corners] ($(f1.north west)+(-0.1, 0.2)$) rectangle ($(fn.south east)+(0.1,-0.2)$);
+            \node[above = 0.6cm of f1] (theory) {Theory};
+            \coordinate [above = 0.2cm of f1] (theoryarrow) {};
+    
+        % Observables
+        \node[right = 0.5 cm of f1] (o1) {$\mathcal{O}_{1}$};
+        \node[right = 0.5 cm of fn] (on) {$\mathcal{O}_{n}$};
+        \node at ($(o1)!0.5!(on)$) (od) {\vdots};
+        \node[above = 0.9cm of o1] (observables) {Observables};
+        \coordinate [above = 0.2cm of o1] (observablearrow) {};
+    
+        % Tr/Vl split
+        \node[operations, right = 0.5cm of od, minimum width = 1.2cm, text width=1cm, minimum height=0.7cm]
+        (trvl) {Tr/Vl split};
+        \coordinate [right = 1.0cm of trvl] (ending) {};
+        \path let \p1 = (ending), \p2 = (pdf)
+            in node at (\x1,\y2) [n3py, minimum width = 1.2cm, minimum height=0.7cm] (tr) {$\chi^{2}_\text{tr}$};
+        \path let \p1 = (ending), \p2 = (preproc)
+            in node at (\x1,\y2) [n3py, minimum width = 1.2cm, minimum height=0.7cm] (vl) {$\chi^{2}_\text{vl}$};
+    
+        % Arrows!
+        \draw[myarrow] (xinput) -- (pdf);
+        \draw[myarrow] (xinput) -- (preproc);
+        \draw[myarrow] (pdf) -- (fitbasis);
+        \draw[myarrow] (preproc) -- (fitbasis);
+        \draw[myarrow] (fitbasis) -- (normalizer);
+    
+        \draw[myarrow] (pdf1) -- (conv1);
+        \draw[myarrow] (pdfn) -- (convn);
+        \draw[myarrow] (conv1) -- ($(f1.west)-(0.2,0.0)$) ;
+        \draw[myarrow] (convn) -- ($(fn.west)-(0.2,0.0)$) ;
+        \draw[myarrow] ($(f1.east)+(0.2,0.0)$) -- (o1);
+        \draw[myarrow] ($(fn.east)+(0.2,0.0)$) -- (on);
+    
+        \draw[myarrow] (trvl) -- (tr);
+        \draw[myarrow] (trvl) -- (vl);
+        
+        \draw[myarrow] (theory) -- (theoryarrow);
+        \draw[myarrow] (observables) -- (observablearrow);
+        
+        % Braces
+        \draw[decorate, decoration={brace}, thick] (pdfn.south west) -- (pdf1.north west);
+        \draw[decorate, decoration={brace},thick] (o1.north east) -- (on.south east);
+        \end{tikzpicture}
+      }
+    \end{figure}
+    % \textbf{Main changes:}
+    \vspace*{2em}
+    \begin{itemize}
+        \item Modular \texttt{Python} codebase
+        \item Freedom to use external libraries (default: \texttt{TensorFlow})
+        % \item Modularity $\Rightarrow$ ability to vary all aspects of the methodology
+    \end{itemize}
+  \end{frame}
+
+
+\begin{frame}[t]{Automated model selection}
+	NNPDF aims to minimize sources of bias in the PDF:
+	\begin{itemize}
+	    \item Functional form $\rightarrow$ Neural Network
+	    \item Model parameters $\rightarrow$ \textbf{Hyperoptimization}
+	\end{itemize}
+    \begin{columns}
+        \begin{column}{0.48\textwidth}
+            Scan over thousands of hyperparameter combinations and select the best one \\
+            \vspace*{0.8em}
+            {\bf k-fold cross-validation}: used to define the reward function based on a {\bf test dataset}\\ 
+            \vspace*{0.8em}
+            Objective function: \\
+            $L=\textrm{mean}(\chi_1^2,\chi_3^2,\chi_2^2,\ldots, \chi_k^2)$
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{center}
+                \includegraphics[width=0.48\textwidth]{sec_methodology_hyperopt_plot_initializer.pdf}
+                \includegraphics[width=0.48\textwidth]{sec_methodology_hyperopt_plot_lr.pdf} \\
+                \includegraphics[width=0.48\textwidth]{sec_methodology_hyperopt_plot_number_of_layers.pdf}
+                \includegraphics[width=0.48\textwidth]{sec_methodology_hyperopt_plot_optimizers.pdf}
+            \end{center}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}[t]{Further methodological improvments}
     \begin{columns}[T]
         \begin{column}{0.48\textwidth}
             \begin{itemize}
                 \item Improved implementation of physical constraints
                 \begin{itemize}
-                    \item[-] PDF positivity
-                    \item[-] Integrability of non-singlet distributions(Gottfried sum rules)
+                    \item[-] PDF \textbf{positivity}
+                    \item[-] {\bfseries Integrability} of non-singlet distributions
                 \end{itemize}
-                \item New fitting code
-                \begin{itemize}
-                    \item[-] Optimization based on Stochastic Gradient Descent using TensorFlow
-                    \item[-] Automated selection of model hyperparameters
-                    \item[-] Modular python code
-                \end{itemize}
+                % \item New fitting code
+                % \begin{itemize}
+                %     \item[-] Optimization based on {\bfseries Stochastic Gradient Descent} using TensorFlow
+                %     \item[-] Automated selection of model {\bfseries hyperparameters}
+                %     % \item[-] Modular python code
+                % \end{itemize}
                 \item Extended validation of PDFs
                 \begin{itemize}
-                    \item[-] Closure tests to validate the uncertainty in the data region
-                    \item[-] Future tests for the extrapolation region
-                    \item[-] Explicit check of basis independence
+                    \item[-] Explicit check of {\bfseries basis independence}
+                    \item[-] {\bfseries Test uncertainties} using closure and future test
                 \end{itemize}
             \end{itemize}
         \end{column}
@@ -307,31 +425,6 @@
 \section{Validation}
 
 
-\begin{frame}[t]{Closure test}{See \href{https://arxiv.org/pdf/2103.08606.pdf}{\color{blue}Eur.Phys.J.C 82 (2022); arxiv:2111.05787}}
-    Closure test of a known input assumption
-    \begin{enumerate}
-        \item Assume a ``true'' underlying PDF (e.g. a single PDF replica)
-        \item Produce data distributed according to the experimental covariance matrices
-        \item Perform a fit to this data
-    \end{enumerate}
-    \vspace*{1em}
-    Example of statistical extimator:
-
-    \begin{itemize}
-        \item Bias: squared difference between central value and true observable\\
-        Variance: variance of the model predictions\\
-        faithful uncertainties require $E[\textrm{bias}]=\textrm{variance}$
-        \item Is truth within one sigma 68\% of cases?
-    \end{itemize}
-    \vspace*{1em}
-    Requires many fits - now possible with the new code
-    \begin{textblock*}{\textwidth}(10cm,6cm) % {block width} (coords)
-        \includegraphics[width=5cm]{closure_results}
-    \end{textblock*}
-\end{frame}
-
-
-
 \begin{frame}[t]{Future tests}{See \href{https://arxiv.org/pdf/2111.05787.pdf}{\color{blue}Acta Phys.Polon.B 52 (2021) arxiv:2103.08606}}
 
     \begin{columns}
@@ -342,9 +435,9 @@
             \item Compare predictions to ``future'' data
         \end{enumerate}
         \centering
-        \includegraphics[width=0.7\textwidth]{kincov}
+        % \includegraphics[width=0.7\textwidth]{kincov}
         \column{0.46\linewidth}
-        \vspace{-1.7cm}
+        \vspace{-1cm}
         \only<1>{
             \begin{table}
                 \tiny
@@ -381,73 +474,108 @@
 \end{frame}
 
 
+\begin{frame}[t]{Sampling for solutions}
+    Is the sampling of the PDF uncertainty of an experimental observable truly representative of all acceptable solutions?\\
+    \begin{columns}
+        \begin{column}{0.4\textwidth}
+            \begin{figure}
+                \includegraphics[width=0.9\textwidth]{cteq}
+                \caption*{arXiv:2205.10444, A. Courtoy et. al.}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.6\textwidth}
+            \begin{itemize}
+                \item A "hopscotch scan" to search for solutions with equal or better $\chi^2$
+                \item All solutions fall within the NNPDF4.0 distribution
+            \end{itemize}
+            \begin{figure}
+                \includegraphics[width=0.75\textwidth]{cteq_ubar}
+            \end{figure}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+
+
 % PHENO ========================================================================
-\section{Implications for phenomenology}
+\section{Phenomenology}
 
 \begin{frame}[t]{LHC phenomenology}
     \begin{center}
-        Reduced luminosity uncertainties $\rightarrow$ Reduced uncertainty at the level of observables\\
-        \vspace*{-0.5em}
-        \begin{columns}
-            \begin{column}{0.48\textwidth}
-                \begin{center}
-                    \includegraphics[width=0.78\textwidth]{NNPDF_TTB_14TEV_40_PHENO-internal} 
-                \end{center}
-            \end{column}
-            \begin{column}{0.48\textwidth}
-                \includegraphics[width=0.7\textwidth]{NNPDF_H_14TEV_40_PHENO-integrated}\\
-                    \includegraphics[width=0.7\textwidth]{NNPDF_TTB_14TEV_40_PHENO-integrated}
-            \end{column}
-        \end{columns}
+        \includegraphics[width=0.48\textwidth]{NNPDF_H_14TEV_40_PHENO-integrated}
+        \hspace*{0.02\textwidth}
+        \includegraphics[width=0.48\textwidth]{NNPDF_WP_14TEV_40_PHENO-integrated}\\
+        \vspace*{1em}
+        \begin{itemize}
+            \item Agreement between NNPDF4.0, CT18, and MSHT20 at two-sigma level
+            \item NNPDF4.0 is the most precise in the data region
+        \end{itemize}
     \end{center}
 \end{frame}
 
 
-\begin{frame}{High $M_{ll}$ extrapolation}
+\begin{frame}{DY at high energies [R.D Ball et. al., in preparation]}
+    \vspace*{-3em}
+    \begin{columns}
+        \begin{column}{0.66\textwidth}
+            \begin{column}{0.5\textwidth}
+                \includegraphics[width=\textwidth]{CMS_DY_14TEV_MLL_5000_COSTH}
+            \end{column}
+            \begin{column}{0.5\textwidth}
+                \includegraphics[width=\textwidth]{CMS_DY_14TEV_MLL_5000_YLL}
+            \end{column}
+        Large uncertainties for poorly known large-$x$ PDFs due to \textbf{flexibility} of the neural network
+        \end{column}
+        \begin{column}{0.33\textwidth}
+            \includegraphics[width=0.75\textwidth]{pdfplot-abslargex-ct18}\\
+            \includegraphics[width=0.75\textwidth]{pdfplot-abslargex-msht20}\\
+            \includegraphics[width=0.75\textwidth]{pdfplot-abslargex-nnpdf40}
+        \end{column}
+    \end{columns}
     \centering
-    \includegraphics[width=0.38\textwidth]{CMS_DY_14TEV_MLL_5000_COSTH}
-    \hspace*{0.02\textwidth}
-    \includegraphics[width=0.38\textwidth]{CMS_DY_14TEV_MLL_5000_YLL}\\
-    Large uncertainties outside the data region due to flexibility of the neural network
+
 \end{frame}
 
 
 
 % DELIVERY ====================================================================
-\section{Open-source code}
-\begin{frame}[t]{The open-source NNPDF code}
-    The full NNPDF code has been made public along with user friendly documentation\\
-    \vspace*{1em}
-    This includes: fitting, hyperoptimization, theory, data processing, visualization\\
-    \vspace*{1em}
-    It is possible to reproduce all results of NNPDF4.0 and more!\\
-    \vspace*{2em}
-    \begin{block}{}
-        \centering
-		\href{https://link.springer.com/article/10.1140/epjc/s10052-021-09747-9}{Eur.Phys.J.C 81 (2021) 10, 958} \\
-		\url{https://github.com/NNPDF/nnpdf} \\
-		\url{https://docs.nnpdf.science}
-    \end{block}
-\end{frame}
+% \section{Open-source code}
+% \begin{frame}[t]{The open-source NNPDF code}
+%     The full NNPDF code has been made public along with user friendly documentation\\
+%     \vspace*{1em}
+%     This includes: fitting, hyperoptimization, theory, data processing, visualization\\
+%     \vspace*{1em}
+%     It is possible to reproduce all results of NNPDF4.0 and more!\\
+%     \vspace*{2em}
+%     \begin{block}{}
+%         \centering
+% 		\href{https://link.springer.com/article/10.1140/epjc/s10052-021-09747-9}{Eur.Phys.J.C 81 (2021) 10, 958} \\
+% 		\url{https://github.com/NNPDF/nnpdf} \\
+% 		\url{https://docs.nnpdf.science}
+%     \end{block}
+% \end{frame}
 
 
 
 
 % CONCLUSION ===================================================================
-\section{Summary and Outlook}
-\begin{frame}[t]{Summary and Outlook}
+\section{Summary}
+\begin{frame}[t]{Summary}
     \begin{itemize}
         \item NNPDF4.0 is the latest release in the NNPDF family of PDF sets
-        \item 44 new datasets from many new processes are included
-        \item Improved methodology with Stochastic Gradient Descent and hyperoptimization
-        \item Validation of PDF uncertainties using closure test, future test and parametrization basis independence
-        \item[$\Rightarrow$] NNPDF4.0 achieves a high precision over a broad kinematic range
+        \item 44 {\bfseries new datasets} from many new processes are included
+        \item {\bfseries Improved methodology} with Stochastic Gradient Descent and hyperoptimization
+        \item {\bfseries Validation} of PDF uncertainties using closure test, future test and parametrization basis independence
+        \item[$\Rightarrow$] NNPDF4.0 achieves a high precision in the data region while simultaneously being flexible in the large-$x$ region
     \end{itemize}
 	\vspace*{1em}
-    \begin{itemize}
-        \item The current level of PDF uncertainties challenges the accuracy of theoretical predictions and demands an increased effort towards the systematic inclusion in the fit of theoretical uncertainties (nuclear, higher orders, SM parameters, \ldots ) and higher-order corrections
-    \end{itemize}
-
+    \begin{block}{}
+        \centering
+        \textbf{The NNPDF code has been made publicly available!}\\
+		\href{https://link.springer.com/article/10.1140/epjc/s10052-021-09747-9}{Eur.Phys.J.C 81 (2021) 10, 958} \\
+		\url{https://github.com/NNPDF/nnpdf} \\
+		\url{https://docs.nnpdf.science}
+    \end{block}
 
     \vspace*{1em}
     \only<2>{
