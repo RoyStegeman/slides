@@ -5,6 +5,7 @@
 
 \usepackage{royslides}
 \usepackage{graphicx}     % More options for \includegraphics
+\usepackage{subfig}
 \graphicspath{{figures/}} % Setting the graphicspath
 
 
@@ -64,28 +65,31 @@
 \end{frame}
 
 
-\begin{frame}[t]{Deterministic Finite Automata for $MOD_n$}
+\begin{frame}[t]{Deterministic Finite Automata for $MOD_p$}
   \begin{itemize}
-    \item This talk/paper: prime number search / recognizing $MOD_n$  
+    \item This talk/paper: prime number search / recognizing $MOD_p$  
     %  recognizing $MOD_n=\{a^j|j \mod n \equiv 0 \}$ for $n>1$
-    \item Decision problem: is the length of an input string a multiple of $n$?
+    \item Can also be represented schematically
+    % \item Decision problem: is the length of an input string a multiple of $n$?
     % \item See the representation of our $MOD_n$ problem (only accepting state is $s_0$):\\
     % for each symbol $a$, the DFA performs a transition between the states\\
     % so after if the length is a multiple of $n$, the system transitions back to its initial (and only accepting) state. Hence $MOD_n$ langauge.
-    \item \textbf{There is no DFA with less than $n$ states for $MOD_n$}
+    \item \textbf{There is no deterministic FA with less than $p$ states for $MOD_p$}
   \end{itemize}
   \vspace*{2em}
-  \begin{center}
-    \includegraphics[width=0.3\textwidth]{QFA_MODn.png}\\
-  \end{center}
+  \begin{figure}
+    \centering
+      \includegraphics[width=0.3\textwidth]{QFA_MODn.png}\\
+      \caption*{Schematic representation of the $MOD_p$ language}
+  \end{figure}
 \end{frame}
 
 
-\begin{frame}[t]{Quantum Finite Automata}
+\begin{frame}[t]{Quantum Finite Automaton}
   \begin{itemize}
     % \item QFA are a special case of PFA
     \item Can make more than one transition with probabilities that sum to one
-    \item QFA algorithm for $MOD_p$ is one of the first quantum algorithms with exponential advantage over classical methods
+    \item QFA algorithm for $MOD_p$ can be more time and memory efficient than classical methods
     % \item The input $x=x[1] x[2] \cdots x[l]$ can be traced linearly
     % \item at any step an $m$-state PFA is in a probability distribution of its states represented by $v=\left(\begin{array}{llll}p_{1} & p_{2} & \cdots & p_{m}\end{array}\right)^{T}$
     % \item transformation: $v_{f}=A_{\$} A_{x[l]} A_{x[l-1]} \cdots A_{x[1]} A_{\mathbb{C}} v_{0}$
@@ -126,110 +130,143 @@
 
 
 % QFA using photons ===========================================================
-\section{QFA using photons}
+\section{Photons as quantum states}
 
-\begin{frame}[t]{QFA using structured photons}
-  \begin{columns}
-    \begin{column}[]{0.5\textwidth}
+\begin{frame}[t]{Photon beam}
+  \begin{columns}[T]
+    \begin{column}[]{0.45\textwidth}
       \begin{itemize}
         \item Performing the calculation on a quantum computer bacame random immediately after reading a few symbols due to relatively large noise in the copmutation process.
         \vspace*{1em}
         \item Photon beam described by paraxial wave equation $\left(\Delta_\perp^2+2ik\frac{\partial}{\partial z}\right)u=0$
-        \item Thus described by radial $p$ and azimuthal $l$ quantum numbers
+        \item Special propagation property: described by radial $p$ and azimuthal $l$ quantum numbers
         \item Laguerre-Gaussian modes $L_p^l$ as lab realization of quantum states
         % \item all modes are orthoganol
         % \item the modes have high-dimensional states (infintely many)
         % \item used to encode single photons with quantum states
       \end{itemize}
     \end{column}
-    \begin{column}[]{0.5\textwidth}
-      \includegraphics[width=0.8\textwidth]{LG_modes_structured_photons.png}
+    \begin{column}[]{0.05\textwidth}
+    \end{column}
+    \begin{column}[]{0.45\textwidth}
+      \vspace*{-3em}
+      \begin{figure}
+        \subfloat[\centering $l=1$, $p=0$]{\includegraphics[width=0.4\textwidth]{l_1_p_0.png}}
+        \subfloat[\centering $l=-1$, $p=0$]{\includegraphics[width=0.4\textwidth]{l_-1_p_0.png}}
+      \end{figure}
+      \begin{figure}
+        \subfloat[\centering $l=4$, $p=0$]{\includegraphics[width=0.4\textwidth]{l_4_p_0.png}}
+        \subfloat[\centering $l=-1$, $p=2$]{\includegraphics[width=0.4\textwidth]{l_-1_p_2.png}}
+      \end{figure}
     \end{column}
   \end{columns}
 \end{frame}
 
 
-\begin{frame}[t]{Photonic Qubit}
+\begin{frame}[t]{Photonic qubits}
   \begin{columns}
     \begin{column}[]{0.5\textwidth}
       \begin{itemize}
-        \item physical realizaiton of a qubit
-        \item general qubit on block sphere: $|\psi\rangle=\cos(\theta/2)|L_1\rangle + e^{i\phi}\sin(\theta/2)|L_{-1}\rangle$
-        \item basis state: $|0\rangle= |L_1\rangle + |L_{-1}\rangle$
+        \item physical realization of a qubit
+        \item block sphere analogue with LG modes: $|\psi\rangle=\cos(\theta/2)|L_1\rangle + e^{i\phi}\sin(\theta/2)|L_{-1}\rangle$
+        \item choise of basis states: \\
+        $|0\rangle= \frac{1}{\sqrt{2}}(|L_1\rangle + |L_{-1}\rangle)$\\
+        $|1\rangle= \frac{1}{\sqrt{2}}(|L_1\rangle - |L_{-1}\rangle)$
       \end{itemize}
-      \includegraphics[width=0.7\textwidth]{photonic_superposition_qubit.png}
+      \includegraphics[width=0.99\textwidth]{photonic_superposition_qubit.png}
     \end{column}
     \begin{column}[]{0.5\textwidth}
-      \includegraphics[width=0.7\textwidth]{photonic_bloch_sphere.png}
+      \includegraphics[width=0.99\textwidth]{photonic_bloch_sphere.png}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}[t]{Photonic Qubit}
+\begin{frame}[t]{Photonic qubits}
   % Superposition correpond to the multiple 2-steate QFA of the theory part(?)\\
-  $|\psi\rangle = \frac{1}{{2}}(|0\rangle+|2\rangle+|4\rangle+|6\rangle)$\\
   \includegraphics[width=0.5\textwidth]{4photon_qubit_superposition.png}
   \begin{itemize}
-    \item $\frac{1}{\sqrt{2}}|0\rangle= |L_1\rangle + |L_{-1}\rangle$
-    \item $\frac{1}{\sqrt{2}}|1\rangle= |L_1\rangle - |L_{-1}\rangle$
-    \item $\frac{1}{\sqrt{2}}|2\rangle= |L_2\rangle + |L_{-2}\rangle$
-    \item $\frac{1}{\sqrt{2}}|3\rangle= |L_3\rangle - |L_{-3}\rangle$
+    \item $|0\rangle= \frac{1}{\sqrt{2}}(|L_1\rangle + |L_{-1}\rangle)$
+    \item $|1\rangle= \frac{1}{\sqrt{2}}(|L_1\rangle - |L_{-1}\rangle)$
+    \item $|2\rangle= \frac{1}{\sqrt{2}}(|L_2\rangle + |L_{-2}\rangle)$
+    \item $|3\rangle= \frac{1}{\sqrt{2}}(|L_2\rangle - |L_{-2}\rangle)$
     \item \ldots
   \end{itemize}
+  $|\psi\rangle = \frac{1}{{2}}(|0\rangle+|2\rangle+|4\rangle+|6\rangle)$\\
 \end{frame}
-
-
-\begin{frame}[t]{2d-state QFA}
-  \textit{Why use a superposition instead of a single state?}
-  \begin{itemize}
-    \item Consider two basis states: $|0\rangle,|1\rangle$ ($|0\rangle$ is the accepting state)
-    % \item Identity applied when reading $\$,\mathbb{C}$ 
-    \item Input $x=a^n$, each a rotates by $\theta=2\pi/p$, thus reading of $a$
-    leads to $U_{a}=\left(\begin{array}{rr}\cos \theta & -\sin \theta \\ \sin \theta & \cos \theta\end{array}\right)$
-    \item thus the final state is $\left|v_{f}\right\rangle=\left(\begin{array}{c}\cos n \theta \\ \sin n \theta\end{array}\right)$
-    \item Input accepted with $\cos^2(2n\pi/p)$, so 1 if $n=p$
-    % \item False acceptance rate up to $\cos^2(\pi/p)$
-    % \item 2d-state QFA reduced false acceptance rate of 2-state QFA
-    % \item Different acceptance rate for differnet $k$ run in parallel
-    % \item Eq. (14)
-    \includegraphics[width=0.7\textwidth]{2dstate.png}
-  \end{itemize}
-\end{frame}
-
 
 
 % EXPERIMENTAL SETUP ===========================================================
 \section{Experimental Setup}
 \begin{frame}[t]{Experimental setup}
-  \begin{itemize}
-    \item Heralded single photons pass through first SLM
-    \item Spatial light modulation
-  \end{itemize}
-  \includegraphics[width=0.3\textwidth]{experimental_setup.png}\\
-  Dove prism performs the rotation operation on the input state \\
-  50:50 beam splitter \\
-  Remember eq(14)
+  \begin{columns}[T]
+    \begin{column}{0.4\textwidth}
+      \begin{itemize}
+        \item Photon beam passes through first spatial light modulation
+        \item Dove prism performs the rotation operation
+        \item 50:50 beam splitter
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \includegraphics[width=0.8\textwidth]{experimental_setup.png}\\
+    \end{column}
+  \end{columns}
+  % Remember eq(14)
 \end{frame}
 
 
 \begin{frame}[t]{Measurement}
+  \begin{columns}[T]
+    \begin{column}{0.4\textwidth}
+      \begin{itemize}
+        \item recognize decay as result of 50:50 beamsplitter
+        \item principle used for prime number search
+        \item example: prime number 5
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \includegraphics[width=0.9\textwidth]{example_measurement.png}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+
+\begin{frame}[t]{Acceptance rate}
   \begin{itemize}
-    \item recognize decay as result of 50/50 beamsplitter
-    \item principle used for prime number search
-    \item example: prime number 5
+    \item Consider two basis states: $|0\rangle,|1\rangle$ ($|0\rangle$ is the accepting state)
+    % \item Identity applied when reading $\$,\mathbb{C}$
+    \item Input string of $n$ symbols, 
+    \item each symbol rotates by $\theta=2\pi/p \Rightarrow U_{a}=\left(\begin{array}{rr}\cos \theta & -\sin \theta \\ \sin \theta & \cos \theta\end{array}\right)$
+    \item thus the final state is $\left|v_{f}\right\rangle=\left(\begin{array}{c}\cos n \theta \\ \sin n \theta\end{array}\right)$
+    \item Input accepted with $\cos^2(2n\pi/p)$, so probability is 1 if $n$ is multiple of prime number $p$
+    \item False acceptance if $n$ is not a multiple of $p$
+    \item multiple-state QFA reduces false acceptance rate of 2-state QFA
+    % \item Different acceptance rate for differnet $k$ run in parallel
+    % \item Eq. (14)
+    \includegraphics[width=0.6\textwidth]{2dstate.png}
   \end{itemize}
-  \includegraphics[width=0.3\textwidth]{example_measurement.png}
 \end{frame}
 
 
 % RESULTS ======================================================================
 \section{Results}
 \begin{frame}[t]{Recognizing $MOD_5$}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      2 states: $|0\rangle$\\
+      4 states: $\frac{1}{\sqrt{2}}(|0\rangle + |4\rangle)$\\
+      Dove prism rotates by $36^{\circ}$ \\
+      $5 \times 36^{\circ} = 180^{\circ}$ (global phase symmetry)
+      \includegraphics[width=0.9\textwidth]{multi_qbit_photon_states.png}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \includegraphics[width=0.9\textwidth]{2states_4states.png}
+    \end{column}
+  \end{columns}
   \begin{itemize}
     \item 2 states result in a high false acceptance rate
-    \item Only 4 states gives good results (as opposed to 5 for classical)
+    \item 4 states gives good results (as opposed to 5 for classical)
   \end{itemize}
-  \includegraphics[width=0.3\textwidth]{2states_4states.png}
 \end{frame}
 
 
@@ -237,7 +274,9 @@
   \begin{itemize}
     \item 70:30 beam splitter to increase the number of loops
   \end{itemize}
-  \includegraphics[width=0.3\textwidth]{4states_8states.png}
+  \begin{center}
+    \includegraphics[width=0.45\textwidth]{4states_8states.png}
+  \end{center}
 \end{frame}
 
 
