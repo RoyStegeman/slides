@@ -47,6 +47,14 @@
     \item Experimental setup
     \item Results
   \end{itemize}
+  \vspace*{5em}
+  Unless otherwise specified, figures are taken from:
+  \begin{itemize}
+    \item arXiv: 2202.04915
+    \item ``Multi-Qubit Quantum Finite
+    Automata Using Structured
+    Photons'', 2021, Thesis, S. Plachta
+  \end{itemize}
 \end{frame}
 
 
@@ -95,8 +103,10 @@
     % \item transformation: $v_{f}=A_{\$} A_{x[l]} A_{x[l-1]} \cdots A_{x[1]} A_{\mathbb{C}} v_{0}$
     \item Probablity of accepting is the sum of probablities corresponding to the accepting states
   \end{itemize}
-  \includegraphics[width=0.6\textwidth]{DFA.png}\\
-  Source: https://www.nature.com/articles/s41534-019-0163-x
+  \begin{figure}
+    \includegraphics[width=0.6\textwidth]{DFA.png}
+    \caption*{image: npj Quantum information 5, 56 (2019)}
+  \end{figure}
 \end{frame}
 
 
@@ -201,9 +211,11 @@
   \begin{columns}[T]
     \begin{column}{0.4\textwidth}
       \begin{itemize}
-        \item Photon beam passes through first spatial light modulation
+        \item Single photons
+        \item Detector 1 \& time tagger
+        \item Spatial Light Modulator (SLM)
+        \item 50:50 Beam Splitter (BS)
         \item Dove prism performs the rotation operation
-        \item 50:50 beam splitter
       \end{itemize}
     \end{column}
     \begin{column}{0.6\textwidth}
