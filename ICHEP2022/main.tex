@@ -225,21 +225,53 @@
 		\includegraphics[width=0.45\textwidth]{HttbarH_xsec_fixed.png}
 	\end{center}
     \begin{center}
-	    \textbf{How is the improved precision from NNPDF3.1 to NNPDF4.0 achieved?}
+        Data region: small NNPDF4.0 uncertainties
 	\end{center}
 \end{frame}
 
 
 
+\begin{frame}{NC DY at high energies [R.D Ball et. al., in preparation]}
+    \vspace*{-3em}
+    \begin{columns}
+        \begin{column}{0.66\textwidth}
+            \begin{column}{0.5\textwidth}
+                \begin{figure}
+                    \includegraphics[width=0.9\textwidth]{CMS_DY_14TEV_MLL_5000_COSTH}
+                    \caption*{Rapidity}
+                \end{figure}
+            \end{column}
+            \begin{column}{0.5\textwidth}
+                \begin{figure}
+                    \includegraphics[width=0.9\textwidth]{CMS_DY_14TEV_MLL_5000_YLL}
+                    \caption*{Collins-Soper frame angle}
+                \end{figure}
+            \end{column}
+        Extrapolation region: large NNPDF4.0 uncertainties \\
+        due to \textbf{flexibility} of the neural network
+        \end{column}
+        \begin{column}{0.33\textwidth}
+            \begin{figure}
+                \includegraphics[width=0.7\textwidth]{pdfplot-abslargex-ct18}\\
+                \includegraphics[width=0.7\textwidth]{pdfplot-abslargex-msht20}\\
+                \includegraphics[width=0.7\textwidth]{pdfplot-abslargex-nnpdf40}
+                \caption*{large-$x$ PDFs}
+            \end{figure}
+        \end{column}
+    \end{columns}
+    \centering
+\end{frame}
+
+
 % DATA ========================================================================
 \section{Data}
 
-% \begin{frame}{Data from NNPDF1.0 to NNPDF4.0}
-% 	\begin{center}
-% 		\includegraphics[width=0.5\textwidth]{NNPDF_data_history.pdf}
-% 	\end{center}
-% 	The number of datasets -- normally corresponding to different processes -- is generally more relevant than the number of datapoints
-% \end{frame}
+\begin{frame}{Data from NNPDF1.0 to NNPDF4.0}
+	\begin{center}
+		\includegraphics[width=0.5\textwidth]{NNPDF_data_history.pdf}
+	\end{center}
+	The number of datasets -- normally corresponding to different processes -- is generally more relevant than the number of datapoints
+\end{frame}
 
 
 \begin{frame}{Experimental data in NNPDF4.0}
@@ -409,6 +441,10 @@
                     \item[-] {\bfseries Test uncertainties} using closure and future test
                 \end{itemize}
             \end{itemize}
+            \begin{figure}
+                \includegraphics[width=0.6\textwidth]{flavour_evolution_V}
+                \caption*{Basis independence}
+            \end{figure}
         \end{column}
         \begin{column}{0.48\textwidth}
             \includegraphics[width=1.0\textwidth]{NNarch}
@@ -498,92 +534,78 @@
 
 
 % PHENO ========================================================================
-\section{Phenomenology}
+% \section{Phenomenology}
 
-\begin{frame}[t]{LHC phenomenology}
-    \begin{center}
-        \includegraphics[width=0.48\textwidth]{NNPDF_H_14TEV_40_PHENO-integrated}
-        \hspace*{0.02\textwidth}
-        \includegraphics[width=0.48\textwidth]{NNPDF_WP_14TEV_40_PHENO-integrated}\\
-        \vspace*{1em}
-        \begin{itemize}
-            \item Agreement between NNPDF4.0, CT18, and MSHT20 at two-sigma level
-            \item NNPDF4.0 is the most precise in the data region
-        \end{itemize}
-    \end{center}
-\end{frame}
-
-
-\begin{frame}{DY at high energies [R.D Ball et. al., in preparation]}
-    \vspace*{-3em}
-    \begin{columns}
-        \begin{column}{0.66\textwidth}
-            \begin{column}{0.5\textwidth}
-                \includegraphics[width=\textwidth]{CMS_DY_14TEV_MLL_5000_COSTH}
-            \end{column}
-            \begin{column}{0.5\textwidth}
-                \includegraphics[width=\textwidth]{CMS_DY_14TEV_MLL_5000_YLL}
-            \end{column}
-        Large uncertainties for poorly known large-$x$ PDFs due to \textbf{flexibility} of the neural network
-        \end{column}
-        \begin{column}{0.33\textwidth}
-            \includegraphics[width=0.75\textwidth]{pdfplot-abslargex-ct18}\\
-            \includegraphics[width=0.75\textwidth]{pdfplot-abslargex-msht20}\\
-            \includegraphics[width=0.75\textwidth]{pdfplot-abslargex-nnpdf40}
-        \end{column}
-    \end{columns}
-    \centering
-
-\end{frame}
-
-
-
-% DELIVERY ====================================================================
-% \section{Open-source code}
-% \begin{frame}[t]{The open-source NNPDF code}
-%     The full NNPDF code has been made public along with user friendly documentation\\
-%     \vspace*{1em}
-%     This includes: fitting, hyperoptimization, theory, data processing, visualization\\
-%     \vspace*{1em}
-%     It is possible to reproduce all results of NNPDF4.0 and more!\\
-%     \vspace*{2em}
-%     \begin{block}{}
-%         \centering
-% 		\href{https://link.springer.com/article/10.1140/epjc/s10052-021-09747-9}{Eur.Phys.J.C 81 (2021) 10, 958} \\
-% 		\url{https://github.com/NNPDF/nnpdf} \\
-% 		\url{https://docs.nnpdf.science}
-%     \end{block}
+% \begin{frame}[t]{LHC phenomenology}
+%     \begin{center}
+%         \includegraphics[width=0.48\textwidth]{NNPDF_H_14TEV_40_PHENO-integrated}
+%         \hspace*{0.02\textwidth}
+%         \includegraphics[width=0.48\textwidth]{NNPDF_WP_14TEV_40_PHENO-integrated}\\
+%         \vspace*{1em}
+%         \begin{itemize}
+%             \item Agreement between NNPDF4.0, CT18, and MSHT20 at two-sigma level
+%             \item NNPDF4.0 is the most precise in the data region
+%         \end{itemize}
+%     \end{center}
 % \end{frame}
 
 
 
 
-% CONCLUSION ===================================================================
-\section{Summary}
-\begin{frame}[t]{Summary}
-    \begin{itemize}
-        \item NNPDF4.0 is the latest release in the NNPDF family of PDF sets
-        \item 44 {\bfseries new datasets} from many new processes are included
-        \item {\bfseries Improved methodology} with Stochastic Gradient Descent and hyperoptimization
-        \item {\bfseries Validation} of PDF uncertainties using closure test, future test and parametrization basis independence
-        \item[$\Rightarrow$] NNPDF4.0 achieves a high precision in the data region while simultaneously being flexible in the large-$x$ region
-    \end{itemize}
-	\vspace*{1em}
+
+
+% DELIVERY ====================================================================
+\section{Open-source code}
+\begin{frame}[t]{The open-source NNPDF code}
+    The full NNPDF code has been made \textbf{public} along with user friendly \textbf{documentation}\\
+    \vspace*{1em}
+    This includes: fitting, hyperoptimization, theory, data processing, visualization\\
+    \vspace*{1em}
+    It is possible to reproduce all results of NNPDF4.0 and more!\\
+    \vspace*{2em}
     \begin{block}{}
         \centering
-        \textbf{The NNPDF code has been made publicly available!}\\
 		\href{https://link.springer.com/article/10.1140/epjc/s10052-021-09747-9}{Eur.Phys.J.C 81 (2021) 10, 958} \\
 		\url{https://github.com/NNPDF/nnpdf} \\
 		\url{https://docs.nnpdf.science}
     \end{block}
-
-    \vspace*{1em}
+    \vspace*{2em}
     \only<2>{
     \begin{center}
         {\Large \textbf{Thank you!}}
     \end{center}
     }
 \end{frame}
+
+
+
+
+% CONCLUSION ===================================================================
+% \section{Summary}
+% \begin{frame}[t]{Summary}
+%     \begin{itemize}
+%         \item NNPDF4.0 is the latest release in the NNPDF family of PDF sets
+%         \item 44 {\bfseries new datasets} from many new processes are included
+%         \item {\bfseries Improved methodology} with Stochastic Gradient Descent and hyperoptimization
+%         \item {\bfseries Validation} of PDF uncertainties using closure test, future test and parametrization basis independence
+%         \item[$\Rightarrow$] NNPDF4.0 achieves a high precision in the data region while simultaneously being flexible in the large-$x$ region
+%     \end{itemize}
+% 	\vspace*{1em}
+%     \begin{block}{}
+%         \centering
+%         \textbf{The NNPDF code has been made publicly available!}\\
+% 		\href{https://link.springer.com/article/10.1140/epjc/s10052-021-09747-9}{Eur.Phys.J.C 81 (2021) 10, 958} \\
+% 		\url{https://github.com/NNPDF/nnpdf} \\
+% 		\url{https://docs.nnpdf.science}
+%     \end{block}
+
+%     \vspace*{1em}
+%     \only<2>{
+%     \begin{center}
+%         {\Large \textbf{Thank you!}}
+%     \end{center}
+%     }
+% \end{frame}
 
 
 \input{backup}
