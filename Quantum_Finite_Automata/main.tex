@@ -43,7 +43,7 @@
   \vspace*{1em}
   \begin{itemize}
     \item What are quantum finite automata (QFA)?
-    \item Photons as quantum states
+    \item Photons as qubits
     \item Experimental setup
     \item Results
   \end{itemize}
@@ -76,8 +76,8 @@
 
 \begin{frame}[t]{Deterministic Finite Automata for $MOD_p$}
   \begin{itemize}
-    \item Formal language: sequence of words should comply with rules (mathematical or grammar)
     \item This talk: is the input string a multiple of prime number $p$?
+    \item Formal language: sequence of words should comply with rules (mathematical or grammar)
     \item Language is $MOD_p=\{a^n|n \mod(p)\equiv 0\}$  
     %  recognizing $MOD_n=\{a^j|j \mod n \equiv 0 \}$ for $n>1$
     % \item Decision problem: is the length of an input string a multiple of $n$?
@@ -99,11 +99,11 @@
   \begin{itemize}
     % \item QFA are a special case of PFA
     \item Can make more than one transition with probabilities that sum to one
+    \item Probablity of accepting is the sum of probablities corresponding to the accepting states
     \item QFA algorithm for $MOD_p$ can be more time and memory efficient than classical methods
     % \item The input $x=x[1] x[2] \cdots x[l]$ can be traced linearly
     % \item at any step an $m$-state PFA is in a probability distribution of its states represented by $v=\left(\begin{array}{llll}p_{1} & p_{2} & \cdots & p_{m}\end{array}\right)^{T}$
     % \item transformation: $v_{f}=A_{\$} A_{x[l]} A_{x[l-1]} \cdots A_{x[1]} A_{\mathbb{C}} v_{0}$
-    \item Probablity of accepting is the sum of probablities corresponding to the accepting states
   \end{itemize}
   \begin{figure}
     \includegraphics[width=0.6\textwidth]{DFA.png}
@@ -142,13 +142,13 @@
 
 
 % QFA using photons ===========================================================
-\section{Photons as quantum states}
+\section{Photons as qubits}
 
 \begin{frame}[t]{Photon beam}
   \begin{columns}[T]
     \begin{column}[]{0.45\textwidth}
       \begin{itemize}
-        \item Performing the calculation on a quantum computer bacame random after reading a few symbols due to relatively large noise in the copmutation process.
+        \item Performing the calculation on a quantum computer bacame random after reading a few symbols due to relatively large noise
         \vspace*{1em}
         \item Photon beam described by paraxial wave equation $\left(\Delta_\perp^2+2ik\frac{\partial}{\partial z}\right)u=0$
         \item Special propagation property: described by radial $p$ and azimuthal $l$ quantum numbers
@@ -270,8 +270,8 @@
 \begin{frame}[t]{Recognizing $MOD_5$}
   \begin{columns}
     \begin{column}{0.5\textwidth}
-      2 states: $|0\rangle$\\
-      4 states: $\frac{1}{\sqrt{2}}(|0\rangle + |4\rangle)$\\
+      2 states: $l=1$\\
+      4 states: $l=\{0,3\}$\\
       Dove prism rotates by $36^{\circ}$ \\
       $5 \times 36^{\circ} = 180^{\circ}$ (global phase symmetry)
       \includegraphics[width=0.9\textwidth]{multi_qbit_photon_states.png}
