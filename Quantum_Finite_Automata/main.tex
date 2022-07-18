@@ -59,10 +59,11 @@
 
 
 % QUANTUM FINITE AUTOMATA ======================================================
-\section{Quantum Finite Automata}
+\section{Quantum Finite Automata (QFA)}
 \begin{frame}[t]{Finite State Automaton}
   \begin{itemize}
     \item Abstract machine that can be in one of a finite number of states at a given time
+    \item Binary decision (yes or no)
     \item Computational model simpler than a Turing machine
     \item FSA is fully defined by initial state, list of states and inputs that trigger each transition
     % \item Memory of a FSA is represented by the finite number of states in which a FSA can be
@@ -75,13 +76,14 @@
 
 \begin{frame}[t]{Deterministic Finite Automata for $MOD_p$}
   \begin{itemize}
-    \item This talk/paper: prime number search / recognizing $MOD_p$  
+    \item Formal language: sequence of words should comply with rules (mathematical or grammar)
+    \item This talk: is the input string a multiple of prime number $p$?
+    \item Language is $MOD_p=\{a^n|n \mod(p)\equiv 0\}$  
     %  recognizing $MOD_n=\{a^j|j \mod n \equiv 0 \}$ for $n>1$
-    \item Can also be represented schematically
     % \item Decision problem: is the length of an input string a multiple of $n$?
     % \item See the representation of our $MOD_n$ problem (only accepting state is $s_0$):\\
-    % for each symbol $a$, the DFA performs a transition between the states\\
-    % so after if the length is a multiple of $n$, the system transitions back to its initial (and only accepting) state. Hence $MOD_n$ langauge.
+    % \item For each symbol $a$, the DFA performs a transition between the states
+    % \item If the length is a multiple of $n$, the system transitions back to its initial (and only accepting) state.
     \item \textbf{There is no deterministic FA with less than $p$ states for $MOD_p$}
   \end{itemize}
   \vspace*{2em}
@@ -146,11 +148,11 @@
   \begin{columns}[T]
     \begin{column}[]{0.45\textwidth}
       \begin{itemize}
-        \item Performing the calculation on a quantum computer bacame random immediately after reading a few symbols due to relatively large noise in the copmutation process.
+        \item Performing the calculation on a quantum computer bacame random after reading a few symbols due to relatively large noise in the copmutation process.
         \vspace*{1em}
         \item Photon beam described by paraxial wave equation $\left(\Delta_\perp^2+2ik\frac{\partial}{\partial z}\right)u=0$
         \item Special propagation property: described by radial $p$ and azimuthal $l$ quantum numbers
-        \item Laguerre-Gaussian modes $L_p^l$ as lab realization of quantum states
+        \item Laguerre-Gaussian modes $L^p_l$ as lab realization of quantum states
         % \item all modes are orthoganol
         % \item the modes have high-dimensional states (infintely many)
         % \item used to encode single photons with quantum states
@@ -159,7 +161,7 @@
     \begin{column}[]{0.05\textwidth}
     \end{column}
     \begin{column}[]{0.45\textwidth}
-      \vspace*{-3em}
+      \vspace*{-5em}
       \begin{figure}
         \subfloat[\centering $l=1$, $p=0$]{\includegraphics[width=0.4\textwidth]{l_1_p_0.png}}
         \subfloat[\centering $l=-1$, $p=0$]{\includegraphics[width=0.4\textwidth]{l_-1_p_0.png}}
@@ -208,6 +210,7 @@
 % EXPERIMENTAL SETUP ===========================================================
 \section{Experimental Setup}
 \begin{frame}[t]{Experimental setup}
+  Rephrase problem: \textit{do $n$ identical operations return the systm to its initial state?}
   \begin{columns}[T]
     \begin{column}{0.4\textwidth}
       \begin{itemize}
@@ -230,10 +233,12 @@
   \begin{columns}[T]
     \begin{column}{0.4\textwidth}
       \begin{itemize}
-        \item recognize decay as result of 50:50 beamsplitter
-        \item principle used for prime number search
-        \item example: prime number 5
+        \item Decay as result of 50:50 beamsplitter
+        % \item Principle used for prime number search
+        \item Example: prime number 5
       \end{itemize}
+      \vspace*{1em}
+      \only<2>{\textbf{Peaks don't compeltely vanish for $n\neq5$!}}
     \end{column}
     \begin{column}{0.6\textwidth}
       \includegraphics[width=0.9\textwidth]{example_measurement.png}
@@ -287,7 +292,8 @@
     \item 70:30 beam splitter to increase the number of loops
   \end{itemize}
   \begin{center}
-    \includegraphics[width=0.45\textwidth]{4states_8states.png}
+    \includegraphics[width=0.4\textwidth]{4states_8states.png}\\
+    % \only<2>{\Large \textbf{Thank you!}}
   \end{center}
 \end{frame}
 
