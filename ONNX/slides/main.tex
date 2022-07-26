@@ -1,0 +1,70 @@
+% !TeX root = main.tex
+% !TeX spellcheck = en_US
+
+\documentclass[aspectratio=169,9pt]{beamer}
+
+\usepackage{royslides}
+\usepackage{graphicx}     % More options for \includegraphics
+\usepackage{subfig}
+\graphicspath{{figures/}} % Setting the graphicspath
+
+
+
+
+\title{ONNX for ML model deployment in HEP}
+\date{Milan University, 2022}
+\author{Roy Stegeman}
+\institute{University of Milan and INFN Milan}
+
+\begin{document}
+% TITLEPAGE ====================================================================
+{
+\setbeamertemplate{headline}{} % remove headline from titlepage
+\begin{frame}
+  \titlepage
+\end{frame}
+}
+
+
+% INTRO ========================================================================
+\begin{frame}[t]{Problem in ML for HEP}
+  \begin{itemize}
+    \item Use of graph based neural networks widely spread in HEP community (particle tracking, jet tagging, clustering\ldots, pdf fits\ldots)
+    \item Tensorflow, Keras, Scikit-learn, Pytorch, \ldots
+    \item C++ framework at (LHC) experiments
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{What is ONNX?}
+  Initial framework (TF, pytorch) $\rightarrow$ Deployment target (cpu, gpu, fpga)
+\end{frame}
+
+
+\begin{frame}[t]{How to get ONNX model}
+  examples
+\end{frame}
+
+\begin{frame}[t]{Supported architectures/languages/providers}
+\end{frame}
+
+\begin{frame}[t]{Deploy ONNX model}
+\end{frame}
+
+\begin{frame}[t]{Design principles}
+  \begin{itemize}
+    \item support DNN and traditional ML
+    \item interpoerateble
+    \item backward compatible
+    \item compact and cross-platform representation for serialization
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{ONNX runtime}
+\end{frame}
+
+
+
+
+\input{backup}
+
+\end{document}
