@@ -4,17 +4,58 @@
 \documentclass[aspectratio=169,9pt]{beamer}
 
 \usepackage{royslides}
-\usepackage{graphicx}     % More options for \includegraphics
-\usepackage{subfig}
+\usepackage{graphicx}
 \graphicspath{{figures/}} % Setting the graphicspath
+\usepackage{subfig}
+\usepackage[]{hyperref}
+\usepackage{listings}
 
-
-
-
-\title{ONNX for ML model deployment in HEP}
+\title{ML pipelines in HEP}
 \date{Milan University, 2022}
 \author{Roy Stegeman}
 \institute{University of Milan and INFN Milan}
+
+% LISTINGS ====================================================================
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\makeatletter
+\lst@CCPutMacro
+    \lst@ProcessOther {"2D}{\lst@ttfamily{-{}}{-}}
+    \@empty\z@\@empty
+\makeatother
+
+\lstset{ 
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  % firstnumber=1000,                % start line enumeration with line 1000
+  frame=single,	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=Octave,                 % the language of the code
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+% ====================================================================
+
 
 \begin{document}
 % TITLEPAGE ====================================================================
@@ -27,43 +68,284 @@
 
 
 % INTRO ========================================================================
-\begin{frame}[t]{Problem in ML for HEP}
+\section{Status of ML pipelines in HEP}
+\begin{frame}[t]{Experimental data pipeline}
+  % \begin{itemize}
+  %   \item Large dataset
+  %   \item convert to training data
+  %   \item training framework
+  %   \item trained model
+  %   \item store in database dependent format
+  %   \item do inference to get results
+  % \end{itemize}
+  \centering
+  \includegraphics[width=.7\textwidth]{MLworkflow.drawio.pdf}
+\end{frame}
+
+
+\begin{frame}[t]{Producing training data}
   \begin{itemize}
-    \item Use of graph based neural networks widely spread in HEP community (particle tracking, jet tagging, clustering\ldots, pdf fits\ldots)
-    \item Tensorflow, Keras, Scikit-learn, Pytorch, \ldots
-    \item C++ framework at (LHC) experiments
+    \item Complicated pipelines
+    \item Shift ROOT$\rightarrow$Numpy
+    \item In reality input data is Event Data Model thus more steps
+  \end{itemize}
+  % \begin{itemize}
+  %   \item input primary data
+  %   \item Convert to ROOT or HDF5/zarr
+  %   \item root to uproot to numpy
+  %   \item HDF5 to numpy
+  % \end{itemize}
+  \begin{figure}
+    \centering
+    \includegraphics[width=.7\textwidth]{making_dataset.drawio.pdf}
+  \end{figure}
+\end{frame}
+
+
+\begin{frame}[t]{Can this be simplified?}
+  \begin{itemize}
+    \item Different parties have different interests
+    \item Experiments: lots of data available in ROOT, but\ldots
+    \begin{itemize}
+      \item primary data needs to be converted for training
+      \item there is no consistent ROOT data format
+    \end{itemize}
+    \item ROOT: introduce yet another data format \href{https://root.cern/doc/master/md_tree_ntuple_v7_doc_README.html}{\color{blue}RNtuple}
+    \item Similarly no consistent HEPData format
+    \item Does the ML community have a solution? Maybe \href{https://github.com/apache/parquet-format}{\color{blue}Parquet}
+  \end{itemize}
+  Much to improve on the data side!\\\vspace*{1cm}
+  But once we have data, it's also no smooth sailing...
+\end{frame}
+
+
+\begin{frame}[t]{ML model pipeline}
+  % \begin{itemize}
+  %   \item Use of graph based neural networks widely spread in HEP community (particle tracking, jet tagging, clustering\ldots, pdf fits\ldots)
+  %   \item Tensorflow, Keras, Scikit-learn, Pytorch, \ldots
+  %   \item Conda, venv, docker, \ldots
+  %   \item grid stored in tool with non-standard format
+  %   \item C++ framework at (LHC) experiments
+  %   \item Run models on different OS or hardware
+  % \end{itemize}
+  Use of graph based neural networks widely spread in HEP community \\
+  (particle tracking, jet tagging, clustering\ldots, pdf fits\ldots)\\\vspace*{0.5cm}
+  \begin{figure}
+    \centering
+    \includegraphics[width=.6\textwidth]{ml_models.pdf}
+  \end{figure}
+  \begin{itemize}
+    \item Lack of interoperatibilty (e.g. Pytorch cannot run interference on TF trained model)
+    \item Lack of consistent runtime layer for combinations of hardware and software \\ (e.g. export TF to \href{https://developer.nvidia.com/tensorrt?utm_source=thenewstack&utm_medium=website&utm_campaign=platform}{\color{blue}TensorRT} model for NVIDIA GPUs)
   \end{itemize}
 \end{frame}
+
+
+\begin{frame}[t]{ML model pipeline}
+  % \begin{itemize}
+  %   \item Use of graph based neural networks widely spread in HEP community (particle tracking, jet tagging, clustering\ldots, pdf fits\ldots)
+  %   \item Tensorflow, Keras, Scikit-learn, Pytorch, \ldots
+  %   \item Conda, venv, docker, \ldots
+  %   \item grid stored in tool with non-standard format
+  %   \item C++ framework at (LHC) experiments
+  %   \item Run models on different OS or hardware
+  % \end{itemize}
+  Use of graph based neural networks widely spread in HEP community \\
+  (particle tracking, jet tagging, clustering\ldots, pdf fits\ldots)\\\vspace*{0.5cm}
+  \begin{figure}
+    \centering
+    \includegraphics[width=.6\textwidth]{factorize_this_workflow.pdf}
+  \end{figure}
+\end{frame}
+
+
+% ONNX =========================================================================
+\section{Introducing ONNX}
+\begin{frame}[t]{Machine learning pipeline}
+  \begin{figure}
+    \centering
+    \only<1>{\includegraphics[width=.7\textwidth]{ml_models.pdf}}
+    \only<2>{\includegraphics[width=.7\textwidth]{onix_workflow.pdf}\\\vspace*{.5cm}
+    No accuracy loss due to conversion before interference!
+    }
+  \end{figure}
+\end{frame}
+
 
 \begin{frame}[t]{What is ONNX?}
-  Initial framework (TF, pytorch) $\rightarrow$ Deployment target (cpu, gpu, fpga)
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item Open Neural Network Exchange (ONNX)
+        \item Support DNN and traditional ML models
+        \item Cross-platform
+        \item See \href{https://onnx.ai/supported-tools.html}{\color{blue} onnx.ai} for supported tools
+        \item Open source
+      \end{itemize}
+      \vspace*{1cm}
+      ONNX and ONNX runtime:
+      \begin{itemize}
+        \item ONNX provides common representation for computational graph models
+        \item ONNX runtime:
+        \begin{itemize}
+          \item Inference session
+          \item graph optimization
+          \item Execution - Sequential / Parallel
+        \end{itemize}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \includegraphics[width=.9\textwidth]{frameworks_converters.png}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 
-\begin{frame}[t]{How to get ONNX model}
-  examples
+% ONNX in practice =============================================================
+\section{ONNX in practice}
+\begin{frame}[t,fragile]{How to get ONNX model}
+  Many tutorials with examples on the \href{https://github.com/onnx/tutorials\#converting-to-onnx-format}{\color{blue}onnx github page}\\
+  \vspace*{1em}
+  \textbf{Pytorch:}
+  \begin{lstlisting}[language=Python]
+    import torch.onnx
+    import torchvision
+    
+    # Standard ImageNet input - 3 channels, 224x224,
+    # values don't matter as we care about network structure.
+    # But they can also be real inputs.
+    dummy_input = torch.randn(1, 3, 224, 224)
+    # Obtain your model, it can be also constructed in your script explicitly
+    model = torchvision.models.alexnet(pretrained=True)
+    # Invoke export
+    torch.onnx.export(model, dummy_input, "alexnet.onnx")    
+  \end{lstlisting}
 \end{frame}
 
-\begin{frame}[t]{Supported architectures/languages/providers}
+
+\begin{frame}[t,fragile]{How to get ONNX model}
+  Many tutorials with examples on the \href{https://github.com/onnx/tutorials\#converting-to-onnx-format}{\color{blue}onnx github page}\\
+  \vspace*{1em}
+  \textbf{scikit-learn:}
+  \begin{lstlisting}[language=Python]
+    # Train a model.
+    from sklearn.datasets import load_iris
+    from sklearn.model_selection import train_test_split
+    from sklearn.ensemble import RandomForestClassifier
+    iris = load_iris()
+    X, y = iris.data, iris.target
+    X_train, X_test, y_train, y_test = train_test_split(X, y)
+    clr = RandomForestClassifier()
+    clr.fit(X_train, y_train)
+    
+    # Convert into ONNX format
+    from skl2onnx import convert_sklearn
+    from skl2onnx.common.data_types import FloatTensorType
+    initial_type = [('float_input', FloatTensorType([None, 4]))]
+    onx = convert_sklearn(clr, initial_types=initial_type)
+    with open("rf_iris.onnx", "wb") as f:
+        f.write(onx.SerializeToString())
+  \end{lstlisting}
 \end{frame}
 
-\begin{frame}[t]{Deploy ONNX model}
+
+\begin{frame}[t,fragile]{How to get ONNX model}
+  Many tutorials with examples on the \href{https://github.com/onnx/tutorials\#converting-to-onnx-format}{\color{blue}onnx github page}\\
+  \vspace*{1em}
+  \textbf{TensorFlow:}
+  \begin{lstlisting}[language=bash]
+    python -m tf2onnx.convert --saved-model model --output onnx.model
+  \end{lstlisting}
 \end{frame}
 
-\begin{frame}[t]{Design principles}
+
+\begin{frame}[t]{Standardized Model}
+  \begin{columns}[t]
+    \column{0.48\textwidth}
+      \begin{itemize}
+        \item Common operators and common file format
+        \item Well documented
+        \item \href{https://netron.app/}{\color{blue}netron.app} for model visualization
+      \end{itemize}
+    \column{0.48\textwidth}
+      \begin{figure}
+        \vspace*{-1.5cm}
+        \centering
+        \includegraphics[height=0.95\textheight]{netron.png}
+      \end{figure}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[t]{Deploy: ONNX runtime}{\color{blue} \href{https://onnxruntime.ai/}{onnxruntime.ai}}
   \begin{itemize}
-    \item support DNN and traditional ML
-    \item interpoerateble
-    \item backward compatible
-    \item compact and cross-platform representation for serialization
+    \item High performance interference engine for ONNX models
+    \item Supports full ONNX-ML stack
+    \item Extensive support for many hardware accelerators
+    \item ONNX runtme optimizes for the target hardware \\
+          (e.g. optimizing for TensorRt to run on an NVIDIA GPU)
   \end{itemize}
+  \begin{figure}
+    \centering
+    \includegraphics[width=.6\textwidth]{ONNX-runtime-get-started-chart.png}
+  \end{figure}
 \end{frame}
 
-\begin{frame}[t]{ONNX runtime}
+
+\begin{frame}[t,fragile]{Easily load ONNX model with ONNX runtime for inference:}
+  \vspace*{1em}
+  \textbf{scikit-learn:}
+  \begin{lstlisting}[language=Python]
+    # Compute the prediction with ONNX Runtime
+    import onnxruntime as rt
+    import numpy
+    sess = rt.InferenceSession("rf_iris.onnx")
+    input_name = sess.get_inputs()[0].name
+    label_name = sess.get_outputs()[0].name
+    pred_onx = sess.run([label_name], {input_name: X_test.astype(numpy.float32)})[0]
+  \end{lstlisting}
 \end{frame}
 
 
+% CONCLUSIONS ==================================================================
+\section{Conclusions}
+\begin{frame}[t]{Not an original idea}
+  \begin{columns}
+    \column{.48\textwidth}
+      ATLAS already made \href{https://github.com/lwtnn/lwtnn}{\color{blue}\underline{Lightweight Trained Neural Network (LWTNN)}},
+      \begin{itemize}
+        \item convert NN to standard JSON format
+        \item reconstruct NN for C++ development
+      \end{itemize}
+      however..
+      \begin{itemize}
+        \item supports a much more limited selection of models (subset of scikit and Keras)
+        \item development is less active (arguably a positive\ldots)
+        \item limited to C++
+      \end{itemize}
+    \column{.48\textwidth}
+      \begin{figure}
+        \centering
+        \includegraphics[width=.8\textwidth]{screenshot_lwtnn.png}
+      \end{figure}
+  \end{columns}
+\end{frame}
 
+\begin{frame}[t]{Conclusions}
+  \begin{itemize}
+    \item Physicists work in small teams borrowing from each other
+    \item Every tool is slightly different
+    \item but many shared features (models, data, visualization)
+    \item yet much time is spend on plugging everything together
+  \end{itemize}
+  \vspace*{.5cm}
+  Stop re-re-reinventing the wheel: use standardized open-source tools from ML communities such as ONNX where possible\\\vspace*{1cm}
+  \only<2>{
+    \begin{center}
+      \bfseries Thank you!
+    \end{center}
+  }
+\end{frame}
 
 \input{backup}
 
