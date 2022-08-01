@@ -83,11 +83,14 @@
 \end{frame}
 
 
-\begin{frame}[t]{Producing training data}
+\begin{frame}[t]{Preparing training data}
+  Data preparation relies on complicated pipelines (example is simplified)
+  \vspace*{1em}
+  Recent developments:
   \begin{itemize}
-    \item Complicated pipelines
-    \item Shift ROOT$\rightarrow$Numpy
-    \item In reality input data is Event Data Model thus more steps
+    \item Uproot (python) gaining popularity
+    \item More non-ROOT formats are used
+    % \item In reality input data is Event Data Model thus more steps
   \end{itemize}
   % \begin{itemize}
   %   \item input primary data
@@ -95,6 +98,7 @@
   %   \item root to uproot to numpy
   %   \item HDF5 to numpy
   % \end{itemize}
+  \vspace*{-2em}
   \begin{figure}
     \centering
     \includegraphics[width=.7\textwidth]{making_dataset.drawio.pdf}
@@ -111,11 +115,15 @@
       \item there is no consistent ROOT data format
     \end{itemize}
     \item ROOT: introduce yet another data format \href{https://root.cern/doc/master/md_tree_ntuple_v7_doc_README.html}{\color{blue}RNtuple}
+    \begin{itemize}
+      \item Widespread use will require standardization
+    \end{itemize}
     \item Similarly no consistent HEPData format
-    \item Does the ML community have a solution? Maybe \href{https://github.com/apache/parquet-format}{\color{blue}Parquet}
+    \item Doesn't the ML community already have a solution for this? Maybe \href{https://github.com/apache/parquet-format}{\color{blue}Parquet}
   \end{itemize}
+  \vspace*{1em}
   Much to improve on the data side!\\\vspace*{1cm}
-  But once we have data, it's also no smooth sailing...
+  But even if we will ever have a standardized data format, it's not all smooth sailing...
 \end{frame}
 
 
@@ -156,6 +164,11 @@
     \centering
     \includegraphics[width=.6\textwidth]{factorize_this_workflow.pdf}
   \end{figure}
+  \begin{itemize}
+    \item Only requires knowledge/installation of a single framework
+    \item Tools only need to provide support for a single format
+    \item Physicists waste less time writing interfaces
+  \end{itemize}
 \end{frame}
 
 
@@ -164,7 +177,7 @@
 \begin{frame}[t]{Machine learning pipeline}
   \begin{figure}
     \centering
-    \only<1>{\includegraphics[width=.7\textwidth]{ml_models.pdf}}
+    \only<1>{\includegraphics[width=.7\textwidth]{factorize_this_workflow.pdf}}
     \only<2>{\includegraphics[width=.7\textwidth]{onix_workflow.pdf}\\\vspace*{.5cm}
     No accuracy loss due to conversion before interference!
     }
@@ -179,7 +192,7 @@
         \item Open Neural Network Exchange (ONNX)
         \item Support DNN and traditional ML models
         \item Cross-platform
-        \item See \href{https://onnx.ai/supported-tools.html}{\color{blue} onnx.ai} for supported tools
+        \item See \href{https://onnx.ai/supported-tools.html}{\color{blue} onnx.ai} for full list of supported frameworks
         \item Open source
       \end{itemize}
       \vspace*{1cm}
@@ -188,9 +201,9 @@
         \item ONNX provides common representation for computational graph models
         \item ONNX runtime:
         \begin{itemize}
+          \item Graph optimization
           \item Inference session
-          \item graph optimization
-          \item Execution - Sequential / Parallel
+          % \item Execution - Sequential / Parallel
         \end{itemize}
       \end{itemize}
     \end{column}
@@ -206,7 +219,7 @@
 \begin{frame}[t,fragile]{How to get ONNX model}
   Many tutorials with examples on the \href{https://github.com/onnx/tutorials\#converting-to-onnx-format}{\color{blue}onnx github page}\\
   \vspace*{1em}
-  \textbf{Pytorch:}
+  \textbf{Pytorch} (supports exporting to ONNX format):
   \begin{lstlisting}[language=Python]
     import torch.onnx
     import torchvision
@@ -226,7 +239,7 @@
 \begin{frame}[t,fragile]{How to get ONNX model}
   Many tutorials with examples on the \href{https://github.com/onnx/tutorials\#converting-to-onnx-format}{\color{blue}onnx github page}\\
   \vspace*{1em}
-  \textbf{scikit-learn:}
+  \textbf{scikit-learn} (Not just neural networks):
   \begin{lstlisting}[language=Python]
     # Train a model.
     from sklearn.datasets import load_iris
@@ -337,6 +350,7 @@
     \item Every tool is slightly different
     \item but many shared features (models, data, visualization)
     \item yet much time is spend on plugging everything together
+    \item while sometimes even losing prediction accuracy during model conversion
   \end{itemize}
   \vspace*{.5cm}
   Stop re-re-reinventing the wheel: use standardized open-source tools from ML communities such as ONNX where possible\\\vspace*{1cm}
