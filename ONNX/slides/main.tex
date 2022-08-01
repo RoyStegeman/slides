@@ -305,18 +305,10 @@
 \end{frame}
 
 
-\begin{frame}[t,fragile]{Easily load ONNX model with ONNX runtime for inference:}
-  \vspace*{1em}
-  \textbf{scikit-learn:}
-  \begin{lstlisting}[language=Python]
-    # Compute the prediction with ONNX Runtime
-    import onnxruntime as rt
-    import numpy
-    sess = rt.InferenceSession("rf_iris.onnx")
-    input_name = sess.get_inputs()[0].name
-    label_name = sess.get_outputs()[0].name
-    pred_onx = sess.run([label_name], {input_name: X_test.astype(numpy.float32)})[0]
-  \end{lstlisting}
+\begin{frame}[c,fragile]{Demonstration based on sffit and n3fit}
+  \begin{center}
+    \href{https://github.com/RoyStegeman/slides/tree/main/ONNX/demos}{\color{blue}github link to demo script}
+  \end{center}
 \end{frame}
 
 
