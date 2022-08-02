@@ -305,10 +305,19 @@
 \end{frame}
 
 
-\begin{frame}[c,fragile]{Demonstration based on sffit and n3fit}
+\begin{frame}[t,fragile]{Demonstration based on sffit and n3fit}
   \begin{center}
     \href{https://github.com/RoyStegeman/slides/tree/main/ONNX/demos}{\color{blue}github link to demo script}
   \end{center}
+  Some notes:
+  \begin{itemize}
+    \item Only tested on CPU
+    \item Relative performance depends on input size
+    \item ONNX seems slower than native TF
+    \item ONNX runtime (SEQUENTIAL) is faster than native TF for small input sizes
+    \item ONNX runtime (PARALLEL) is faster than native TF for large input sizes
+    \item 
+  \end{itemize}
 \end{frame}
 
 
