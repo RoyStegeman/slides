@@ -1,0 +1,83 @@
+\documentclass[10pt,t]{beamer}
+
+\usetheme[progressbar=frametitle]{metropolis}
+\usepackage{appendixnumberbeamer}
+
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\usepackage{xspace}
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+
+
+\usepackage{marvosym} 	% bold rightarrow
+\usepackage{xcolor}		% colored text
+\usepackage{hyperref}   % insert hyperlinks
+\usepackage{listings}   % include code layout
+\usepackage{appendixnumberbeamer} % to identify start of appendix
+
+%% url style
+\usepackage[normalem]{ulem} 
+\useunder{\uline}{\ulined}{}%
+\DeclareUrlCommand{\bulurl}{\def\UrlFont{\ttfamily\color{blue}\ulined}}
+
+
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}   
+\definecolor{ao(english)}{rgb}{0.0, 0.5, 0.0}
+
+%New colors defined below
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+%Code listing style named "mystyle"
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{backcolour},   commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2
+}
+
+%"mystyle" code listing set
+\lstset{style=mystyle}
+
+
+
+\title{evolutionary\_keras}
+\subtitle{An evolutionary algorithm library for Keras}
+% \date{\today}
+\date{NNPDF Collaboration Meeting \\ Amsterdam, 10 February 2020}
+\author{Roy Stegeman}
+\institute{University of Milan}
+% \titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
+\titlegraphic{\vspace*{150pt}
+		\includegraphics[height=1.3cm]{n3pdflogo_noback.png}\hfill
+		\includegraphics[height=1.3cm]{LOGO-ERC.jpg}
+		%\includegraphics[height=1.3cm]{INFN_logo.png}\\
+        \\ \vspace*{0pt}
+		\centering{ \fontsize{4.5}{5.5}\selectfont This project has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No 740006.}
+	}
+
+\begin{document}
+\setbeamercolor{background canvas}{bg=white}
+\maketitle
+
+\input{slides}
+
+
+\end{document}
