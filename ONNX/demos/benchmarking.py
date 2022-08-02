@@ -41,7 +41,7 @@ tf_model_path = cwd / "n3fit_model"
 sffit_tf_model_path = cwd / "sffit_model"
 sffit_onnx_model_path = cwd / "sffit_model.onnx"
 
-input_xgrid = np.geomspace(1e-9, 1.0, num=int(1e2), dtype="float32")
+input_xgrid = np.geomspace(1e-9, 1.0, num=int(1e5), dtype="float32")
 input_xgrid = input_xgrid.reshape(1, input_xgrid.size, 1)
 
 
