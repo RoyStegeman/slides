@@ -137,7 +137,7 @@
 \end{frame}
 
 \begin{frame}[t]{What PDF feature dominates the discrepancy?}
-  Around the Higgs mass the luminosities of the hopscotch outliers are outside the region that has been sampled by NNPDF4.0\\
+  Around the Higgs mass the luminosities of the hopscotch outliers are outside the region that has been sampled by the NNPDF4.0 1000 replica PDF\\
   \begin{center}
     \includegraphics[width=.48\textwidth]{plot_lumi1d_replicas.pdf}
   \end{center}
@@ -174,7 +174,7 @@
 
 \section{Study so far}
 
-\begin{frame}[t]{`everthing' seems to find the CT solutions}
+\begin{frame}[t]{`everything' seems to find the CT solutions}
   \vspace*{-1.5em}
   \begin{columns}
     \begin{column}{.28\textwidth}
@@ -191,8 +191,8 @@
 \end{frame}
 
 \begin{frame}[t]{training/validation, overfitting}
-  Remember that the \chitwo improved for some processes while it deteriorated for others, this may suggest early-stopping prevents us from finding these solutions.\\\vspace*{.5em}
-  However, even without a training/validation split, the CT solutions are not found:
+  Remember that the \chitwo improved for some processes while it deteriorated for others, one possible explanation for this could be that the early-stopping prevents these solutions.\\\vspace*{.5em}
+  However, this is not the case, since even without a training/validation split, the CT solutions are not found:
   \begin{figure}
     \centering
     \includegraphics[height=.55\textheight]{without_trvl.pdf}
@@ -200,7 +200,7 @@
 \end{frame}
 
 \begin{frame}[t]{training/validation, overfitting}
-  Looking at the \chitwo distribution, the direction of the CT replicas does seem to correspond to lower values
+  Looking at the \chitwo distribution, low values of \chitwo are not restricted to the CT region
   \begin{figure}
     \centering
     \includegraphics[height=.55\textheight]{nnpdf40_chi2_scatter.pdf}
@@ -209,7 +209,7 @@
 \end{frame}
 
 \begin{frame}[t]{training/validation, overfitting}
-  Though training and validation losses seem uncorrelated with the value their position in the $\sigma_H,\sigma_Z$ plane
+  Training and validation losses seem uncorrelated with the value their position in the $\sigma_H,\sigma_Z$ plane
   \begin{figure}
     \centering
     \includegraphics[height=.55\textheight]{chi2_training_chi2.pdf}
