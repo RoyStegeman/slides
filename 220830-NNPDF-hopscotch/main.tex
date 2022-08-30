@@ -104,9 +104,10 @@
   \begin{figure}
     \centering
     \includegraphics[width=.2\textwidth]{220510_t0_vs_exp_parabolas.pdf}
+    \includegraphics[width=.3\textwidth]{parabola_zoomin.png}
     \hspace*{1em}
     \includegraphics[width=.3\textwidth]{220512_scatter_HZ_exp_t0.pdf}
-    \caption*{The paper contains two figures that consider the $t_0$ prescription, Fig. 6 (left) and Fig. 7 (right)}
+    \caption*{The paper contains two figures that consider the $t_0$ prescription, Fig. 6 (left/middle) and Fig. 7 (right)}
   \end{figure}
 \end{frame}
 
@@ -144,7 +145,7 @@
 \end{frame}
 
 
-\begin{frame}[t]{What PDF feature dominates the discrepancy?}
+\begin{frame}[t]{What PDF feature dominates the discrepancy?}{\href{https://vp.nnpdf.science/OMu9K6ElThiPGrsQKPNt7A==/}{\underline{report} comparing NNPDF4.0 to CT outliers}}
   There is a clear kink in the hopscotch gluon PDFs, does this correspond to a deterioration of the PDFs?
   \begin{columns}
     \begin{column}{.38\textwidth}
@@ -174,6 +175,12 @@
 
 \section{Study so far}
 
+\begin{frame}[t]{Can we reproduce the CT results?}{\url{https://vp.nnpdf.science/LNz_b5jcQvScphQYtgmPjQ==/}}
+      A fit to level-0 closure data with a CT `outside' replica as input.\\
+      \includegraphics[height=.65\textheight]{level-0_closure_data.pdf}
+      \includegraphics[height=.65\textheight]{level-0_gluon.pdf}
+\end{frame}
+
 \begin{frame}[t]{`everything' seems to find the CT solutions}
   \vspace*{-1.5em}
   \begin{columns}
@@ -199,7 +206,7 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}[t]{training/validation, overfitting}
+\begin{frame}[t]{Does $\chi^2$ deteriorate away from the center?}
   Looking at the \chitwo distribution, low values of \chitwo are not restricted to the CT region
   \begin{figure}
     \centering
@@ -208,7 +215,7 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}[t]{training/validation, overfitting}
+\begin{frame}[t]{Training/validation $\chi^2$ distribution}
   Training and validation losses seem uncorrelated with the value their position in the $\sigma_H,\sigma_Z$ plane
   \begin{figure}
     \centering
@@ -218,7 +225,7 @@
 \end{frame}
 
 
-\begin{frame}[t]{The impact of phyicsl constraints}
+\begin{frame}[t]{The impact of physical constraints}
   While dataset variations seem to generate solutions in the CT region, this does not seem the case when the physical constraints are relaxed.
   \begin{figure}
     \centering
@@ -289,22 +296,22 @@
     \end{itemize}
     \item Perhaps more?
   \end{itemize}
-  Some of the skepticism seems to have been ignited by the basis independence check in the NNPDF4.0 paper
+  Some of the skepticism seems to have been inspired by the basis independence check in the NNPDF4.0 paper
 \end{frame}
 
 \begin{frame}[t]{Organizing the rebuttal}
-  So far we have tried to address these criticisms in talks and conversations, but perhaps we should address it in a public document\\
+  So far we have tried to address these criticisms in talks and conversations (at conferences), but perhaps we should address it in a public document\\
   \vspace*{0.5em}
   Do we understand what arguments we would need to put in the rebuttal?\\
   \vspace*{0.5em}
   What results/checks will we need to do?\\
   \vspace*{2em}
 
-  \textbf{Publishing}\\
-  We don't want to be limited to a small number of pages (so no proceedings)\\
-  {\footnotesize\qquad P.S. deadline for ICHEP proceedings is 31 October}\\
-  \vspace*{0.5em}
-  Paper, arxiv preprint, note on website, \ldots. are all options\\
+  % \textbf{Publishing}\\
+  % We don't want to be limited to a small number of pages (so no proceedings)\\
+  % {\footnotesize\qquad P.S. deadline for ICHEP proceedings is 31 October}\\
+  % \vspace*{0.5em}
+  % Paper, arxiv preprint, note on website, \ldots. are all options\\
 \end{frame}
 
 
