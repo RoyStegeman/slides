@@ -1,0 +1,92 @@
+\documentclass[aspectratio=169,8pt,compress,onlytextwidth]{beamer}
+\graphicspath{{figures/}} % Setting the graphicspath
+
+% Theme settings
+\usetheme{Madrid}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}   % removes navigation symbols such as 'next page'
+\setbeamertemplate{footline}{}             % remove line with name, date, page nr.
+\setbeamercolor*{frametitle}{bg=white}     % remove background from frametitle
+\usepackage{caption}
+% \captionsetup[figure]{labelformat=empty}% redefines the caption setup of the figures environment in the beamer class.
+\setbeamersize{text margin left=20pt,text margin right=10pt}
+
+\usefonttheme[onlymath]{serif} % makes beamer math look like article math
+
+
+%======================= import packages =======================
+\usepackage{graphicx}     % More options for \includegraphics
+\usepackage{appendixnumberbeamer} % separate appendix numbering
+\usepackage{xcolor}
+\usepackage{pifont}       % Pi fonts (Digbats, symbol, etc.)
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{amsmath, nccmath}
+\usepackage[absolute,overlay]{textpos} % for texblock
+\usepackage{subcaption}
+
+
+
+%======================= page numbering =======================
+\addtobeamertemplate{navigation symbols}{}{ \usebeamerfont{footline}
+  \insertframenumber / \inserttotalframenumber \hspace*{2mm} \\ \vspace*{1mm}
+}
+
+\newcommand{\chitwo}{$\chi^2$}
+
+%=================================== colors ===================================
+\definecolor{RoyBlue}{RGB}{22, 46, 69}
+\definecolor{RoyGrey}{RGB}{64, 88, 128}
+
+\newcommand{\hlme}[1]{{\color{red}\bf #1}} % highlihgt me
+
+\setbeamercolor{structure}{fg=RoyBlue} % itemize, enumerate, etc
+\setbeamercolor{frametitle}{fg=RoyGrey}
+\setbeamercolor{section in head/foot}{bg=RoyBlue}
+
+
+%======================= add progress dots to headline =======================
+\setbeamertemplate{headline}{%
+    \begin{beamercolorbox}[ht=4mm,dp=4mm]{section in head/foot}
+        \insertnavigation{\paperwidth}
+    \end{beamercolorbox}%
+}%
+\makeatother
+
+
+
+
+\setbeamertemplate{section page}
+{
+  \begingroup
+    \centering
+    \usebeamerfont{section title}\insertsection\par
+  \endgroup
+}
+
+
+%======================= add section title page =======================
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+    \usebeamerfont{title}\insertsectionhead\par%
+  \vfill
+  \end{frame}
+}
+
+\titlegraphic{\vspace*{6mm}
+  \includegraphics[height=0.8cm]{logos/LOGO-ERC.jpg} \hspace{10mm}
+  \includegraphics[height=0.8cm]{logos/n3pdflogo_noback.png} \hspace{10mm}
+  \includegraphics[height=0.6cm]{logos/nnpdf_logo_official.pdf} \hspace{10mm}
+  \includegraphics[height=0.8cm]{logos/Logo_Università_degli_Studi_di_Milano(not_mandatory).png}
+  \includegraphics[height=0.8cm]{logos/INFN_logo.png}
+    \vspace*{5mm} \\
+  \centering{
+  \fontsize{7.0pt}{0.0pt}\selectfont This project has received funding from the European Union’s Horizon 2020 \\
+    \vspace*{-1mm}
+  research and innovation programme under grant agreement No 740006.
+  }
+}
