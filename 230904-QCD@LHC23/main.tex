@@ -169,18 +169,18 @@
         {\color{teal} f_j(x,Q)}
       \end{equation*}
       \begin{itemize}
-        \item non-perturbative QCD
-        \item extracted from experimental data
-        \item universal
+        \item Non-perturbative QCD
+        \item Extracted from experimental data
+        \item Universal
       \end{itemize}
     \end{column}
 
     \begin{column}{0.49\textwidth}
       {\color{red} $\hat{\sigma}_{i j}\left(\hat{s}, \alpha_s(M)\right)$} denotes the hard-scattering coefficient function
       \begin{itemize}
-        \item calculable in perturbative QCD
+        \item Calculable in perturbative QCD
         % \item infrared safe
-        \item independent of hadron
+        \item Independent of the initial hadron
       \end{itemize}
       \begin{figure}
         \includegraphics[width=0.5\textwidth]{figures/dy.png}
@@ -196,13 +196,13 @@
   \begin{columns}
     \begin{column}{0.49\textwidth}
       \begin{figure}
-        \includegraphics[width=0.7\textwidth]{Httbar_xsec}
+        \includegraphics[width=0.7\textwidth]{figures/Httbar_xsec.png}
         \caption*{\color{gray}\small \footnotesize [Snowmass 2021: 2203.13923]}
       \end{figure}
     \end{column}
     \begin{column}{0.49\textwidth}
       \begin{figure}
-        \includegraphics[width=0.7\textwidth]{gqlumi}
+        \includegraphics[width=0.7\textwidth]{figures/gglumi.pdf}
       \end{figure}
     \end{column}
   \end{columns}
@@ -228,7 +228,7 @@
       \end{itemize}
 
       \vspace*{1em}
-      Focus on QED, but briefly mention N3LO and MHOU
+      Focus on QED, but first briefly mention N3LO and MHOU
     \end{column}
 
     \begin{column}{0.49\textwidth}
@@ -242,7 +242,7 @@
 
 
 % ==============================================N3LO===========================
-\section*{Approximate N3LO PDFs}
+\section{Approximate N3LO PDFs}
 
 \begin{frame}{Towards N3LO PDFs}
   \begin{columns}[T]
@@ -263,8 +263,8 @@
         \item Singlet and Non-singlet Mellin Moments
         {\color{gray}\small [Davies, Falcioni, Herzog, Kom, Moch, Ruijl, Ueda, Vermaseren, Vogt: 1707.08315, 1610.07477, 2202.10362, 1610.0744, 2111.15561, 2302.07593, 2307.04158]}
         % \item Large-$n_f$ limits: {\color{gray}\small [Davies, Vogt, Ruijl, Ueda, Vermaseren: 1610.0744], [Falcioni, Herzog, Moch, Vogt: 2302.07593, 2307.04158], [Moch, Ruijl, Ueda, Vermaseren, Vogt: 2111.15561]}
-        \item Small-x limits {\color{gray}\small [Bonvini and Marzani: 1805.06460] [Davies, Kom, Moch, Vogt: 2202.10362]}
-        \item Large-x limits {\color{gray}\small [Duhr, Mistlberger, Vita 2205.04493], [Henn, Korchemsky, Mistlberger: 1911.10174], [Soar, Moch, Vermaseren, Vogt: 0912.0369]}
+        \item Small-x limits (BFKL resummation) {\color{gray}\small [Bonvini and Marzani: 1805.06460] [Davies, Kom, Moch, Vogt: 2202.10362]}
+        \item Large-x limits (threshold resummation) {\color{gray}\small [Duhr, Mistlberger, Vita 2205.04493], [Henn, Korchemsky, Mistlberger: 1911.10174], [Soar, Moch, Vermaseren, Vogt: 0912.0369]}
       \end{itemize}
     \end{column}
     \begin{column}{0.39\textwidth}
@@ -284,7 +284,7 @@
       Splitting function approximation:
       \begin{itemize}
         \item Construction of approximate splitting function susceptible to  model uncertainties
-        \item MSHTaN3LO posterior uncertainties based on fitting nuisance parameter
+        \item MSHTaN3LO posterior uncertainties based on fitting nuisance parameter [\color{gray}\small McGowan, Cridge, Harland-Lang, Thorne: 2207.04739]
         \item NNPDF4.0 accounts for model uncertainty through covariance matrix formalism
         \item Generally good agreement except for $P_{gq}$
       \end{itemize}
@@ -333,17 +333,21 @@
 
 % ========================================Theory uncs===========================
 
-\section*{Missing higher order uncertainties}
+\section{Missing higher order uncertainties}
 
 \begin{frame}{Estimating missing higher order uncertainties}
-  Unknown residual terms have a corresponding missing higher order uncertainties (MHOU)
-  \begin{equation}
+  Unknown residual terms have a corresponding MHOU
+  \begin{equation*}
     \hat{\sigma}\left(\alpha_s\right)=\hat{\sigma}^{(0)}\left(\sum_{k=0}^m \alpha_s^k\right)+\mathcal{O}\left(\alpha_s^{m+1}\right)
-    \end{equation}
+    \end{equation*}
   \begin{columns}[T]
     \begin{column}{0.49\textwidth}
       \begin{itemize}
-        \item Commonly scale variations at N$^n$LO are used to estimate N$^{n+1}$LO MHOU 
+        \item Commonly scale variations at N$^n$LO are used to estimate N$^{n+1}$LO MHOU
+        \begin{itemize}
+          \item factorization scale variation estimates MHOU in DGLAP evolution
+          \item renormalization scale variation estimates HOU in hard processes
+        \end{itemize}
         \item MHOU PDFs have been determined using the theory covariance matrix formalism {\color{gray}\small [NNPDF: 1906.10698]}
         \begin{itemize}
           \item $\operatorfont{cov_{exp}} \rightarrow \operatorfont{cov_{exp}}+\operatorfont{cov_{theory}}$
@@ -365,14 +369,20 @@
   \end{figure}
 \end{frame}
 
-% \begin{frame}{Impact of MHOU on PDF}
-% \end{frame}
+\begin{frame}{Impact of MHOU on PDF}
+  \begin{figure}
+    \includegraphics[width=0.49\textwidth]{figures/nnpdf31mhousinglet.png}
+    \includegraphics[width=0.49\textwidth]{figures/nnpdf31mhouuncs.png}
+  \end{figure}
+  Small increase in PDF unceratinty \\
+  Soon: NNPDF4.0 with MHOU
+\end{frame}
 
 % \begin{frame}{Impact of MHOU on Pheno}
 % \end{frame}
 
 % ========================================QED===================================
-\section*{QED corrections}
+\section{QED effects in PDFs}
 
 \begin{frame}{Including QED corrections in a PDF set}
   The current standard for PDFs determination is at NNLO in QCD, however  $\alpha(M_z) \sim \alpha_s^2(M_Z)$
@@ -397,7 +407,7 @@
     \begin{column}{0.49\textwidth}
       \begin{figure}
         \includegraphics[width=0.99\textwidth]{figures/ewcorrections_dy.png}
-        \caption*{Example: EW corrections in DY}
+        \caption*{Example: EW corrections in DY\\ {\color{gray}\small [C. Schwan DIS 2021]}}
       \end{figure}
     \end{column}
   \end{columns}
@@ -405,7 +415,7 @@
 
 
 \begin{frame}{Determination of the photon PDF}
-  Initially the photon PDF was included in a model-dependent way, however with the LUXqed approach it can be computed perturbatively {\color{gray}\small [Manohar, Nason, Salam, Zanderighi: 1607.04266]}
+  Initially the photon PDF was either fitted or included in a model-dependent way, however with the LUXqed approach it can be computed perturbatively {\color{gray}\small [Manohar, Nason, Salam, Zanderighi: 1607.04266]}
   \begin{columns}[T]
     \begin{column}{0.59\textwidth}
       \begin{equation*}
@@ -436,7 +446,7 @@
 \end{frame}
 
 \begin{frame}{The photon PDF by different groups}
-  \begin{columns}
+  \begin{columns}[T]
     \begin{column}{0.59\textwidth}
       % Details of the, implementation and correspondingly the above equation, vary between PDF fitting groups
 
@@ -456,7 +466,7 @@
       CT18qed initializes the photon at an input scale and evolves using DGLAP, while CT18lux calculates the photon at all scales\\
 
       \vspace*{0.5em}
-      CT18lux performs systematic study to variations to estimate the uncertainty
+      CT18lux performs systematic study of variations to estimate the uncertainty
 
       \vspace*{1em}
       NNPDF3.1QED and NNPDF4.0QED use an iterative procedure to address the interplay between the photon and other PDFs due to the momentum sumrule
@@ -484,7 +494,7 @@
   \end{center}
   \begin{itemize}
     \item PDFs are in agreement within uncertainty
-    \item Largest impact on the gluon due momentum transfer to the photon
+    \item Gluon reduced due to momentum sum rule with photon carrying additional momentum
   \end{itemize}
 \end{frame}
 
@@ -497,7 +507,7 @@
   \end{center}
   \begin{itemize}
     \item Because all groups use the luxQED formalism, the photon PDFs agree at percent level despite larger disagreement between other PDFs
-    \item Luminosity differ only at very small and very large invariant mass
+    \item Luminosity differ at very small and very large invariant mass
   \end{itemize}
 \end{frame}
 
@@ -584,7 +594,7 @@
 
 
 % ===============================Summary and outlook============================
-\section*{Summary and outlook}
+\section{Summary and outlook}
 
 \begin{frame}{Summary and outlook}
 
