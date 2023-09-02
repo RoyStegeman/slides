@@ -179,7 +179,7 @@
       {\color{red} $\hat{\sigma}_{i j}\left(\hat{s}, \alpha_s(M)\right)$} denotes the hard-scattering coefficient function
       \begin{itemize}
         \item calculable in perturbative QCD
-        \item infrared safe
+        % \item infrared safe
         \item independent of hadron
       \end{itemize}
       \begin{figure}
@@ -197,7 +197,7 @@
     \begin{column}{0.49\textwidth}
       \begin{figure}
         \includegraphics[width=0.7\textwidth]{Httbar_xsec}
-        \caption*{\color{gray} \footnotesize [Snowmass 2021: 2203.13923]}
+        \caption*{\color{gray}\small \footnotesize [Snowmass 2021: 2203.13923]}
       \end{figure}
     \end{column}
     \begin{column}{0.49\textwidth}
@@ -207,8 +207,9 @@
     \end{column}
   \end{columns}
   \begin{itemize}
-  \item Results are generally consistent, but uncertainties differ
-  \item Approaching percent-level accuracy
+    \item Current standard is NNLO in QCD
+    \item Results are generally consistent, but uncertainties differ
+    \item Approaching percent-level accuracy
   \end{itemize}
 \end{frame}
 
@@ -227,16 +228,13 @@
       \end{itemize}
 
       \vspace*{1em}
-      Focus on QED, but briefly touch upon N3LO and MHOU
-
-      \vspace*{0.5em}
-      For details on MHOU/N3LO: Thursday's talk by Lucian Harland-Lang 
+      Focus on QED, but briefly mention N3LO and MHOU
     \end{column}
 
     \begin{column}{0.49\textwidth}
       \begin{figure}
         \includegraphics[width=0.8\textwidth]{figures/sources_of_unceratinty.pdf}
-        \caption*{\color{gray} [HL-LHC: 1902.00134]}
+        \caption*{\color{gray}\small [HL-LHC: 1902.00134]}
       \end{figure}
     \end{column}
   \end{columns}
@@ -246,37 +244,72 @@
 % ==============================================N3LO===========================
 \section*{Approximate N3LO PDFs}
 
-\begin{frame}{Requirements for N3LO PDFs}
-  To produce PDFs at N3LO several inputs are needed at the corresponding order:
-  \begin{itemize}
-    \item QCD splitting functions for DGLAP evolution
-    \item Matching conditions for heavy-quark mass schemes
-    \item DIS partonic coefficients 
-    \item Hadronic coefficients (mainly included through K-factors)
-  \end{itemize}
+\begin{frame}{Towards N3LO PDFs}
+  \begin{columns}[T]
+    \begin{column}{0.59\textwidth}
+      To produce PDFs at N3LO several inputs are needed at the corresponding order:
+      \begin{itemize}
+        \item QCD splitting functions for DGLAP evolution
+        \item Matching conditions for heavy-quark mass schemes
+        \item DIS partonic coefficients
+        \item K-factors for hadronic observables
+      \end{itemize}
+    
+      These are not completely available at N3LO
+    
+      \vspace*{1em}
+      What do we know about 4-loop splitting functions?
+      \begin{itemize}
+        \item Singlet and Non-singlet Mellin Moments
+        {\color{gray}\small [Davies, Falcioni, Herzog, Kom, Moch, Ruijl, Ueda, Vermaseren, Vogt: 1707.08315, 1610.07477, 2202.10362, 1610.0744, 2111.15561, 2302.07593, 2307.04158]}
+        % \item Large-$n_f$ limits: {\color{gray}\small [Davies, Vogt, Ruijl, Ueda, Vermaseren: 1610.0744], [Falcioni, Herzog, Moch, Vogt: 2302.07593, 2307.04158], [Moch, Ruijl, Ueda, Vermaseren, Vogt: 2111.15561]}
+        \item Small-x limits {\color{gray}\small [Bonvini and Marzani: 1805.06460] [Davies, Kom, Moch, Vogt: 2202.10362]}
+        \item Large-x limits {\color{gray}\small [Duhr, Mistlberger, Vita 2205.04493], [Henn, Korchemsky, Mistlberger: 1911.10174], [Soar, Moch, Vermaseren, Vogt: 0912.0369]}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.39\textwidth}
+      \begin{figure}
+        \includegraphics[width=0.8\textwidth]{figures/splittingmoments.png}
+        \caption*{\color{gray}\small[Moch, Ruijl, Ueda, Vermaseren, Vogt: 2111.15561]}
+      \end{figure}
+    \end{column}
+  \end{columns}
 
-  \vspace*{1em}
-  Not all completely available at N3LO, thus reliable approximations are needed. E.g. splitting functions:
-  \includegraphics[width=0.29\textwidth]{figures/gamma_gg_msht_logx.pdf}
-  \includegraphics[width=0.29\textwidth]{figures/gamma_gq_msht_logx.pdf}
-  \begin{itemize}
-    \item MSHTaN3LO posterior uncertainties based on fitting nuisance parameter
-    \item To avoid fitting a nuisance parameter NNPDF4.0 accounts for IHOU through covariance matrix formalism
-    \item Generally good agreement except for $P_{gq}$
-  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Splitting functions at aN3LO}
+  \begin{columns}[T]
+    \begin{column}{0.49\textwidth}
+      Splitting function approximation:
+      \begin{itemize}
+        \item Construction of approximate splitting function susceptible to  model uncertainties
+        \item MSHTaN3LO posterior uncertainties based on fitting nuisance parameter
+        \item NNPDF4.0 accounts for model uncertainty through covariance matrix formalism
+        \item Generally good agreement except for $P_{gq}$
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \vspace*{-4em}
+      \begin{figure}
+        \includegraphics[width=0.7\textwidth]{figures/gamma_gg_msht_logx.pdf}\\
+        \includegraphics[width=0.7\textwidth]{figures/gamma_gq_msht_logx.pdf}  
+      \end{figure}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 % \begin{frame}{4-loop splitting functions}
 %   The complete N3LO splitting functions are not yet know, but a lot of information is available:
 %   \begin{itemize}
 %     \item Non-singlet splitting functions are estimated to quite high precision \\
-%     {\color{gray} [Moch, Ruijl, Ueda, Vermaseren, Vogt: 1707.08315], [Davies, Vogt, Ruijl, Ueda, Vermaseren: 1610.07477] [Davies, Kom, Moch, Vogt: 2202.10362] }
+%     {\color{gray}\small [Moch, Ruijl, Ueda, Vermaseren, Vogt: 1707.08315], [Davies, Vogt, Ruijl, Ueda, Vermaseren: 1610.07477] [Davies, Kom, Moch, Vogt: 2202.10362] }
 %     \item Singlet spitting functions are more challenging, main results used for approximation are:
 %     \begin{itemize}
-%       \item Large-$n_f$ limit: {\color{gray} [Davies, Vogt, Ruijl, Ueda, Vermaseren: 1610.0744]}
-%       \item Small-x limit: {\color{gray} [Bonvini and Marzani: 1805.06460] [Davies, Kom, Moch, Vogt: 2202.10362]}
-%       \item Large-x limit: {\color{gray} [Duhr, Mistlberger, Vita 2205.04493], [Henn, Korchemsky, Mistlberger: 1911.10174], [Soar, Moch, Vermaseren, Vogt: 0912.0369]}
-%       \item Mellin Moments: {\color{gray} [Falcioni, Herzog, Moch, Vogt: 2302.07593, 2307.04158], [Moch, Fuijl, Ueda, Vermaseren, Vogt: 2111.15561]}
+%       \item Large-$n_f$ limit: {\color{gray}\small [Davies, Vogt, Ruijl, Ueda, Vermaseren: 1610.0744]}
+%       \item Small-x limit: {\color{gray}\small [Bonvini and Marzani: 1805.06460] [Davies, Kom, Moch, Vogt: 2202.10362]}
+%       \item Large-x limit: {\color{gray}\small [Duhr, Mistlberger, Vita 2205.04493], [Henn, Korchemsky, Mistlberger: 1911.10174], [Soar, Moch, Vermaseren, Vogt: 0912.0369]}
+%       \item Mellin Moments: {\color{gray}\small [Falcioni, Herzog, Moch, Vogt: 2302.07593, 2307.04158], [Moch, Ruijl, Ueda, Vermaseren, Vogt: 2111.15561]}
 %     \end{itemize}
 %   \end{itemize}
 
@@ -302,26 +335,34 @@
 
 \section*{Missing higher order uncertainties}
 
-\begin{frame}{Missing higher order uncertainties}
+\begin{frame}{Estimating missing higher order uncertainties}
+  Unknown residual terms have a corresponding missing higher order uncertainties (MHOU)
+  \begin{equation}
+    \hat{\sigma}\left(\alpha_s\right)=\hat{\sigma}^{(0)}\left(\sum_{k=0}^m \alpha_s^k\right)+\mathcal{O}\left(\alpha_s^{m+1}\right)
+    \end{equation}
   \begin{columns}[T]
     \begin{column}{0.49\textwidth}
       \begin{itemize}
-        \item Partonic cross sections and DGLAP splitting functions are computed perturbatively and thus have a corresponding uncertainty to the neglected higher orders
-        \item Higher order uncertainties are generally estimated through variation of the unphysical renormalization (for partonic cross-sections) and factorization (for anomalous dimensions) scales
-        \item MHOUs are included through the covariance matrix formalism as previously done in NNPDF3.1 {\color{gray} [NNPDF: 1906.10698]}
-        \item This assumes the experimental and theoretical uncertainties are Gaussian and independent
+        \item Commonly scale variations at N$^n$LO are used to estimate N$^{n+1}$LO MHOU 
+        \item MHOU PDFs have been determined using the theory covariance matrix formalism {\color{gray}\small [NNPDF: 1906.10698]}
+        \begin{itemize}
+          \item $\operatorfont{cov_{exp}} \rightarrow \operatorfont{cov_{exp}}+\operatorfont{cov_{theory}}$
+        \end{itemize}
       \end{itemize}
     \end{column}
     \begin{column}{0.49\textwidth}
+      \vspace*{-2em}
       \includegraphics[width=0.89\textwidth]{figures/7ptsv.png}
     \end{column}
   \end{columns}
 \end{frame}
 
 \begin{frame}{Validating MHOU}
-  \includegraphics[width=0.69\textwidth]{figures/shift_validation.png}
-
-  We can test the NLO MHOU and observe that generally MHOU are faithfully estimated while conservative for DIS
+  Compare estimated MHOU at NLO to NNLO-NLO shift:
+  \begin{figure}
+    \includegraphics[width=0.69\textwidth]{figures/shift_diag_cov_comparison_7pt_global.pdf}
+    \caption*{{\color{gray}\small [NNPDF: 1906.10698]}}
+  \end{figure}
 \end{frame}
 
 % \begin{frame}{Impact of MHOU on PDF}
@@ -364,7 +405,7 @@
 
 
 \begin{frame}{Determination of the photon PDF}
-  Initially the photon PDF was included in a model-dependent way, however with the LUXqed approach it can be computed perturbatively {\color{gray} [Manohar, Nason, Salam, Zanderighi: 1607.04266]}
+  Initially the photon PDF was included in a model-dependent way, however with the LUXqed approach it can be computed perturbatively {\color{gray}\small [Manohar, Nason, Salam, Zanderighi: 1607.04266]}
   \begin{columns}[T]
     \begin{column}{0.59\textwidth}
       \begin{equation*}
@@ -381,8 +422,8 @@
       LUXqed has been used in all of the most recent QED PDFs:
       \begin{itemize}
         \item MMHT2015qed
-        \item NNPDF3.1QED
-        \item CT18QED
+        \item NNPDF3.1luxQED
+        \item CT18lux and CT18qed
         \item MSHT20QED
         \item Soon: NNPDF4.0QED
       \end{itemize}
@@ -397,32 +438,38 @@
 \begin{frame}{The photon PDF by different groups}
   \begin{columns}
     \begin{column}{0.59\textwidth}
-      Details of the, implementation and correspondingly the above equation, vary between PDF fitting groups:
+      % Details of the, implementation and correspondingly the above equation, vary between PDF fitting groups
+
+      % \vspace*{1em}
+      % The input scale $\mu$:
+      % \begin{itemize}
+      %   \item 1 GeV for MSHT20QED
+      %   \item 3(1.3) GeV for CT18qed(1.3GeV)
+      %   \item No evolution or sumrule for CT18lux
+      %   \item 100 GeV for NNPDF3.1luxQED and NNPDF4.0QED
+      % \end{itemize}
 
       \vspace*{1em}
-      The input scale $Q_0$
-      \begin{itemize}
-        \item 1 GeV for MSHT20
-        \item 3(1.3) GeV for CT18qed(1.3GeV)
-        \item No evolution or sumrule for CT18lux
-        \item 100 GeV for NNPDF4.0
-      \end{itemize}
+      MSHT20QED modifies the upper integration bound of the LUXqed formula to allow for 1 GeV input scale
 
       \vspace*{1em}
-      MSHT20 modifies the LUXqed formula accordingly
+      CT18qed initializes the photon at an input scale and evolves using DGLAP, while CT18lux calculates the photon at all scales\\
+
+      \vspace*{0.5em}
+      CT18lux performs systematic study to variations to estimate the uncertainty
 
       \vspace*{1em}
-      CT18qed initializes the photon at an input scale and evolves using DGLAP, while CT18lux calculates the photon at all scales
-
-      \vspace*{1em}
-      NNPDF3.1QED and NNPDF4.0QED use an iterative procedure to address the interplay between the photon and other PDFs due to the momentum sumrules
+      NNPDF3.1QED and NNPDF4.0QED use an iterative procedure to address the interplay between the photon and other PDFs due to the momentum sumrule
+      \begin{equation*}
+        \int_0^1 dx\, \left(  x\Sigma(x,Q^2) + xg(x,Q^2) + x\gamma(x,Q^2) \right) =1
+      \end{equation*}
     \end{column}
 
     \begin{column}{0.39\textwidth}
       \vspace*{-1.5em}
       \begin{figure}
         \includegraphics[width=0.9\textwidth]{figures/luxqed_iteration.pdf}
-        \caption*{\color{gray} [NNPDF3.1QED: 1712.07053]}
+        \caption*{\color{gray}\small [NNPDF3.1QED: 1712.07053]}
       \end{figure}
     \end{column}
   \end{columns}
@@ -483,6 +530,59 @@
 \end{frame}
 
 
+\begin{frame}{PineAPPL: combined QCD and QED interpolation tables}
+
+  PineAPPL is a library for storing PDF-independent theory predictions in interpolation grids\\ {\color{gray}\small [Carazza, Nocera, Schwan, Zaro: 2008.12789 ]}
+  \vspace*{1em}
+
+  \begin{columns}
+    \begin{column}{0.49\textwidth}
+      Typical setup:
+      \begin{figure}
+        \includegraphics[width=0.5\textwidth]{figures/typicalsetup.png}
+      \end{figure}
+      Requires rerunning MC generator for each PDF
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      PineAPPL:
+      \begin{figure}
+        \includegraphics[width=0.5\textwidth]{figures/pineapplsetup.png}
+      \end{figure}
+      After computing the interpolation grid once it can be convolved with an arbitrary PDF set
+    \end{column}
+  \end{columns}
+  \vfill\hfill{\color{gray}\small [C. Schwan DIS 2021]}
+\end{frame}
+
+
+\begin{frame}{PineAPPL: combined QCD and QED interpolation tables}
+  Applications:
+  \begin{itemize}
+    \item PDF fits
+    \item Efficient study of PDF impact on observable (e.g. for SM parameter extraction)
+  \end{itemize}
+
+  \vspace*{1em}
+  Other providers of fast interpolation grids:
+  \begin{itemize}
+    \item APPLgrid {\color{gray}\small [Carli et al.: 0911.2985]}
+    \item fastNLO {\color{gray}\small [Kluge, Rabbertz, Wobisch: hep-ph/0609285]}
+  \end{itemize} 
+
+  However, the need for EW corrections inspired the creation of PineAPPL
+  
+  \vspace*{1em}
+  Finally, PineAPPL...
+  \begin{itemize}
+    \item supports up to any power in $\alpha$ and $\alpha_s$
+    \item is interfaced to MG5\_aMC@NLO
+    \item is interfaced to xFitter
+    \item is open source
+  \end{itemize}
+\end{frame}
+
+
+
 % ===============================Summary and outlook============================
 \section*{Summary and outlook}
 
@@ -505,7 +605,7 @@
     \begin{column}{0.49\textwidth}
       \begin{figure}
         \includegraphics[width=0.9\textwidth]{figures/n3lomistlberger.png}
-        \caption*{\color{gray} [Duhr, Dulat, Mistleberger 2007.13313]}
+        \caption*{\color{gray}\small [Duhr, Dulat, Mistleberger 2007.13313]}
       \end{figure}
     \end{column}
   \end{columns}
