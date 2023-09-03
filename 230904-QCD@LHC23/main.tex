@@ -152,7 +152,7 @@
 \section*{Introduction}
 
 % TODO: color DY schemetic corresponding to colors of equation
-\begin{frame}{PDFs at hadron colliders}
+\begin{frame}{Factorization and universality}
   Collinear factorization enables the prediction of cross-sections
   \begin{equation*}
     \sigma_{\mathrm{LHC}}(M, s) \propto \sum_{i j} \int_{M^2}^s d \hat{s} {\color{blue}\mathcal{L}_{i j}(\hat{s}, s)} {\color{red}\hat{\sigma}_{i j}\left(\hat{s}, \alpha_s(M)\right)}, \quad i,j = \{g, u, \bar{u}, d, \bar{d}, \ldots\}
@@ -196,21 +196,32 @@
   \begin{columns}
     \begin{column}{0.49\textwidth}
       \begin{figure}
-        \includegraphics[width=0.7\textwidth]{figures/Httbar_xsec.png}
+        \includegraphics[width=0.6\textwidth]{figures/Httbar_xsec.png}
         \caption*{\color{gray}\small \footnotesize [Snowmass 2021: 2203.13923]}
       \end{figure}
     \end{column}
     \begin{column}{0.49\textwidth}
       \begin{figure}
-        \includegraphics[width=0.7\textwidth]{figures/gglumi.pdf}
+        \includegraphics[width=0.6\textwidth]{figures/gglumi.pdf}
       \end{figure}
     \end{column}
   \end{columns}
-  \begin{itemize}
-    \item Current standard is NNLO in QCD
-    \item Results are generally consistent, but uncertainties differ
-    \item Approaching percent-level accuracy
-  \end{itemize}
+  \begin{columns}
+    \begin{column}{0.49\textwidth}
+      \begin{itemize}
+        \item Current standard is NNLO in QCD
+        \item Results are generally consistent, but uncertainties differ
+        \item Approaching percent-level accuracy
+      \end{itemize}    
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \begin{itemize}
+        \item CT: Hessian + tolerance
+        \item MSHT: Hessian + dynamic tolerance
+        \item NNPDF: MC + closure tests
+      \end{itemize}    
+    \end{column}
+  \end{columns}
 \end{frame}
 
 
@@ -234,7 +245,8 @@
     \begin{column}{0.49\textwidth}
       \begin{figure}
         \includegraphics[width=0.8\textwidth]{figures/sources_of_unceratinty.pdf}
-        \caption*{\color{gray}\small [HL-LHC: 1902.00134]}
+        \caption*{Uncertainties for inclusive Higgs production \\ 
+        \color{gray}\small [HL-LHC: 1902.00134]}
       \end{figure}
     \end{column}
   \end{columns}
@@ -284,16 +296,17 @@
       Splitting function approximation:
       \begin{itemize}
         \item Construction of approximate splitting function susceptible to  model uncertainties
-        \item MSHTaN3LO posterior uncertainties based on fitting nuisance parameter [\color{gray}\small McGowan, Cridge, Harland-Lang, Thorne: 2207.04739]
+        \item MSHTaN3LO posterior uncertainties based on fitting nuisance parameter {\color{gray}\small[McGowan, Cridge, Harland-Lang, Thorne: 2207.04739]}
         \item NNPDF4.0 accounts for model uncertainty through covariance matrix formalism
-        \item Generally good agreement except for $P_{gq}$
+        \item Generally good agreement except for $P_{gq}$ where MSHT20aN3LO appears to saturate and deviates from NNLO
       \end{itemize}
     \end{column}
     \begin{column}{0.49\textwidth}
       \vspace*{-4em}
       \begin{figure}
-        \includegraphics[width=0.7\textwidth]{figures/gamma_gg_msht_logx.pdf}\\
-        \includegraphics[width=0.7\textwidth]{figures/gamma_gq_msht_logx.pdf}  
+        \includegraphics[width=0.65\textwidth]{figures/gamma_gg_msht_logx.pdf}\\
+        \includegraphics[width=0.65\textwidth]{figures/gamma_gq_msht_logx.pdf}
+        \caption*{\color{gray}\small [NNPDF, Magni: 2023]}
       \end{figure}
     \end{column}
   \end{columns}
@@ -346,7 +359,7 @@
         \item Commonly scale variations at N$^n$LO are used to estimate N$^{n+1}$LO MHOU
         \begin{itemize}
           \item factorization scale variation estimates MHOU in DGLAP evolution
-          \item renormalization scale variation estimates HOU in hard processes
+          \item renormalization scale variation estimates MHOU in hard processes
         \end{itemize}
         \item MHOU PDFs have been determined using the theory covariance matrix formalism {\color{gray}\small [NNPDF: 1906.10698]}
         \begin{itemize}
@@ -361,7 +374,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Validating MHOU}
+\begin{frame}{Validating missing higher order uncertainties}
   Compare estimated MHOU at NLO to NNLO-NLO shift:
   \begin{figure}
     \includegraphics[width=0.69\textwidth]{figures/shift_diag_cov_comparison_7pt_global.pdf}
@@ -369,7 +382,7 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}{Impact of MHOU on PDF}
+\begin{frame}{Impact of MHOU in a PDF fit}
   \begin{figure}
     \includegraphics[width=0.49\textwidth]{figures/nnpdf31mhousinglet.png}
     \includegraphics[width=0.49\textwidth]{figures/nnpdf31mhouuncs.png}
@@ -415,9 +428,24 @@
 
 
 \begin{frame}{Determination of the photon PDF}
-  Initially the photon PDF was either fitted or included in a model-dependent way, however with the LUXqed approach it can be computed perturbatively {\color{gray}\small [Manohar, Nason, Salam, Zanderighi: 1607.04266]}
   \begin{columns}[T]
     \begin{column}{0.59\textwidth}
+      Initially the photon PDF has been determined in different ways:
+      \begin{itemize}
+        \item physical model: sensitive to underlying model
+        \item fitting: data does not provide strong constraints
+      \end{itemize}
+
+      \vspace*{0.5em}
+      However with the LUXqed approach it can be computed perturbatively \\ 
+      based on the observation that the heavy-lepton production cross-section can be written in two ways:
+      \begin{itemize}
+        \item in terms of structure functions $F_2$, $F_L$
+        \item in terms of PDFs including the photon
+      \end{itemize}
+
+      \vspace*{0.5em}
+      luxQED result {\color{gray}\small[Manohar, Nason, Salam, Zanderighi: 1607.04266, 1708.01256]}:
       \begin{equation*}
         \begin{split}
           & x \gamma(x, \mu^2)
@@ -429,20 +457,32 @@
           F_2(x/z, Q^2)\Biggr] - \alpha^2(\mu^2) z^2 F_2(x/z, \mu^2)\Biggr\}
         \end{split}
       \end{equation*}
-      LUXqed has been used in all of the most recent QED PDFs:
-      \begin{itemize}
-        \item MMHT2015qed
-        \item NNPDF3.1luxQED
-        \item CT18lux and CT18qed
-        \item MSHT20QED
-        \item Soon: NNPDF4.0QED
-      \end{itemize}
     \end{column}
 
     \begin{column}{0.39\textwidth}
-      \includegraphics[width=0.99\textwidth]{figures/luxQED_uncs.png}
+      \vspace*{-5em}
+      \begin{figure}
+        \includegraphics[width=0.89\textwidth]{figures/dataluxqed.png}
+        \caption*{Input to construct $F_2$ and $F_L$}
+        \includegraphics[width=0.89\textwidth]{figures/luxQED_uncs.png}
+        \caption*{Sources of unceratinty}
+      \end{figure}
     \end{column}
   \end{columns}
+\end{frame}
+
+
+\begin{frame}{LUXqed PDF determinations}
+  LUXqed has been used in all of the most recent QED PDFs:
+  \begin{itemize}
+      \item LUXqed\_plus\_PDF4LHC15 {\color{gray}\small [Manohar, et al.: 1607.04266]}
+      \item LUXqed17\_plus\_PDF4LHC15 {\color{gray}\small [Manohar, et al.: 1708.01256]}
+      \item MMHT2015qed {\color{gray}\small [Harland-Land et al.: 1907.02750]}
+      \item NNPDF3.1luxQED {\color{gray}\small [Bertone et al.: 1712.07053]}
+      \item CT18lux and CT18qed {\color{gray}\small [Xie et al.: 2106.10299]}
+      \item MSHT20QED {\color{gray}\small [Cridge et al.: 2111.05357]}
+      \item Soon: NNPDF4.0QED
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{The photon PDF by different groups}
@@ -459,8 +499,7 @@
       %   \item 100 GeV for NNPDF3.1luxQED and NNPDF4.0QED
       % \end{itemize}
 
-      \vspace*{1em}
-      MSHT20QED modifies the upper integration bound of the LUXqed formula to allow for 1 GeV input scale
+      Differences between the studies by the different groups include:
 
       \vspace*{1em}
       CT18qed initializes the photon at an input scale and evolves using DGLAP, while CT18lux calculates the photon at all scales\\
@@ -469,6 +508,11 @@
       CT18lux performs systematic study of variations to estimate the uncertainty
 
       \vspace*{1em}
+      MSHT20QED has a 1~GeV input scale and includes renormalon corrections
+
+      \vspace*{1em}
+      NNPDF follow the original luxQED by calculating the photon at 100~GeV to reduce higher twist effects
+      \vspace*{0.5em}
       NNPDF3.1QED and NNPDF4.0QED use an iterative procedure to address the interplay between the photon and other PDFs due to the momentum sumrule
       \begin{equation*}
         \int_0^1 dx\, \left(  x\Sigma(x,Q^2) + xg(x,Q^2) + x\gamma(x,Q^2) \right) =1
@@ -499,15 +543,15 @@
 \end{frame}
 
 
-\begin{frame}{QED PDF results}
+\begin{frame}{Results: photon PDF and luminosity}
   \begin{center}
     \includegraphics[width=0.3\textwidth]{figures/photon_comparison.pdf}
     \includegraphics[width=0.3\textwidth]{figures/pp_lumi_comparison.png}
     \includegraphics[width=0.3\textwidth]{figures/gp_lumi_comparison.pdf}
   \end{center}
   \begin{itemize}
-    \item Because all groups use the luxQED formalism, the photon PDFs agree at percent level despite larger disagreement between other PDFs
-    \item Luminosity differ at very small and very large invariant mass
+    \item Because all groups use the luxQED formalism, the photon PDFs agree at percent level
+    \item Luminosity generally in agreement, but differ at very small and very large invariant mass
   \end{itemize}
 \end{frame}
 
@@ -527,8 +571,9 @@
       \vspace*{1em}
       \begin{itemize}
         \item Here photon initiated contributions are included
-        \item Non-negligable QED corrections in the large invariant mass and large-$p_T$ regions
-        \item Percent-level enhancement near the $Z$-peak
+        \item Non-negligable QED corrections in the large invariant mass and large-$p_T$ regions relevant for new physics searches
+        \item Negligable impact around the $Z$-peak
+        \item Difference between groups driven by gluon and quark PDFs
         % \item Results produced using PineAPPL grids
       \end{itemize}
     \end{column}
@@ -610,7 +655,7 @@
       Electroweak effects can no longer be neglected thus include QED corrections in DGLAP and include a photon PDF
     
       \vspace*{1em}
-      The target of faithful 1\% uncertainty will require including EW effects, MHOU, and N3LO!    
+      The target of faithful 1\% uncertainty in wide kinematic range will require simultaneously including EW effects, MHOU, and N3LO!    
     \end{column}
     \begin{column}{0.49\textwidth}
       \begin{figure}
