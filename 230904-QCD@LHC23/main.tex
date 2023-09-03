@@ -201,15 +201,20 @@
 \begin{frame}{Status of modern PDF sets}
   PDF sets are provided by various collaborations, each using slightly different theory choices, datasets, and methodologies
   \begin{columns}
-    \begin{column}{0.49\textwidth}
+    \begin{column}{0.33\textwidth}
       \begin{figure}
-        \includegraphics[width=0.6\textwidth]{figures/Httbar_xsec.png}
+        \includegraphics[width=0.9\textwidth]{figures/Httbar_xsec.png}
         \caption*{\color{gray}\small \footnotesize [Snowmass 2021: 2203.13923]}
       \end{figure}
     \end{column}
-    \begin{column}{0.49\textwidth}
+    \begin{column}{0.33\textwidth}
       \begin{figure}
-        \includegraphics[width=0.6\textwidth]{figures/gglumi.pdf}
+        \includegraphics[width=0.9\textwidth]{figures/pdfs_40vsothers_first_plot_pdfs_u.pdf}
+      \end{figure}
+    \end{column}
+    \begin{column}{0.33\textwidth}
+      \begin{figure}
+        \includegraphics[width=0.9\textwidth]{figures/pdfs_40vsothers_second_plot_pdf_uncertainties_u.pdf}
       \end{figure}
     \end{column}
   \end{columns}
@@ -219,14 +224,14 @@
         \item Current standard is NNLO in QCD
         \item Results are generally consistent, but uncertainties differ
         \item Approaching percent-level accuracy
-      \end{itemize}    
+      \end{itemize}
     \end{column}
     \begin{column}{0.49\textwidth}
       \begin{itemize}
         \item CT: Hessian + tolerance
         \item MSHT: Hessian + dynamic tolerance
         \item NNPDF: MC + closure tests
-      \end{itemize}    
+      \end{itemize}
     \end{column}
   \end{columns}
 \end{frame}
@@ -279,9 +284,9 @@
       \vspace*{1em}
       What do we know about 4-loop splitting functions?
       \begin{itemize}
-        \item Singlet and Non-singlet Mellin Moments
-        {\color{gray}\small [Davies, Falcioni, Herzog, Kom, Moch, Ruijl, Ueda, Vermaseren, Vogt: 1707.08315, 1610.07477, 2202.10362, 1610.0744, 2111.15561, 2302.07593, 2307.04158]}
-        % \item Large-$n_f$ limits: {\color{gray}\small [Davies, Vogt, Ruijl, Ueda, Vermaseren: 1610.0744], [Falcioni, Herzog, Moch, Vogt: 2302.07593, 2307.04158], [Moch, Ruijl, Ueda, Vermaseren, Vogt: 2111.15561]}
+        \item Singlet and non-singlet Mellin moments
+        {\color{gray}\small [Davies, Falcioni, Herzog, Kom, Moch, Ruijl, Ueda, Vermaseren, Vogt: 1707.08315, 1610.07477, 2202.10362, 2111.15561, 2302.07593, 2307.04158]}
+        \item Large-$n_f$ limit {\color{gray}\small [Davies, Vogt, Ruijl, Ueda, Vermaseren: 1610.0744]}
         \item Small-x limits (BFKL resummation) {\color{gray}\small [Bonvini and Marzani: 1805.06460] [Davies, Kom, Moch, Vogt: 2202.10362]}
         \item Large-x limits (threshold resummation) {\color{gray}\small [Duhr, Mistlberger, Vita 2205.04493], [Henn, Korchemsky, Mistlberger: 1911.10174], [Soar, Moch, Vermaseren, Vogt: 0912.0369]}
       \end{itemize}
@@ -303,15 +308,16 @@
       Splitting function approximation:
       \begin{itemize}
         \item Construction of approximate splitting function susceptible to  model uncertainties
+        \item Vary interpolation basis choices to estimate model uncertainties
         \item MSHTaN3LO posterior uncertainties based on fitting nuisance parameter {\color{gray}\small[McGowan, Cridge, Harland-Lang, Thorne: 2207.04739]}
-        \item NNPDF4.0 accounts for model uncertainty through covariance matrix formalism
         \item Generally good agreement except for $P_{gq}$ where MSHT20aN3LO appears to saturate and deviates from NNLO
+        \item More Mellin moments available since the release of MSHT20aN3LO, explaining the large difference in unceratinty for $P_{qq}$
       \end{itemize}
     \end{column}
     \begin{column}{0.49\textwidth}
       \vspace*{-4em}
       \begin{figure}
-        \includegraphics[width=0.65\textwidth]{figures/gamma_gg_msht_logx.pdf}\\
+        \includegraphics[width=0.65\textwidth]{figures/gamma_qq_msht_logx.pdf}\\
         \includegraphics[width=0.65\textwidth]{figures/gamma_gq_msht_logx.pdf}
         \caption*{\color{gray}\small [NNPDF, Magni: 2023]}
       \end{figure}
@@ -368,7 +374,7 @@
           \item factorization scale variation estimates MHOU in DGLAP evolution
           \item renormalization scale variation estimates MHOU in hard processes
         \end{itemize}
-        \item MHOU PDFs have been determined using the theory covariance matrix formalism {\color{gray}\small [NNPDF: 1906.10698]}
+        \item MHOU PDFs have been determined using the theory covariance matrix formalism (Gaussianity assumed) {\color{gray}\small [NNPDF: 1906.10698]}
         \begin{itemize}
           \item $\operatorfont{cov_{exp}} \rightarrow \operatorfont{cov_{exp}}+\operatorfont{cov_{theory}}$
         \end{itemize}
@@ -511,8 +517,8 @@
       \vspace*{1em}
       CT18qed initializes the photon at an input scale and evolves using DGLAP, while CT18lux calculates the photon at all scales\\
 
-      \vspace*{0.5em}
-      CT18lux performs systematic study of variations to estimate the uncertainty
+      % \vspace*{0.5em}
+      % CT18lux performs systematic study of variations to estimate the uncertainty
 
       \vspace*{1em}
       MSHT20QED has a 1~GeV input scale and includes renormalon corrections
@@ -680,6 +686,8 @@
   \end{center}
   }
 \end{frame}
+
+
 
 
 \end{document}
