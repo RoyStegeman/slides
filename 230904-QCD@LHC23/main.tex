@@ -154,9 +154,13 @@
 % TODO: color DY schemetic corresponding to colors of equation
 \begin{frame}{Factorization and universality}
   Collinear factorization enables the prediction of cross-sections
-  \begin{equation*}
-    \sigma_{\mathrm{LHC}}(M, s) \propto \sum_{i j} \int_{M^2}^s d \hat{s} {\color{blue}\mathcal{L}_{i j}(\hat{s}, s)} {\color{red}\hat{\sigma}_{i j}\left(\hat{s}, \alpha_s(M)\right)}, \quad i,j = \{g, u, \bar{u}, d, \bar{d}, \ldots\}
-  \end{equation*}
+
+  \vspace*{0.5em}
+  $
+  \sigma_{\mathrm{LHC}}(M, s) \propto \sum_{i j} \int_{M^2}^s d \hat{s} {\color{blue}\mathcal{L}_{i j}(\hat{s}, s)} {\color{red}\hat{\sigma}_{i j}\left(\hat{s}, \alpha_s(M)\right)} \quad i,j = \{g, u, d, \ldots\}
+  $
+
+  \vspace*{3em}
 
   \begin{columns}
     \begin{column}{0.49\textwidth}
@@ -176,12 +180,15 @@
     \end{column}
 
     \begin{column}{0.49\textwidth}
+
+      \vspace*{1em}
       {\color{red} $\hat{\sigma}_{i j}\left(\hat{s}, \alpha_s(M)\right)$} denotes the hard-scattering coefficient function
       \begin{itemize}
         \item Calculable in perturbative QCD
         % \item infrared safe
         \item Independent of the initial hadron
       \end{itemize}
+      \vspace*{-5cm}
       \begin{figure}
         \includegraphics[width=0.5\textwidth]{figures/dy.png}
       \end{figure}
@@ -441,7 +448,7 @@
       based on the observation that the heavy-lepton production cross-section can be written in two ways:
       \begin{itemize}
         \item in terms of structure functions $F_2$, $F_L$
-        \item in terms of PDFs including the photon
+        \item in terms of PDFs (including the photon)
       \end{itemize}
 
       \vspace*{0.5em}
@@ -512,6 +519,7 @@
 
       \vspace*{1em}
       NNPDF follow the original luxQED by calculating the photon at 100~GeV to reduce higher twist effects
+
       \vspace*{0.5em}
       NNPDF3.1QED and NNPDF4.0QED use an iterative procedure to address the interplay between the photon and other PDFs due to the momentum sumrule
       \begin{equation*}
@@ -531,13 +539,13 @@
 \end{frame}
 
 
-\begin{frame}{Impact of the photon on other PDFs}
+\begin{frame}{Results: Impact of the photon on other PDFs}
   \begin{center}
     \includegraphics[width=0.45\textwidth]{figures/nnpdf40_vs_qed_ubar.pdf}
     \includegraphics[width=0.45\textwidth]{figures/nnpdf40_vs_qed_g.pdf}
   \end{center}
   \begin{itemize}
-    \item PDFs are in agreement within uncertainty
+    \item Non-negligible impact, but PDFs are in agreement within uncertainty
     \item Gluon reduced due to momentum sum rule with photon carrying additional momentum
   \end{itemize}
 \end{frame}
@@ -556,18 +564,18 @@
 \end{frame}
 
 
-\begin{frame}{Phenomenological impact of QED effects}
+\begin{frame}{Results: phenomenological impact}
   \begin{columns}[T]
-    \begin{column}{0.49\textwidth}
-      \includegraphics[width=0.7\textwidth]{figures/NNPDF_WPWM_14TEV_40_PHENO-internal.pdf}
+    \begin{column}{0.59\textwidth}
+      \includegraphics[width=0.6\textwidth]{figures/NNPDF_WPWM_14TEV_40_PHENO-internal.pdf}
     \end{column}
-    \begin{column}{0.49\textwidth}
+    \begin{column}{0.39\textwidth}
       \vspace*{-3.5em}
-      \includegraphics[width=0.7\textwidth]{figures/NNPDF_DY_14TEV_40_PHENO-internal.pdf}
+      \includegraphics[width=0.8\textwidth]{figures/NNPDF_DY_14TEV_40_PHENO-internal.pdf}
     \end{column}
   \end{columns}
   \begin{columns}[T]
-    \begin{column}{0.49\textwidth}
+    \begin{column}{0.59\textwidth}
       \vspace*{1em}
       \begin{itemize}
         \item Here photon initiated contributions are included
@@ -577,9 +585,9 @@
         % \item Results produced using PineAPPL grids
       \end{itemize}
     \end{column}
-    \begin{column}{0.49\textwidth}
-      \vspace*{-3em}
-      \includegraphics[width=0.7\textwidth]{figures/NNPDF_DY_14TEV_40_PHENO-global.pdf}
+    \begin{column}{0.39\textwidth}
+      \vspace*{-5em}
+      \includegraphics[width=0.8\textwidth]{figures/NNPDF_DY_14TEV_40_PHENO-global.pdf}
     \end{column}
   \end{columns}
 \end{frame}
