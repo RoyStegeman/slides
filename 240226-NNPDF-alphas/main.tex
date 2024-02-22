@@ -117,6 +117,20 @@
 
 % SLIDES =======================================================================
 
+\begin{frame}{Status of $\alpha_s$ determinations (as of August 2021, largely the same today)}
+    \vspace*{-1em}
+    \begin{figure}
+      \includegraphics[width=0.25\textwidth]{pdg_alphas.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Status of $\alpha_s$ determinations (as of August 2021, largely the same today)}
+  \vspace*{-1em}
+  \begin{figure}
+    \includegraphics[width=0.25\textwidth]{pdf_alphas_updated.png}
+  \end{figure}
+\end{frame}
+
 
 \begin{frame}{Three different methodologies}
   \begin{itemize}
@@ -127,7 +141,7 @@
 \end{frame}
 
 
-\begin{frame}{Correlated replica method}
+\begin{frame}{Correlated replica method}{Methodology}
   Determining $\alpha_s$ with a fixed input PDF results in underestimated uncertainty
   \begin{figure}
     \centering
@@ -136,34 +150,97 @@
 \end{frame}
 
 
-\begin{frame}{Correlated replica method}
+\begin{frame}{Correlated replica method}{Methodology}
   \begin{columns}
     \column{0.5\textwidth}
-    1. Produce fits to a data replica, $D^k$ at different values of $\alpha_s$, such that we can determine $\alpha_s^{(k)}=\operatorname{argmin}\left[\chi^{2(k)}\left(\alpha_s\right)\right]$ \\\vspace*{1em}
-    2. Perform quadratic fit to $\chi^2$ profiles \\
+    1. Produce fits to a data replica, $D^{(k)}$, at different values of $\alpha_s$\\\vspace*{1em}
+    2. Perform quadratic fits to $\chi^{2(k)}(\alpha_s)$ profiles \\
     \includegraphics[width=0.9\textwidth]{figures/parabolaplotnnpdf31.png}
     \column{0.5\textwidth}
-    3. Analyze the resulting probability distribution \\
+    3. Compute $\alpha_s^{(k)}=\operatorname{argmin}\left[\chi^{2(k)}\left(\alpha_s\right)\right]$  for each replica $k$ \\
     \includegraphics[width=0.9\textwidth]{figures/alphasnnpdf31result.png}
   \end{columns}
+\end{frame}
 
-  % batch minimization
+
+\begin{frame}{Correlated replica method}{Sources of uncertainty}
+  \begin{itemize}
+    \item Experimental uncertainties
+    \item Theory uncertainties
+    \begin{itemize}
+      \item Choice regarding construction of MHOU covmat, e.g. which value of $\alpha_s$, impact of scale variation magnitude
+    \end{itemize}
+    \item Methodological uncertainty:
+    \begin{itemize}
+      \item Selection of replicas (postfit may remove some points in $\alpha_s$)
+      \item Finite size uncertainty due to finite number of replicas
+      \item Grid of fitted $\alpha_s$ values
+      \item Number of batches
+      \item Choice of parabolic $\chi^2(\alpha_s)$ profile
+      \item Dependence on $t0$-PDF
+      \item \ldots did I forget any?
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Correlated replica method}{Results}
+  NNPDF3.1: 0.1183 ± 0.0007 (a single batch)
+
+  \vspace*{1em}
+  NNPDF4.0 methodology and dataset (new pipeline):
+  \begin{enumerate}
+    \item Compute NNLO Fktables at $\alpha_s\in \{0.114,0.115,0.116,0.117,0.118,0.119,0.120,0.121,0.122\}$
+    \item Generate 200 replica PDF at each $\alpha_s$
+    \item Iterate preprocessing, but for all iterated $\alpha_s$ fits take $t0$-PDF from the $\alpha_s=0.118$ fit of the previous iteration
+    \item[3a.] In case of MHOU, include the MHOU covmat computed at $\alpha_s=0.118$
+    \item fit $\chi^2$ profile using a second order polynomial only to the data replicas for which all $\alpha_s$ values passed postfit selection
+    \item Collect statistics of minima of the parabola
+  \end{enumerate}
+\end{frame}
+
+
+\begin{frame}{Correlated replica method}{Results}
+  NNPDF3.1: 0.1183 ± 0.0007 (a single batch)
+
+  \vspace*{1em}
+  NNPDF4.0 methodology and dataset (new pipeline):
+  \begin{figure}
+    \includegraphics[width=0.25\textwidth]{withmhou_kdeplot.png}
+    \includegraphics[width=0.25\textwidth]{nomhou_kdeplot.png}
+  \end{figure}
+  Including MHOU increases uncertainty on $\alpha_s$ by an amount that is similar to the estimated theory uncertainty in the NNPDF3.1 $\alpha_s$ determination where it was 0.0011
+
+  \vspace*{0.5em}
+  The MHOU determination displays large non-Gaussianity that we will need to control
+
+  \vspace*{0.5em}
+  The central value is still high, even outside the grid of FKtables for MHOU
+\end{frame}
+
+
+\begin{frame}{Correlated replica method}{Results}
+  Let us use the ``old'' methodology of NNPDF2.1 \href{https://arxiv.org/abs/1110.2483}{\textcolor{gray}{[NNPDF Collaboration (2011); 1110.2483]}}
+
+  \begin{figure}
+    \includegraphics[width=0.35\textwidth]{naivechi2fit.png}
+  \end{figure}
+  \centering
+  Compared to 0.12274$\pm$0.00173 (MHOU) and 0.12166$\pm$0.00081 (no MHOU)
+
+  \vspace*{0.5em}
+  Why do the old and new correlated replica methods disagree?
+\end{frame}
+
+
+\begin{frame}{Theory covariance method}{Results}
+  Same method as introduced by Amedeo, but now applied to $\alpha_s$
+
+
 
 \end{frame}
 
 
-\begin{frame}{Correlated replica method}
-  % NNPDF3.1: 0.1185 ± 0.0005
-
-
-  % results table here
-
-  % 68% c.i MHOU   : 0.12101 to 0.12447 (large non-Gaussianity)
-  % 68% c.i no MHOU: 0.12085 to 0.12247
-
-
-
-\end{frame}
 
 \begin{frame}{Way forward?}
   Problems:
@@ -171,8 +248,8 @@
     \item Disagreement between datasets (still to confirm with new pipeline+mhou)
     \item Disagreement between methodologies
     \item CRM: Best alphas central data vs best alphas validation replicas
-    \item CRM: Fixed t0 (not done in 3.1 determination) and MHOU covmat across all values of
-    \item SIMUnet: How to do stopping?
+    \item CRM: Fixed t0 and MHOU covmat across all values of $\alpha_s$
+    \item SIMUnet: How to do early stopping?
   \end{itemize}
 
   Things to do:
@@ -185,8 +262,5 @@
 
   Let's discuss\ldots
 \end{frame}
-
-
-
 
 \end{document}
