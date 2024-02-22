@@ -13,7 +13,6 @@
 \usefonttheme[onlymath]{serif} % makes beamer math look like article math
 \usepackage{hyperref}
 
-
 %======================= title page info =======================
 \title{An NNPDF4.0 determination of $\alpha_s$ -- methodologies \& status}
 \date{NNPDF collaboration meeting  \\[0.1cm] Amsterdam, 24 February 2024}
@@ -236,25 +235,44 @@
 \begin{frame}{Theory covariance method}{Results}
   Same method as introduced by Amedeo, but now applied to $\alpha_s$
 
+  \vspace*{0.5em}
+  3pt scale variations: [0.114; 0.118; 0.122]
 
+  \vspace*{2em}
+
+  \begin{table}[]
+    \begin{tabular}{llll}
+    \textbf{Data set} & \textbf{Methodological details} & \textbf{Corr. reps. meth.} & \textbf{Theory cov. meth.}       \\
+    NNPDF4.0          & NNPDF4.0                        & 0.12166 ± 0.00081          & {0.11965 ± 0.00036} \\
+    NNPDF4.0          & NNPDF4.0 + MHOU                 & 0.12274 ± 0.00173          & {0.11914 ± 0.00070}
+    \end{tabular}
+  \end{table}
+
+  \vspace*{1em}
+  Small uncertainty, even with MHOU included
+
+  \vspace*{0.5em}
+  Disagreement between both methodologies
 
 \end{frame}
 
 
 
 \begin{frame}{Way forward?}
-  Problems:
+  Challenges:
   \begin{itemize}
     \item Disagreement between datasets (still to confirm with new pipeline+mhou)
-    \item Disagreement between methodologies
-    \item CRM: Best alphas central data vs best alphas validation replicas
-    \item CRM: Fixed t0 and MHOU covmat across all values of $\alpha_s$
+    \item Disagreement between methodologies, including the NNPDF2.1 methodology
+    \item TCM: understand the small uncertainties
+    \item CRM: non-Gaussianity in MHOU determination of $\alpha_s$
     \item SIMUnet: How to do early stopping?
   \end{itemize}
 
   Things to do:
   \begin{itemize}
     \item TCM: Go beyond quadratic expansion in nuisance parameter
+    \item TCM: Confirm (for the new pipeline) there is no dependence on the choice of prior
+    \item CRM: Iterate t0 and MHOU covmat to correspond to best value of $\alpha_s$
     \item Repeat for more datasets (to test if MHOU solves disagreement)
     \item Produce more theories: N3LO, MHOU at alphas other than 0.118, more alphas values
     \item \ldots?
