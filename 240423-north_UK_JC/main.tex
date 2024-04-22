@@ -15,7 +15,7 @@
 
 %======================= title page info =======================
 \title{Recent progress in global PDF determination and the path to N3LO}
-\subtitle{Based on 2401.08749, 2401.10319, and 2402.18635 }
+\subtitle{\small Based on 2401.08749 (NNPDF4.0 QED), 2401.10319 (NNPDF4.0 MHOU), and 2402.18635 (NNPDF4.0 aN3LO)}
 \date{Joint Northern UK Journal Club  \\[0.1cm] 23 April 2024}
 \author{Roy Stegeman}
 \institute{\small The University of Edinburgh}
@@ -127,20 +127,30 @@
 \begin{frame}{Motivation}
   $$\sigma(x,Q^2)=\sum_i \int_x^1 \frac{dz}{z} \mathcal{L}_{ij}(z,\mu^2)\hat{\sigma}_{ij}\left(\frac{x}{z},\frac{Q^2}{\mu^2},\alpha_s\right)$$
 
-  \vspace*{0.5em}
-  \begin{itemize}
-    \item Predictions for collider processes rely on PDFs and matrix elements
-    \item PDF uncertainties often the dominant source of uncertainty
-    \item Current standard in PDF fits is NNLO, but much progress made in N3LO
-  \end{itemize}
+  \begin{columns}
+    \begin{column}{0.49\textwidth}
+      \begin{itemize}
+        \item Predictions for collider processes rely on PDFs and matrix elements
+        \item PDF uncertainties often the dominant source of uncertainty
+        \item Current standard in PDF fits is NNLO in QCD
+      \end{itemize}
 
-  \vspace*{0.5em}
-  Progress towards the next generation of PDFs:
-  \begin{itemize}
-    \item QED effects
-    \item (approximate) N3LO
-    \item Accounting for missing higher order uncertainties
-  \end{itemize}
+      \vspace*{0.5em}
+      Progress towards the next generation of PDFs:
+      \begin{itemize}
+        \item QED effects
+        \item (approximate) N3LO
+        \item Accounting for missing higher order uncertainties
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \begin{figure}
+        \centering
+        \includegraphics[width=0.8\textwidth]{figures/sources_of_unc_higgs.png}
+        \caption*{ \small Uncertainties for inclusive Higgs production \\  {\color{gray}\small [Dulat, Lazopoulos, Mistleberger: 1802.00827]}}
+      \end{figure}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 
@@ -255,14 +265,14 @@
 \begin{frame}{LUXqed PDF determinations}
   LUXqed has been used in all of the most recent QED PDFs:
   \begin{itemize}
-      \item LUXqed\_plus\_PDF4LHC15 {\color{gray}\small [Manohar, et al.: 1607.04266]}
-      \item LUXqed17\_plus\_PDF4LHC15 {\color{gray}\small [Manohar, et al.: 1708.01256]}
-      \item MMHT2015qed {\color{gray}\small [Harland-Land et al.: 1907.02750]}
-      \item NNPDF3.1luxQED {\color{gray}\small [Bertone et al.: 1712.07053]}
-      \item CT18lux and CT18qed {\color{gray}\small [Xie et al.: 2106.10299]}
-      \item MSHT20QED {\color{gray}\small [Cridge et al.: 2111.05357]}
-      \item MSHT20qed\_an3lo {\color{gray}\small [Cridge et al.: 2312.07665]}
-      \item NNPDF4.0QED {\color{gray}\small [Cridge et al.: 2401.08749 ]}
+      \item LUXqed\_plus\_PDF4LHC15 {\color{gray}\small [1607.04266]}
+      \item LUXqed17\_plus\_PDF4LHC15 {\color{gray}\small [1708.01256]}
+      \item MMHT2015qed {\color{gray}\small [1907.02750]}
+      \item NNPDF3.1luxQED {\color{gray}\small [1712.07053]}
+      \item CT18lux and CT18qed {\color{gray}\small [2106.10299]}
+      \item MSHT20QED {\color{gray}\small [2111.05357]}
+      \item MSHT20qed\_an3lo {\color{gray}\small [2312.07665]}
+      \item NNPDF4.0QED {\color{gray}\small [2401.08749 ]}
   \end{itemize}
 \end{frame}
 
@@ -339,130 +349,161 @@
 \section{Theory in puts for approximate N3LO PDFs}
 
 \begin{frame}{Theory requirements for PDFs at N3LO}
+  Several theory inputs are needed in a PDF fit:
   \begin{itemize}
     \item Splitting functions for DGLAP evolution \\
 
-    \item Variable flavor number scheme matching conditions \\
+    \item Matching conditions for heavy-quark mass schemes \\
     $ f_i^{\left(n_f+1\right)}\left(x, Q^2\right)=A_{i j}\left(x, \alpha_s\right) f_j^{\left(n_f\right)}\left(x, Q^2\right) $
     \item DIS coefficient functions
     \item Hadronic cross sections,
   \end{itemize}
 
-  Not all available at N3LO, what is the best we can do?
+  \vspace*{1em}
+  Not all available at N3LO, but information is available for all. What is the best we can do?
   \begin{itemize}
     \item Use N3LO calculations where known
     \item Construct approximate results where possible
     \item Account for theory uncertainties of the missing or incomplete higher order
   \end{itemize}
 
-  Make optimal use of the existing information. More information can be included as it becomes available. No need to wait for complete N3LO results!
+  \vspace*{0.5em}
+  No need to wait for complete N3LO results and more information can be included as it becomes available
 \end{frame}
 
 
 \begin{frame}{Splitting functions}
-  Complete results for the N3LO splitting functions are not yet available
-
-  A lot of information exists (with important contributions from Liverpool and Edinburgh):
+  Complete results for the N3LO splitting functions are not yet available, but a lot of information exists (with important contributions from Liverpool and Edinburgh):
   \begin{itemize}
-    \item large-$n_f$ limit
-    \item small-$x$ limit
-    \item large-$x$ limit
-    \item Mellin Moments
+    \item Singlet and non-singlet Mellin moments
+    {\color{gray}\small [Davies, Falcioni, Herzog, Kom, Moch, Ruijl, Ueda, Vermaseren, Vogt: 1707.08315, 1610.07477, 2202.10362, 2111.15561, 2302.07593, 2307.04158]}
+    \item Large-$n_f$ limit {\color{gray}\small [Davies, Vogt, Ruijl, Ueda, Vermaseren: 1610.0744]}
+    \item Small-x limits (BFKL resummation) {\color{gray}\small [Bonvini and Marzani: 1805.06460] [Davies, Kom, Moch, Vogt: 2202.10362]}
+    \item Large-x limits (threshold resummation) {\color{gray}\small [Duhr, Mistlberger, Vita 2205.04493], [Henn, Korchemsky, Mistlberger: 1911.10174], [Soar, Moch, Vermaseren, Vogt: 0912.0369]}
   \end{itemize}
+
+  \vspace*{2em}
+  \begin{center}
+    How can we use this information to construct approximate splitting functions?
+  \end{center}
+
 \end{frame}
 
 
 \begin{frame}{Splitting functions}
-  How can we use this information to construct approximate splitting functions?
 
   The approximation is performed in Mellin space as an expansion in $nf$, where any double counting terms present in the resummed small-$x$ and large-$x$ expressions are removed
-  $\gamma_{i j}^{(3)}=\gamma_{i j, n_f}^{(3)}+\gamma_{i j, N \rightarrow \infty}^{(3)}+\gamma_{i j, N \rightarrow 0}^{(3)}+\gamma_{i j, N \rightarrow 1}^{(3)}+\widetilde{\gamma}_{i j}^{(3)}$.
 
-  The remainder is constructed as a linear combination of interpolating functions:
+  $$\gamma_{i j}^{(3)}=\gamma_{i j, n_f}^{(3)}+\gamma_{i j, N \rightarrow \infty}^{(3)}+\gamma_{i j, N \rightarrow 0}^{(3)}+\gamma_{i j, N \rightarrow 1}^{(3)}+\widetilde{\gamma}_{i j}^{(3)}$$
+
+  \vspace*{1em}
+  The remainder term $\widetilde{\gamma}_{i j}^{(3)}$ is constructed as a linear combination of interpolating functions:
   \begin{itemize}
     \item A function for the leading unknown large-N contribution
-    \item A function for the leading unknown small-N contribution
+    \item A function for the two leading unknown small-N contribution
     \item Functions for the subleading small-N and large-N contributions
   \end{itemize}
 
-  Vary subleading contributions included in the basis of interpolating functions to estimate "incomplete higher order uncertainties" (IHOU) on the splitting functions. More details later
+  \vspace*{0.5em}
+  Then, vary the subleading contributions included in the basis of interpolating functions to estimate "incomplete higher order uncertainties" (IHOU) on the splitting functions
+
+  \vspace*{1em}
+  More details on how to account for IHOUs in a fit follows later
 \end{frame}
 
 
 \begin{frame}{Splitting functions}
-  LO, NLO, NNLO and approximate N3LO splitting functions
   \begin{figure}
     \centering
-    \includegraphics[width=.3\textwidth]{figures/gamma_gg_totu_logx.pdf}
-    \includegraphics[width=.3\textwidth]{figures/gamma_gq_totu_logx.pdf} \\
-    \includegraphics[width=.3\textwidth]{figures/gamma_qg_totu_logx.pdf}
-    \includegraphics[width=.3\textwidth]{figures/gamma_qq_totu_logx.pdf}
+    \includegraphics[width=.4\textwidth]{figures/gamma_gg_totu_logx.pdf}
+    % \includegraphics[width=.4\textwidth]{figures/gamma_gq_totu_logx.pdf} \\
+    \includegraphics[width=.4\textwidth]{figures/gamma_qg_totu_logx.pdf}
+    % \includegraphics[width=.4\textwidth]{figures/gamma_qq_totu_logx.pdf}
   \end{figure}
-  Shown uncertainties are estimated missing higher order uncertainty (MHOU) through factorization scale variations \\
-  Light blue is sum in quadrature of MHOU and IHOU
-
   \begin{itemize}
-    \item Good perturbative consistency within uncertainties
+    \item Shown uncertainties are estimated missing higher order uncertainty (MHOU) through factorization scale variations. Light blue is sum in quadrature of MHOU and IHOU
+    \item Good perturbative agreement at large-$x$
+    \item IHOU are not negligible
   \end{itemize}
 \end{frame}
 
 
 
 \begin{frame}{DGLAP evolution}
-  NNPDF4.0 evolved from $Q=1.65$GeV to $Q=100$GeV
-  \begin{figure}[!t]
-    \centering
-    \includegraphics[width=0.3\textwidth]{figures/N3LOevolution-q100gev-ratios_expanded_0.pdf}
-    \includegraphics[width=0.3\textwidth]{figures/N3LOevolution-q100gev-ratios_expanded_1.pdf}\\
-    \includegraphics[width=0.3\textwidth]{figures/N3LOevolution-q100gev-ratios_expanded_2.pdf}
-    \includegraphics[width=0.3\textwidth]{figures/N3LOevolution-q100gev-ratios_expanded_3.pdf}
-  \end{figure}
-  \begin{itemize}
-    \item Effects of N3LO corrections to DGLAP evolution at most percent level, except at small-$x$ and large-$x$
-    \item Good perturbative convergence
-  \end{itemize}
+  NNPDF4.0 evolved from $Q=1.65$ GeV to $Q=100$ GeV
+
+  \begin{columns}
+    \begin{column}{0.59\textwidth}
+      \begin{figure}[!t]
+        \centering
+        \includegraphics[width=0.49\textwidth]{figures/N3LOevolution-q100gev-ratios_expanded_0.pdf}
+        \includegraphics[width=0.49\textwidth]{figures/N3LOevolution-q100gev-ratios_expanded_1.pdf}\\
+        \includegraphics[width=0.49\textwidth]{figures/N3LOevolution-q100gev-ratios_expanded_2.pdf}
+        \includegraphics[width=0.49\textwidth]{figures/N3LOevolution-q100gev-ratios_expanded_3.pdf}
+      \end{figure}
+    \end{column}
+    \begin{column}{0.39\textwidth}
+      \begin{itemize}
+        \item Effects of N3LO corrections to DGLAP evolution at most percent level, except at small-$x$ and large-$x$
+        \item Good perturbative convergence
+      \end{itemize}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{DIS coefficient functions}
   \begin{itemize}
-    \item DIS coefficient functions are known up to N3LO in the massless limit
-    \item Massive coefficient functions can be constructed as a linear combination of the known limits
+    \item DIS coefficient functions are known up to N3LO in the massless limit (again with contributions from Liverpool)
+    \item Massive coefficient functions can be constructed as a linear combination of the known limits ($Q^2 \rightarrow m_h^2$, $Q^2\gg m_h^2$, and $x\rightarrow 0$)
   \end{itemize}
 
   \begin{figure}[!t]
     \centering
-    \includegraphics[width=.49\textwidth]{figures/C2g_2_Q2m2_2.0.pdf}
-    \includegraphics[width=.49\textwidth]{figures/C2g_3_Q2m2_2.0.pdf}
-    NNLo and aN3LO
+    \includegraphics[width=.4\textwidth]{figures/C2g_2_Q2m2_2.0.pdf}
+    \caption*{We can validate the procedure at NNLO}
   \end{figure}
 \end{frame}
 
 
 \begin{frame}{DIS variable flavor number scheme}
-  In a PDF fit different flavour number schemes are joined in a variable flavour number scheme (VFNS) to ensure reliable results from $Q^2\sim m_h^2$ up to $Q^2\gg m_h^2$
+  \begin{columns}
+    \begin{column}{0.59\textwidth}
+      \begin{itemize}
+        \item In a PDF fit different flavour number schemes are joined in a variable flavour number scheme (VFNS) to ensure reliable results from $Q^2\sim m_h^2$ up to $Q^2\gg m_h^2$
+        \item The matching conditions encoding the transition between schemes have almost completely been computed up to N3LO
+        \item The VFNS used in NNPDF is the FONLL scheme below
+        \item Extended up to N3LO
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.39\textwidth}
+      \vspace*{-2em}
+      \begin{figure}[!t]
+        \centering
+        \includegraphics[width=0.89\textwidth]{figures/F2_charm_n3lo.pdf}
+        \caption*{$F_2^{(c)}$}
+      \end{figure}
+    \end{column}
+  \end{columns}
 
-  The matching conditions encoding the transition between schemes have almost completely been computed up to N3LO
+  \vspace*{1em}
+  \begin{equation*}
+    F_\mathrm{FONLL}(Q^2,m_c) =F^{(n_f+1)}(Q^2,m_h=0)
+    +F^{(n_f)}(Q^2,m_c)-\lim_{m_c\rightarrow 0}F^{(n_f)}(Q^2,m_h)
+  \end{equation*}
+  % Up to NNLO, FONLL was implemented expressing the terms in the r.h.s in terms of $\alpha_s$ and PDFs defined in the massless scheme
 
-  The VFNS used in NNPDF is the FONLL scheme, constructed as
-  $$F_\mathrm{FONLL}(Q^2,m_c)=F^{(n_f+1)}(Q^2,m_h=0)+F^{(n_f)}(Q^2,m_c)-\lim_{m_c\rightarrow 0}F^{(n_f)}(Q^2,m_h)$$
+  % FONLL is now implemented at ``observable level'' with simultaneous PDFs in different flavour number schemes, made possible thanks to the new \texttt{EKO} evolution code and \texttt{yadism} DIS library
 
-  Up to NNLO, FONLL was implemented expressing the terms in the r.h.s in terms of $\alpha_s$ and PDFs defined in the massless scheme
-
-  FONLL is now implemented at ``observable level'' with simultaneous PDFs in different flavour number schemes, made possible thanks to the new \texttt{EKO} evolution code and \texttt{yadism} DIS library
-
-  \begin{figure}[!t]
-    \centering
-    \includegraphics[width=0.3\textwidth]{figures/F2_charm_n3lo.pdf}
-  \end{figure}
 
 \end{frame}
+
 
 
 
 \begin{frame}{DIS structure functions}
   \begin{figure}[!t]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/F2_total.pdf}
+    \includegraphics[width=0.75\textwidth]{figures/F2_total.pdf}
   \end{figure}
   \begin{itemize}
     \item unc is IHOU of the massive coefficient functions
@@ -504,7 +545,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Missing higher order unceratinties covmat}
+\begin{frame}{Missing higher order uncertainties covmat}
 
   $P(T|D) \propto \exp\left[-\frac{1}{2}\left(T-D\right)C_\mathrm{exp}^{-1}\left(T-D\right)\right]$
   \begin{itemize}
@@ -517,7 +558,7 @@
 \end{frame}
 
 
-\begin{frame}{Missing higher order unceratinties covmat}
+\begin{frame}{Missing higher order uncertainties covmat}
   Validate the MHOU procedure by testing the NLO MHOU covmat
   \begin{figure}[!t]
     \centering
@@ -525,10 +566,10 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}{Incomplete higher order unceratinties covmat}
+\begin{frame}{Incomplete higher order uncertainties covmat}
   \begin{itemize}
     \item We construct an IHOU matrix following a similar approach
-    \item IHOU are independent of MHOU so the unceratinties are added in quadrature
+    \item IHOU are independent of MHOU so the uncertainties are added in quadrature
     $$C = C_\mathrm{exp}+C_\mathrm{MHOU}+C_\mathrm{IHOU}$$
   \end{itemize}
   \begin{figure}[!t]
