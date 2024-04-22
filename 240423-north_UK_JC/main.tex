@@ -14,7 +14,7 @@
 \usepackage{hyperref}
 
 %======================= title page info =======================
-\title{Recent progress in global PDF determination and the path to N$^3$LO}
+\title{Recent progress in global PDF determination and the path to N3LO}
 \subtitle{Based on 2401.08749, 2401.10319, and 2402.18635 }
 \date{Joint Northern UK Journal Club  \\[0.1cm] 23 April 2024}
 \author{Roy Stegeman}
@@ -118,7 +118,6 @@
 % SLIDES =======================================================================
 \newcommand{\nn}{\vspace*{1em}}
 
-\section*{PDF determination in NNPDF}
 
 \begin{frame}{Introduce NNPDF}
 \end{frame}
@@ -179,8 +178,8 @@
 
 
 
-
-% \section{N$^3$LO}
+% ============================================================================
+\section{Theory in puts for approximate N3LO PDFs}
 
 \begin{frame}{Theory requirements for PDFs at N3LO}
   \begin{itemize}
@@ -328,25 +327,115 @@
 \end{frame}
 
 
-\section{MHOU}
+% ============================================================================
+\section{Inclusion of theory uncertainties}
 
-\begin{frame}{Theory errors in a a PDF fit}
-% include th covmat on same footing as exp covmat
-% construct by varying fact and ren. scale var.
+\begin{frame}{Theory errors from scale variations}
+  \begin{itemize}
+    \item Missing higher order uncertainties are estimated through variations of the nonphysical factorization ($\mu_f$) and renormalization ($\mu_r$) scales
+    \item $\mu_r$ and $\mu_f$ are varied sumultaneously following the 7-point prescription
+  \end{itemize}
+  \begin{figure}
+    \includegraphics[width=.2\textwidth]{figures/5point.png}
+    \includegraphics[width=.2\textwidth]{figures/7point.png}
+    \includegraphics[width=.2\textwidth]{figures/9point.png}
+    \caption*{5,7,9 point prescription}
+  \end{figure}
+  \begin{itemize}
+    \item A single factorization scale correlates all points
+    \item A renormalization scale per process
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Missing higher order unceratinties covmat}
+
+  $P(T|D) \propto \exp\left[-\frac{1}{2}\left(T-D\right)C_\mathrm{exp}^{-1}\left(T-D\right)\right]$
+  \begin{itemize}
+    \item include theory covmat $C_\mathrm{MHOU}$ at same footing as exp covmat $C_\mathrm{exp}$: $C_\mathrm{exp}\rightarrow C_\mathrm{exp}+C_\mathrm{MHOU}$
+  \end{itemize}
+  $$C_{\mathrm{MHOU},ij} = n_{m}\sum_{V_{m}}\left(T_{i}(\rho_f, \rho_r) - T_{i}(0, 0)\right)\left(T_{j}(\rho_f, \rho_r) - T_{j}(0, 0)\right)$$
+
+  Can we validate the faithfulness of these uncertainties on the unknown order?
+
+\end{frame}
+
+
+\begin{frame}{Missing higher order unceratinties covmat}
+  Validate the MHOU procedure by testing the NLO MHOU covmat
+  \begin{figure}[!t]
+    \centering
+      \includegraphics[width=0.6\textwidth]{figures/shift_validation.pdf}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Incomplete higher order unceratinties covmat}
+  \begin{itemize}
+    \item We construct an IHOU matrix following a similar approach
+    \item IHOU are independent of MHOU so the unceratinties are added in quadrature
+    $$C = C_\mathrm{exp}+C_\mathrm{MHOU}+C_\mathrm{IHOU}$$
+  \end{itemize}
+  \begin{figure}[!t]
+    \centering
+    \includegraphics[width=.48\textwidth]{figures/diag_cov_dis_ihou.pdf}
+    \includegraphics[width=.48\textwidth]{figures/diag_cov_jets_top_ihou_3pt_mhou.pdf}
+    \caption*{Fraction of IHOU due to anomalous dimension in DIS $\quad$ MHOU compared to IHOU in hadronic processes}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{Magnitude of theory uncertainties}
 % show that for certain processes th unc is of same size as exp unc.
 \end{frame}
 
-\begin{frame}{Validate by comparing to known NNLO}
-% show the validation plot
-% we will see later the impact on the PDF/pheno
+% ============================================================================
+\section{Results}
+
+\begin{frame}{Fit quality}
+  \begin{figure}[!t]
+    \includegraphics[width=.4\textwidth]{figures/chi2_n3lo_summary.pdf}
+  \end{figure}
+  \begin{itemize}
+    \item Without MHOUs the $\chi^2$ improves with the perturbative accuracy
+    \item With MHOUs the $\chi^2$ stabilizes significantly
+    \item At N3LO MHOUs have a small impact
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Perturbative convergence}
+  \begin{figure}[!t]
+    \includegraphics[width=.4\textwidth]{figures/gg_plot_lumi1d_convergence.pdf}
+    \includegraphics[width=.4\textwidth]{figures/qqbar_plot_lumi1d_convergence.pdf}
+  \end{figure}
+  \begin{itemize}
+    \item Good perturbative convergence
+    \item Moderate impact of N3LO corrections, especially for the quark luminosities
+    \item $\sim2\%$ suppression of $gg$ luminosity around the Higgs mass
+  \end{itemize}
 \end{frame}
 
 
-\begin{frame}{Incomplete higher order uncertainties}
-%
+\begin{frame}{Impact of MHOUs at N3LO}
+  \begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.45\textwidth]{figures/gg_plot_lumi1d.pdf}
+    \includegraphics[width=0.45\textwidth]{figures/qqbar_plot_lumi1d.pdf}
+  \end{figure}
+  \begin{itemize}
+    \item Non-negligible impact of MHOUs even at N3LO
+    \item[$\Rightarrow$] reason to include exact N3LO calculations for hadronic processes
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Comparison to MSHT20}
+  \begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.45\textwidth]{figures/gg_plot_lumi1d_msht20.pdf}
+    \includegraphics[width=0.45\textwidth]{figures/qqbar_plot_lumi1d_msht20.pdf}
+  \end{figure}
+  \begin{itemize}
+    \item Good agreement with MSHT20 for the quark luminosities
+    \item Also for gluon luminosities, except around the Higgs mass and high-mass
+  \end{itemize}
 \end{frame}
 
 
