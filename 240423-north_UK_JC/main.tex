@@ -119,31 +119,27 @@
 \newcommand{\nn}{\vspace*{1em}}
 
 
-\begin{frame}{Introduce NNPDF}
-\end{frame}
+% \begin{frame}{Introduce NNPDF}
+% \end{frame}
 
 
-
-\section*{Motivation}
 
 \begin{frame}{Motivation}
-  $\sigma(x,Q^2)=\sum_i \int_x^1 \frac{dz}{z} \mathcal{L}_{ij}(z,\mu^2)\hat{\sigma}_{ij}\left(\frac{x}{z},\frac{Q^2}{\mu^2},\alpha_s\right)$
+  $$\sigma(x,Q^2)=\sum_i \int_x^1 \frac{dz}{z} \mathcal{L}_{ij}(z,\mu^2)\hat{\sigma}_{ij}\left(\frac{x}{z},\frac{Q^2}{\mu^2},\alpha_s\right)$$
 
+  \vspace*{0.5em}
   \begin{itemize}
-    \item predictions for collider processes rely on PDFs and matrix elements
+    \item Predictions for collider processes rely on PDFs and matrix elements
     \item PDF uncertainties often the dominant source of uncertainty
-    \item state of the art in PDF fits is NNLO, but much progress made in N3LO
-    \begin{itemize}
-      \item PDF evolution
-      \item cross sections
-    \end{itemize}
-    \item Truly N3LO calculations require N3LO PDFs, not available so estimate using NNLO PDFs: $\delta(\mathrm{PDF-TH})$
-    \item High precision (1\%) LHC era, PDFs need to match this
-    \begin{itemize}
-      \item MHOU
-      \item N3LO
-      \item Also photon PDF + EW effects, but not in this talk
-    \end{itemize}
+    \item Current standard in PDF fits is NNLO, but much progress made in N3LO
+  \end{itemize}
+
+  \vspace*{0.5em}
+  Progress towards the next generation of PDFs:
+  \begin{itemize}
+    \item QED effects
+    \item (approximate) N3LO
+    \item Accounting for missing higher order uncertainties
   \end{itemize}
 \end{frame}
 
@@ -175,6 +171,167 @@
 %   \end{columns}
 % \end{frame}
 
+
+
+
+\section{QED effects in PDFs}
+
+\begin{frame}{Including QED corrections in a PDF set}
+  The current standard for PDFs determination is at NNLO in QCD, however  $\alpha(M_z) \sim \alpha_s^2(M_Z)$
+
+  \begin{columns}
+    \begin{column}{0.49\textwidth}
+
+      \vspace*{1em}
+      Including QED corrections in PDFs consists of \vspace*{0.5em}
+      \begin{itemize}
+        \item QED corrections to DGLAP (at $\mathcal{O}(\alpha)$, $\mathcal{O}(\alpha \alpha_s)$ and $\mathcal{O}(\alpha^2))$: \\
+        $P_{QED}=\alpha P_{ij}^{(0,1)}+\alpha \alpha_s P_{ij}^{(1,1)}+\alpha^2 P_{ij}^{(0,2)}+\ldots$
+        \vspace*{0.5em}
+        \item Adding a photon PDF and including photon initiated contributions to cross-sections \\
+        The momenum sumrule is modified accordingly:
+        \begin{equation*}
+          \int_0^1 dx\, \left(  x\Sigma(x,Q^2) + xg(x,Q^2) + x\gamma(x,Q^2) \right) =1
+        \end{equation*}
+      \end{itemize}
+    \end{column}
+
+    \begin{column}{0.49\textwidth}
+      \begin{figure}
+        \includegraphics[width=0.99\textwidth]{figures/ewcorrections_dy.png}
+        \caption*{Example: EW corrections in DY\\ {\color{gray}\small [C. Schwan DIS 2021]}}
+      \end{figure}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}{Determination of the photon PDF}
+  \begin{columns}[T]
+    \begin{column}{0.59\textwidth}
+      Initially the photon PDF has been determined in different ways:
+      \begin{itemize}
+        \item physical model: sensitive to underlying model
+        \item fitting: data does not provide strong constraints
+      \end{itemize}
+
+      \vspace*{0.5em}
+      However with the LUXqed approach it can be computed perturbatively \\
+      based on the observation that the heavy-lepton production cross-section can be written in two ways:
+      \begin{itemize}
+        \item in terms of structure functions $F_2$, $F_L$
+        \item in terms of PDFs (including the photon)
+      \end{itemize}
+
+      \vspace*{0.5em}
+      luxQED result {\color{gray}\small[Manohar, Nason, Salam, Zanderighi: 1607.04266, 1708.01256]}:
+      \vspace*{-0.8em}
+      \begin{equation*}
+        \begin{split}
+          & x \gamma(x, \mu^2)
+          =
+          \frac{2}{\alpha (\mu^2)} \int\limits_x^1 \frac{dz}{z}
+          \Biggl\{ \int_{m_p^2x^2 \over 1-z}^{\mu^2 \over 1-z} \frac{dQ^2}{Q^2}
+          \alpha^2(Q^2) \Biggl[ -z^2 F_L(x/z, Q^2) \\
+          & + \left( z P_{\gamma q}(z) + \frac{2 x^2 m_p^2}{Q^2} \right)
+          F_2(x/z, Q^2)\Biggr] - \alpha^2(\mu^2) z^2 F_2(x/z, \mu^2)\Biggr\}
+        \end{split}
+      \end{equation*}
+    \end{column}
+
+    \begin{column}{0.39\textwidth}
+      \vspace*{-2.5em}
+      \begin{figure}
+        \includegraphics[width=0.89\textwidth]{figures/dataluxqed.png}
+        \caption*{Input to construct $F_2$ and $F_L$}
+        \includegraphics[width=0.89\textwidth]{figures/luxQED_uncs.png}
+        \caption*{Sources of uncertainty}
+      \end{figure}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}{LUXqed PDF determinations}
+  LUXqed has been used in all of the most recent QED PDFs:
+  \begin{itemize}
+      \item LUXqed\_plus\_PDF4LHC15 {\color{gray}\small [Manohar, et al.: 1607.04266]}
+      \item LUXqed17\_plus\_PDF4LHC15 {\color{gray}\small [Manohar, et al.: 1708.01256]}
+      \item MMHT2015qed {\color{gray}\small [Harland-Land et al.: 1907.02750]}
+      \item NNPDF3.1luxQED {\color{gray}\small [Bertone et al.: 1712.07053]}
+      \item CT18lux and CT18qed {\color{gray}\small [Xie et al.: 2106.10299]}
+      \item MSHT20QED {\color{gray}\small [Cridge et al.: 2111.05357]}
+      \item MSHT20qed\_an3lo {\color{gray}\small [Cridge et al.: 2312.07665]}
+      \item NNPDF4.0QED {\color{gray}\small [Cridge et al.: 2401.08749 ]}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{The photon PDF}
+  \begin{columns}[T]
+    \begin{column}{0.59\textwidth}
+      An iterative procedure  is used to address the interplay between the photon and other PDFs due to the momentum sumrule
+      \begin{equation*}
+        \int_0^1 dx\, \left(  x\Sigma(x,Q^2) + xg(x,Q^2) + x\gamma(x,Q^2) \right) =1
+      \end{equation*}
+    \end{column}
+
+    \begin{column}{0.39\textwidth}
+      \vspace*{-1.5em}
+      \begin{figure}
+        \includegraphics[width=0.9\textwidth]{figures/luxqed_iteration.pdf}
+        \caption*{\color{gray}\small [NNPDF3.1QED: 1712.07053]}
+      \end{figure}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+
+\begin{frame}{Results: Impact of the photon on other PDFs}
+
+  \begin{figure}[!t]
+    \centering
+    \includegraphics[width=.49\textwidth]{figures/plot_pdfs_u_qed.pdf}
+    \includegraphics[width=.49\textwidth]{figures/plot_pdfs_g_qed.pdf}\\
+  \end{figure}
+
+  \begin{itemize}
+    \item Non-negligible impact, but PDFs are in agreement within uncertainty
+    \item Gluon reduced due to momentum sum rule with photon carrying additional momentum
+  \end{itemize}
+\end{frame}
+
+
+% \begin{frame}{Results: photon PDF and luminosity}
+%   \begin{center}
+%     \includegraphics[width=0.3\textwidth]{figures/photon_comparison.pdf}
+%     \includegraphics[width=0.3\textwidth]{figures/pp_lumi_comparison.png}
+%     \includegraphics[width=0.3\textwidth]{figures/gp_lumi_comparison.pdf}
+%   \end{center}
+%   \begin{itemize}
+%     \item Because all groups use the luxQED formalism, the photon PDFs agree at percent level
+%     \item Luminosity generally in agreement, but differ at very small and very large invariant mass
+%   \end{itemize}
+% \end{frame}
+
+
+\begin{frame}{Results: phenomenological impact}
+  \begin{columns}[T]
+    \begin{column}{0.49\textwidth}
+      \includegraphics[width=0.9\textwidth]{figures/NNPDF_WPWM_14TEV_40_PHENO-internal.pdf}
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \includegraphics[width=0.9\textwidth]{figures/NNPDF_DY_14TEV_40_PHENO-internal.pdf}
+    \end{column}
+  \end{columns}
+
+  \vspace*{1em}
+  \begin{itemize}
+    \item Here photon initiated contributions are included
+    \item Non-negligable QED corrections in the large invariant mass and large-$p_T$ regions relevant for new physics searches
+    \item Negligible impact around the $Z$-peak
+  \end{itemize}
+\end{frame}
 
 
 
@@ -435,38 +592,49 @@
   \begin{itemize}
     \item Good agreement with MSHT20 for the quark luminosities
     \item Also for gluon luminosities, except around the Higgs mass and high-mass
+    \item Similar data but different methodology (including splitting function parametrization)
   \end{itemize}
 \end{frame}
 
 
-\begin{frame}{NNPDF4.0 aN3LO}
-% impact at PDF level of aN3LO and MHOU
-\end{frame}
-
-\begin{frame}{NNPDF4.0 aN3LO}
-% impact at lumi level of aN3LO and MHOU
-\end{frame}
-
-\section{Phenomenology}
+\section{LHC phenomenology}
 
 \begin{frame}{Higgs production}
-
+  \begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.49\linewidth]{figures/higgs-ggF-n3lo.pdf}
+    \includegraphics[width=0.49\linewidth]{figures/H_VBF-n3lo.pdf}
+  \end{figure}
+  \begin{itemize}
+    \item Matrix elements for both Higgs in gluon fusiona and VBF available at N3LO
+    \item N3LO correction to Higgs in gluon fusion, small suppression compared to NNLO
+    \item Higgs in VBF perturbatively stable
+  \end{itemize}
 \end{frame}
 
 
 \begin{frame}{Drell-Yan}
-
+  \begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.49\linewidth]{figures/Z_60_120-n3lo.pdf}
+    \includegraphics[width=0.49\linewidth]{figures/Wp_60_120-n3lo.pdf}
+  \end{figure}
+  \begin{itemize}
+    \item Good convergence also for quark initiated processes
+  \end{itemize}
 \end{frame}
 
-
-\begin{frame}{DIS at EIC}
-
-\end{frame}
 
 
 \section{Summary and outlook}
-\begin{frame}{Incomplete higher order uncertainties}
-  % outlook: combine N3LO+MHOU and QED
+\begin{frame}{Summary and outlook}
+  \begin{itemize}
+    \item N3LO PDFs are a requirement for LHC predictions at 1\% accuracy
+    \item All sources of theory uncertainty should be accounted for
+    \item NNPDF4.0 aN3LO allows for consistent N3LO calculations. Initial results for Higgs and DY production suggest good perturbative convergence
+    \item Ongoing effort to benchmark these results with other groups
+    \item Work towards combining N3LO, MHOU and QED is ongoing
+  \end{itemize}
 \end{frame}
 
 
