@@ -337,9 +337,9 @@
 
   \vspace*{1em}
   \begin{itemize}
-    \item Here photon initiated contributions are included
-    \item Non-negligable QED corrections in the large invariant mass and large-$p_T$ regions relevant for new physics searches
-    \item Negligible impact around the $Z$-peak
+    \item NLO in both QCD and QED, only PDF uncertainties are shown
+    \item Non-negligable QED corrections (up to 5\%) in the large invariant mass and large-$p_T$ regions relevant for new physics searches
+    \item In most other cases studied, QED corrections are at the percent level
   \end{itemize}
 \end{frame}
 
@@ -453,26 +453,43 @@
 
 \begin{frame}{DIS coefficient functions}
   \begin{itemize}
-    \item DIS coefficient functions are known up to N3LO in the massless limit (again with contributions from Liverpool)
-    \item Massive coefficient functions can be constructed as a linear combination of the known limits ($Q^2 \rightarrow m_h^2$, $Q^2\gg m_h^2$, and $x\rightarrow 0$)
+    \item DIS coefficient functions are known up to N3LO in the massless limit (again with contributions from Liverpool) {\color{gray}\small [Larin, Nogueira, Van Ritbergen, Vermaseren: 9605317], [Moch Vermaseren Vogt: 0411112, 0504242], [Davies, Moch, Vermaseren, Vogt: 0812.4168, 1606.08907]}
+    \item Massive coefficient functions can be constructed by smoothly joining the known limits from high energy and threshold resummations and the massless limit ($Q^2 \rightarrow m_h^2$, $x\rightarrow 0$, and $Q^2\gg m_h^2$) {\color{gray}\small [Barontini, Bonvini, Laurenti: in preparation]}
   \end{itemize}
 
-  \begin{figure}[!t]
-    \centering
-    \includegraphics[width=.4\textwidth]{figures/C2g_2_Q2m2_2.0.pdf}
-    \caption*{We can validate the procedure at NNLO}
-  \end{figure}
+  \vspace*{-0.5em}
+  \begin{columns}
+    \begin{column}{0.49\textwidth}
+      \begin{equation*}
+        C^{(3)}(x,m_h^2/Q^2) = C^{(3),{\rm thr}}(x,m_h^2/Q^2) f_1(x) + C^{(3),{\rm asy}}(x,m_h^2/Q^2) f_2(x)
+      \end{equation*}
+      \begin{align*}
+        \begin{split}
+            f_1(x) \xrightarrow[x \to 0]{} 0, & \quad  f_1(x) \xrightarrow[x \to x_{\rm max}]{} 1 \, , \\
+            f_2(x) \xrightarrow[x \to 0]{} 1, & \quad  f_1(x) \xrightarrow[x \to x_{\rm max}]{} 0 \, ,
+        \end{split}
+      \end{align*}
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \vspace*{1.5em}
+      \begin{figure}[!t]
+        \centering
+        \includegraphics[width=.7\textwidth]{figures/C2g_2_Q2m2_2.0.pdf}
+        \caption*{We can validate the procedure at NNLO}
+      \end{figure}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 
-\begin{frame}{DIS variable flavor number scheme}
+\begin{frame}{DIS variable flavor number scheme (VFNS)}
   \begin{columns}
     \begin{column}{0.59\textwidth}
       \begin{itemize}
         \item In a PDF fit different flavour number schemes are joined in a variable flavour number scheme (VFNS) to ensure reliable results from $Q^2\sim m_h^2$ up to $Q^2\gg m_h^2$
         \item The matching conditions encoding the transition between schemes have almost completely been computed up to N3LO
-        \item The VFNS used in NNPDF is the FONLL scheme below
-        \item Extended up to N3LO
+        \item The VFNS used in NNPDF is the FONLL scheme below is extended up to approximate N3LO
+        \item FONLL extended for arbitrary number of mass scales in the recent \texttt{EKO} (DGLAP) and \texttt{yadism} (DIS) codes
       \end{itemize}
     \end{column}
     \begin{column}{0.39\textwidth}
@@ -506,7 +523,7 @@
     \includegraphics[width=0.75\textwidth]{figures/F2_total.pdf}
   \end{figure}
   \begin{itemize}
-    \item unc is IHOU of the massive coefficient functions
+    \item The uncertainty band corresponds to IHOU of the massive coefficient functions
     \item N3LO corrections are significant at low-$Q$
   \end{itemize}
 \end{frame}
@@ -515,8 +532,8 @@
 \begin{frame}{Hadronic processes}
   \begin{itemize}
     \item Corrections to collider DY and $W$ production can be included through k-factors
-    \item N3LO effects around 1 to 2\%
-    \item For many processes N3LO corrections are not available, for those we introduce MHOU
+    \item N3LO effects around 1 to 2\% for LHC observables
+    \item For many processes N3LO corrections are not available, for those we introduce account for MHOU through $\mu_r$ variations
   \end{itemize}
   \begin{figure}[!t]
     \centering
@@ -540,20 +557,26 @@
     \caption*{5,7,9 point prescription}
   \end{figure}
   \begin{itemize}
-    \item A single factorization scale correlates all points
-    \item A renormalization scale per process
+    \item Factorization scale variations estimate MHOUs in DGLAP evolution
+    \item Renormalization scale variations estimate MHOUs in matrix elements
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Missing higher order uncertainties covmat}
+  How can we account for theory uncertainties in a PDF fit?
 
-  $P(T|D) \propto \exp\left[-\frac{1}{2}\left(T-D\right)C_\mathrm{exp}^{-1}\left(T-D\right)\right]$
+  \vspace*{1em}
   \begin{itemize}
-    \item include theory covmat $C_\mathrm{MHOU}$ at same footing as exp covmat $C_\mathrm{exp}$: $C_\mathrm{exp}\rightarrow C_\mathrm{exp}+C_\mathrm{MHOU}$
+    \item In a fit we minimize the $\chi^2$: \\
+    $P(T|D) \propto \exp\left[-\frac{1}{2}\left(T-D\right)C_\mathrm{exp}^{-1}\left(T-D\right)\right] \propto \exp\left[-\frac{1}{2}\chi^2\right]$
+    \item Include theory covmat $C_\mathrm{MHOU}$ at same footing as exp covmat $C_\mathrm{exp}$: $C_\mathrm{exp}\rightarrow C_\mathrm{exp}+C_\mathrm{MHOU}$ \\
+    $$C_{\mathrm{MHOU},ij} = n_{m}\sum_{V_{m}}\left(T_{i}(\rho_f, \rho_r) - T_{i}(0, 0)\right)\left(T_{j}(\rho_f, \rho_r) - T_{j}(0, 0)\right)$$
   \end{itemize}
-  $$C_{\mathrm{MHOU},ij} = n_{m}\sum_{V_{m}}\left(T_{i}(\rho_f, \rho_r) - T_{i}(0, 0)\right)\left(T_{j}(\rho_f, \rho_r) - T_{j}(0, 0)\right)$$
 
-  Can we validate the faithfulness of these uncertainties on the unknown order?
+  \vspace*{1em}
+  \begin{center}
+    Can we trust the faithfulness of these uncertainties on the unknown order?
+  \end{center}
 
 \end{frame}
 
@@ -562,27 +585,28 @@
   Validate the MHOU procedure by testing the NLO MHOU covmat
   \begin{figure}[!t]
     \centering
-      \includegraphics[width=0.6\textwidth]{figures/shift_validation.pdf}
+      \includegraphics[width=0.8\textwidth]{figures/shift_validation.pdf}
   \end{figure}
 \end{frame}
 
 \begin{frame}{Incomplete higher order uncertainties covmat}
   \begin{itemize}
-    \item We construct an IHOU matrix following a similar approach
+    \item We construct an IHOU matrix following a similar approach by varying the subleading functions
     \item IHOU are independent of MHOU so the uncertainties are added in quadrature
     $$C = C_\mathrm{exp}+C_\mathrm{MHOU}+C_\mathrm{IHOU}$$
   \end{itemize}
   \begin{figure}[!t]
     \centering
     \includegraphics[width=.48\textwidth]{figures/diag_cov_dis_ihou.pdf}
-    \includegraphics[width=.48\textwidth]{figures/diag_cov_jets_top_ihou_3pt_mhou.pdf}
-    \caption*{Fraction of IHOU due to anomalous dimension in DIS $\quad$ MHOU compared to IHOU in hadronic processes}
+    \includegraphics[width=.48\textwidth]{figures/diag_cov_dy_ihou_3pt_mhou.pdf}
+    \caption*{IHOU have a large effect on small-$x$, low-$Q$ DIS data $\qquad$ NNLO MHOU included where N3LO not available
+    }
   \end{figure}
 \end{frame}
 
-\begin{frame}{Magnitude of theory uncertainties}
-% show that for certain processes th unc is of same size as exp unc.
-\end{frame}
+% \begin{frame}{Magnitude of theory uncertainties}
+% % show that for certain processes th unc is of same size as exp unc.
+% \end{frame}
 
 % ============================================================================
 \section{Results}
@@ -670,10 +694,9 @@
 \section{Summary and outlook}
 \begin{frame}{Summary and outlook}
   \begin{itemize}
-    \item N3LO PDFs are a requirement for LHC predictions at 1\% accuracy
+    \item N3LO PDFs and QED corrections are a requirement for LHC predictions at 1\% accuracy
     \item All sources of theory uncertainty should be accounted for
     \item NNPDF4.0 aN3LO allows for consistent N3LO calculations. Initial results for Higgs and DY production suggest good perturbative convergence
-    \item Ongoing effort to benchmark these results with other groups
     \item Work towards combining N3LO, MHOU and QED is ongoing
   \end{itemize}
 \end{frame}
