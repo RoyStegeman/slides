@@ -14,24 +14,24 @@
 \usepackage{hyperref}
 
 %======================= title page info =======================
-\title{Recent progress in global PDF determination and the path to N3LO}
-\subtitle{\small Based on 2401.08749 (NNPDF4.0 QED), 2401.10319 (NNPDF4.0 MHOU), and 2402.18635 (NNPDF4.0 aN3LO)}
-\date{Joint Northern UK Journal Club  \\[0.1cm] 23 April 2024}
+\title{The proton content at approximate N3LO accuracy}
+\date{Milan Joint Phenomenology Seminar  \\[0.1cm] 6 June 2024}
 \author{Roy Stegeman}
 \institute{\small The University of Edinburgh}
 
 
 %======================= page numbering =======================
-\addtobeamertemplate{navigation symbols}{}{ \usebeamerfont{footline}
-  \insertframenumber / \inserttotalframenumber \hspace*{2mm} \\ \vspace*{1mm}
+\addtobeamertemplate{navigation symbols}{}{%
+  \ifnum\thepage>1% don't display frame number on the first slide
+    \usebeamerfont{footline}\insertframenumber\hspace*{2em}\vspace*{2em}% display frame number
+  \fi%
 }
+
 
 
 %=================================== colors ====================================
 \definecolor{RoyBlue}{RGB}{22, 46, 69}
 \definecolor{RoyGrey}{RGB}{64, 88, 128}
-
-\newcommand{\hlme}[1]{{\color{red}\bf #1}} % highlight me
 
 \setbeamercolor{structure}{fg=RoyBlue} % itemize, enumerate, etc
 \setbeamercolor{frametitle}{fg=RoyGrey}
@@ -48,13 +48,25 @@
 
 
 %======================= add section title page ================================
-\AtBeginSection[]{
+\newcommand{\SectionTitleFrame}[1][]{%
   \begin{frame}
-  \vfill
-  \centering
-    \usebeamerfont{title}\insertsection\par%
-  \vfill
+    \vfill
+    \centering
+    \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+      \usebeamerfont{title}\insertsection\par
+    \end{beamercolorbox}
+    % Include optional text if provided
+    \ifx\relax#1\relax\else
+      \vspace{0.5cm}
+      \textbf{#1}
+    \fi
+    \vfill
   \end{frame}
+}
+
+% Use \SectionTitleFrame in \AtBeginSection
+\AtBeginSection[]{
+  \SectionTitleFrame
 }
 
 
@@ -115,18 +127,214 @@
 \pgfsetlayers{bg,main}  % set the order of the layers (main is the standard layer)
 
 
-% SLIDES =======================================================================
-\newcommand{\nn}{\vspace*{1em}}
-
 
 % Title: The proton content at N3LO accuracy
 
-% Abstract: In recent years the accuracy of PDF determinations has significantly improved due to a combination of experimental and theoretical developments. In this talk, I will discuss recent progress towards the the determination of global PDFs at 1% accuracy - in particular, I will discuss the extension of the PDF determination to approximate N3LO in QCD and NLO in QED, and their phenomenological implications for a number of LHC processes. I will also present a simultaneous extraction of the strong coupling constant and the PDFs based on the NNPDF4.0 dataset, taking correlations between them into account. We show how we can validate our determination of the strong coupling by performing a closure test.
+% Abstract: In recent years the accuracy of PDF determinations has significantly
+% improved due to a combination of experimental and theoretical developments. In
+% this talk, I will discuss recent progress towards the extension of the PDF
+% determination to approximate N3LO in QCD and NLO in QED, and their
+% phenomenological implications for a number of LHC processes. I will also
+% present a simultaneous extraction of the strong coupling constant and the PDFs
+% based on the NNPDF4.0 dataset, taking correlations between them into account.
+% We show how we can validate our determination of the strong coupling by
+% performing a closure test.
+
+% SLIDES =======================================================================
 
 
+\begin{frame}{Motivation: theoretical uncertainties at the LHC}
+  % $$\sigma(x,Q^2)=\sum_i \int_x^1 \frac{dz}{z} \mathcal{L}_{ij}(z,\mu^2)\hat{\sigma}_{ij}\left(\frac{x}{z},\frac{Q^2}{\mu^2},\alpha_s\right)$$
 
-\begin{frame}{Motivation}
+  \begin{columns}
+    \begin{column}{0.55\textwidth}
+      The dominant uncertainties in theoretical predictions at the LHC are:
+      \begin{itemize}
+        \item Missing higher order uncertainties (from scale variations)
+        \item PDF uncertainties
+        \item Uncertainties on $\alpha_s$
+      \end{itemize}
+
+      \vspace*{0.5em}
+      Progress towards improved theoretical accuracy:
+      \begin{itemize}
+        \item QED effects
+        \item approximate N3LO
+        \item Accounting for missing higher order uncertainties
+        \item A simultaneous determination of the PDFs and $\alpha_s$
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{figure}
+        \centering
+        \includegraphics[width=0.8\textwidth]{figures/sources_of_unc_higgs.png}
+        \caption*{ \small Uncertainties for inclusive Higgs production \\  {\color{gray}\small [Dulat, Lazopoulos, Mistleberger: 1802.00827]}}
+      \end{figure}
+    \end{column}
+  \end{columns}
 \end{frame}
+
+
+\section*{approximate N3LO}
+\SectionTitleFrame[\hyperlink{https://arxiv.org/abs/2402.18635}{arXiv: 2402.18635}]
+
+
+\begin{frame}{What do we need for N3LO}
+  % GLAP
+  % Heavy flavor number scheme
+  % DIS coeffs
+  % Hadronic coeffs
+\end{frame}
+
+\begin{frame}{aN3LO splitting functions}
+  % construct approximations from known results
+  % show impact on evolution of gluon PDF
+  % account for MHOUs and INHOUs
+\end{frame}
+
+
+\begin{frame}{N3LO corrections to DIS}
+  % massive contributions can be approximated from known limits
+  % extension of FONLL
+\end{frame}
+
+\begin{frame}{Inclusion of theory uncertainties}
+  % covtot = covexp + covmhou + covihou
+  % NNLO MHOU from ren scale var if N3LO not available
+  % show chi2 as function of perturbative order plot
+\end{frame}
+
+\begin{frame}{Impact on LHC cross sections}
+  % show the pheno plots for Higgs and DY
+  % improve perturbative convergence
+\end{frame}
+
+\section*{QED}
+\SectionTitleFrame[\hyperlink{https://arxiv.org/abs/2401.08749}{arXiv: 2401.08749}]
+
+
+\begin{frame}{What is needed for a QED PDF set?}
+  % Photon PDF for photon initiated states
+    % modifies sum rule
+  % NLO QED (and NNLO QCD) DGLAP running for radiatively generated photons
+\end{frame}
+
+\begin{frame}{Constructing the photon PDF}
+  % data not very constraining so fit is not practical
+  % compute from structure functions
+    % structure functions obtained from pQCD and experiment
+\end{frame}
+
+\begin{frame}{Impact on LHC cross sections}
+\end{frame}
+
+
+\section*{$\alpha_s$ from NNPDF4.0}
+\SectionTitleFrame[In preparation]
+
+\begin{frame}{Propagating uncertainties in NNPDF}
+  \begin{columns}
+    \begin{column}{0.49\textwidth}
+      Data is fully defined by central values $\mu_i$ and covariance matrix $\operatorname{cov}_{ij}$
+      \begin{enumerate}
+        \item Generate $N_{\rm rep}$ { Monte Carlo data} ``replicas'' $\hat{\mu}_i$ such that as $N_{\rm rep}\to \infty$ \\
+        $\mu_i = \frac{1}{N_{\rm rep}}\sum_{i=1}^{N_{\rm rep}} \hat{\mu}_i$\\
+        $\operatorname{cov}_{ij} = \operatorname{cov}[\hat{\mu}_i, \hat{\mu}_j]$
+        \item Perform a { PDF fit} to each replica
+        \item Compute observables $X$ and their uncertainties\\
+        $\left\langle X\left[f\right]\right\rangle=\frac{1}{N_{\rm rep}} \sum_{r=1}^N X\left[f^{(r)}\right]$\\
+        $\operatorname{Var}\left[X\left[f\right]\right] = \frac{1}{N_{\rm rep}} \sum_{r=1}^{N_{\rm rep}}\left(X\left[f^{(r)}\right]-\left\langle X\left[f\right]\right\rangle\right)^2$
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \begin{center}
+        \includegraphics[width=0.7\textwidth]{replicas_g.pdf}\\
+        \includegraphics[width=0.7\textwidth]{band_g.pdf}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+
+
+\begin{frame}{Correlations between $\alpha_s$ and the PDFs}
+  \begin{columns}[T]
+    \begin{column}{0.49\textwidth}
+      \begin{itemize}
+        \item Usually $\alpha_s$ determination is done by repeating a PDF fit at different values of $\alpha_s$ and performing a parabolic fit
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \only<1>{\includegraphics[width=0.7\textwidth]{exp_method.png}}
+    \end{column}
+  \end{columns}
+  % cite Forte, Kassabov
+  % explain usual methodology
+  % explain correlated replicas method
+\end{frame}
+
+\begin{frame}{Correlations between $\alpha_s$ and the PDFs}
+  \begin{columns}[T]
+    \begin{column}{0.49\textwidth}
+      \begin{itemize}
+        \item Usually $\alpha_s$ determination is done by repeating a PDF fit at different values of $\alpha_s$ and performing a parabolic fit
+        \item Such a determination misses correlations between $\alpha_s$ and the PDF parameters $\theta$, leading to \textbf{underestimated uncertainties}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \includegraphics[width=0.9\textwidth]{ellipse.pdf}
+    \end{column}
+  \end{columns}
+  % cite Forte, Kassabov
+  % explain usual methodology
+  % explain correlated replicas method
+\end{frame}
+
+
+\begin{frame}{A simultaneous optimization of $\alpha_s$}
+  Ideally we would minimize simultaneously $\alpha_s$ and the PDF parameters but due to theories being stored in procomputed grids at fixed values of $\alpha_s$ this is impractical
+
+  A simultaneous minimization implies solving the system of coupled equations
+  \begin{align}
+    \label{eq:partial_theta}
+    \frac{\partial}{\partial \theta} \chi^2(\alpha_s, \theta) &= 0 \\
+    \frac{\partial}{\partial \alpha_s} \chi^2(\alpha_s, \theta) &= 0
+  \end{align}
+
+  A possible way to solve this is as follows:
+  \begin{enumerate}
+    \item fit the same set of data replicas for each value of $\alpha_s$, this ensures \eqref{eq:partial_theta} is satisfied
+    \item for each data replica we fit a parabola to get a $\chi^2(\alpha_s)$ profile
+    \item each minimum corresponds to a sampled $\alpha_s$ value
+  \end{enumerate}
+
+\end{frame}
+
+
+\begin{frame}{$\alpha_s$ from correlated theory uncertainties}
+  $T \rightarrow T + \lambda \frac{\partial}{\partial \alpha_s}T $
+\end{frame}
+
+
+\begin{frame}{How can we trust our methodology to correclty find $\alpha_s$?}
+  Basic idea is that of a closure test:
+  \begin{enumerate}
+    \item generate data with theory predictions for a given value of $\alpha_s$
+    \item see if the methodology correctly reproduces this known value
+  \end{enumerate}
+
+  More rigorous:
+  % multiclosure test
+\end{frame}
+
+
+\begin{frame}{NNPDF4.0 results - preliminary}
+  % Results with and without MHOU
+\end{frame}
+
+
+
 
 
 
