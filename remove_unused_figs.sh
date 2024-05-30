@@ -22,13 +22,13 @@ cd "$directory" || exit
 make
 
 # Create directory to move images
-mkdir -p "figures/moved"
+mkdir -p "figures/unused_figs"
 
-# Loop through each image file in the provided directory (excluding figures/moved)
+# Loop through each image file in the provided directory (excluding figures/unused_figs)
 for image_file in "figures/"*
 do
-    # Exclude figures/moved directory
-    if [[ "$image_file" != "figures/moved" ]]; then
+    # Exclude figures/unused_figs directory
+    if [[ "$image_file" != "figures/unused_figs" ]]; then
         # Extract filename without directory path
         filename=$(basename "$image_file")
 
@@ -38,7 +38,7 @@ do
             echo "File $filename is in use."
         else
             echo "File $filename is not in use."
-            mv "$image_file" "figures/moved/$filename"
+            mv "$image_file" "figures/unused_figs/$filename"
         fi
     fi
 done
