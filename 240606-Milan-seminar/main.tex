@@ -1,4 +1,5 @@
-\documentclass[aspectratio=169, 9pt,t]{beamer}
+\documentclass[8pt,t]{beamer}
+\geometry{paperwidth=160mm,paperheight=0.75\paperwidth} % I can't make the fontsize smaller (than 8pt), but I can make the page bigger
 \graphicspath{{figures/}} % Setting the graphicspath
 
 % Theme settings
@@ -168,7 +169,7 @@
       \begin{figure}
         \centering
         \includegraphics[width=0.8\textwidth]{figures/sources_of_unc_higgs.png}
-        \caption*{ \small Uncertainties for inclusive Higgs production \\  {\color{gray}\small [Dulat, Lazopoulos, Mistleberger: 1802.00827]}}
+        \caption*{ \small Uncertainties for inclusive Higgs production \\  {\color{gray}\footnotesize Dulat, Lazopoulos, Mistleberger, 1802.00827}}
       \end{figure}
     \end{column}
   \end{columns}
@@ -293,19 +294,22 @@
 
 
 \begin{frame}{A simultaneous optimization of $\alpha_s$}
-  Ideally we would minimize simultaneously $\alpha_s$ and the PDF parameters but due to theories being stored in procomputed grids at fixed values of $\alpha_s$ this is impractical
+  Ideally we would minimize simultaneously $\alpha_s$ and the PDF parameters but due to theories being stored in pre-computed grids at fixed values of $\alpha_s$ this is impractical
 
-  A simultaneous minimization implies solving the system of coupled equations
-  \begin{align}
-    \label{eq:partial_theta}
-    \frac{\partial}{\partial \theta} \chi^2(\alpha_s, \theta) &= 0 \\
-    \frac{\partial}{\partial \alpha_s} \chi^2(\alpha_s, \theta) &= 0
-  \end{align}
+  % A simultaneous minimization implies solving the system of coupled equations
+  % \begin{align}
+  %   \label{eq:partial_theta}
+  %   \frac{\partial}{\partial \theta} \chi^2(\alpha_s, \theta) &= 0 \\
+  %   \frac{\partial}{\partial \alpha_s} \chi^2(\alpha_s, \theta) &= 0
+  % \end{align}
 
-  A possible way to solve this is as follows:
+  \vspace*{1em}
+
+  A possible way to find the minimum in ($\alpha_s, \theta$) space is:
   \begin{enumerate}
-    \item fit the same set of data replicas for each value of $\alpha_s$, this ensures \eqref{eq:partial_theta} is satisfied
-    \item for each data replica we fit a parabola to get a $\chi^2(\alpha_s)$ profile
+    \item generate a set of pseudodata replicas
+    \item fit these data replicas for different values of $\alpha_s$ (thus finding minima for $\theta$)
+    \item for each replica, fit a parabola to get a $\chi^2(\alpha_s)$ profile
     \item each minimum corresponds to a sampled $\alpha_s$ value
   \end{enumerate}
 
@@ -313,7 +317,27 @@
 
 
 \begin{frame}{$\alpha_s$ from correlated theory uncertainties}
-  $T \rightarrow T + \lambda \frac{\partial}{\partial \alpha_s}T $
+
+  In a PDF fit we minimize $\chi^2$:\\
+  $P(T|D) \propto \exp\left[-\frac{1}{2}\left(T-D\right)^T\left(\mathrm{Cov}_\mathrm{exp}+\mathrm{Cov}_\mathrm{th}\right)^{-1}\left(T-D\right)\right]
+  = \exp\left[-\frac{1}{2}\chi^2\right]$
+
+  \vspace*{1em}
+  We can model the theory uncertainty as a correlated shift: \\
+  $T \rightarrow T + \lambda \beta $, \quad $\beta=\frac{\partial}{\partial \alpha_s}T$ (numerically, $\beta$ is constructed form discrete shifts)\\
+  $P(T|D,\lambda) \propto \exp\left[-\frac{1}{2}\left(T+\lambda\beta-D\right)^T\left(\mathrm{Cov}_\mathrm{exp}+\mathrm{Cov}_\mathrm{th}\right)^{-1}\left(T+\lambda\beta-D\right)\right]$
+
+  \vspace*{1em}
+  We want to find $P(T|D)$ using Bayes' theorem, so we have to choose a prior for $\lambda$. Let us take a unit-width Gaussian\\
+  $P(\lambda) \propto \exp\left[-\frac{1}{2}\lambda^2\right]$
+
+  \vspace*{1em}
+  Marginalizing over $\lambda$
+  $P(T|D) \propto \int d\lambda \exp\left[Z^{-1}\left(\lambda-\bar{\lambda}\right)^2\right] $
+
+
+  \vfill
+  {\color{gray} \footnotesize Ball, Pearson, \hyperlink{https://arxiv.org/abs/2105.05114}{2105.05114}}
 \end{frame}
 
 
@@ -335,7 +359,10 @@
 
 
 
+\appendix
+\section{Backup}
 
+\include{backup.tex}
 
 
 \end{document}
