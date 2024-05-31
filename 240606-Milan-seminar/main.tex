@@ -325,15 +325,24 @@
   \vspace*{1em}
   We can model the theory uncertainty as a correlated shift: \\
   $T \rightarrow T + \lambda \beta $, \quad $\beta=\frac{\partial}{\partial \alpha_s}T$ (numerically, $\beta$ is constructed form discrete shifts)\\
-  $P(T|D,\lambda) \propto \exp\left[-\frac{1}{2}\left(T+\lambda\beta-D\right)^T\left(\mathrm{Cov}_\mathrm{exp}+\mathrm{Cov}_\mathrm{th}\right)^{-1}\left(T+\lambda\beta-D\right)\right]$
+  $P(T|D,\lambda) \propto \exp\left[-\frac{1}{2}\left(T+\lambda\beta-D\right)^T\mathrm{Cov}_\mathrm{exp}^{-1}\left(T+\lambda\beta-D\right)\right]$
 
   \vspace*{1em}
   We want to find $P(T|D)$ using Bayes' theorem, so we have to choose a prior for $\lambda$. Let us take a unit-width Gaussian\\
   $P(\lambda) \propto \exp\left[-\frac{1}{2}\lambda^2\right]$
 
   \vspace*{1em}
-  Marginalizing over $\lambda$
-  $P(T|D) \propto \int d\lambda \exp\left[Z^{-1}\left(\lambda-\bar{\lambda}\right)^2\right] $
+  Marginalizing over $\lambda$ we find \\
+  $P(T|D) \propto \int d\lambda \exp\left[Z^{-1}\left(\lambda-\bar{\lambda}\right)^2\right] \exp\left[-\frac{1}{2}\left(T-D\right)^T\left(\mathrm{Cov}_\mathrm{exp}+\beta\beta^T\right)^{-1}\left(T-D\right)\right]$ \\
+  for some functions $Z$ and $\bar{\lambda}$,
+
+  \vspace*{1em}
+  Taking $\mathrm{Cov_\mathrm{th}}=\beta\beta^T$, we thus recover \\
+  $P(T|D)\propto \exp\left[-\frac{1}{2}\chi^2\right]$
+
+  \vspace*{1em}
+  Finally, we can compute
+  $P(\lambda|T,D) = \frac{P(T|D,\lambda)P(\lambda)}{P(T|D)}=\exp\left[-\frac{1}{2}Z^{-1}(\lambda - \bar{\lambda})\right]$
 
 
   \vfill
@@ -341,15 +350,22 @@
 \end{frame}
 
 
-\begin{frame}{How can we trust our methodology to correclty find $\alpha_s$?}
+\begin{frame}{Validating the methodology}
+  We thus have two possible methodologies to determine $\alpha_s$, but how can we trust they give the correct answer?
+
+  \vspace*{1em}
   Basic idea is that of a closure test:
   \begin{enumerate}
-    \item generate data with theory predictions for a given value of $\alpha_s$
-    \item see if the methodology correctly reproduces this known value
+    \item generate data with theory predictions $T_0$ for a given value of $\alpha_s$, e.g. $0.118$
+    \item Add noise to simulate experimental sampling $\eta_1$ and the NNPDF replica sampling $\eta_2$ \\
+    $D_\mathrm{fake} = T_0 + \eta_1 + \eta_2$ \\
+    $\eta_1, \eta_2  \overset{\text{i.i.d.}}{\sim} \mathcal{N}(0,\mathrm{Cov})$
+    \item perform determinations of $\alpha_s$ for many different simulated experimental samplings of $\eta_1$
+    \item for 68\% of $\eta_1$ samples, 0.118 should be within 1$\sigma$ from the value determined with the tested methodology
   \end{enumerate}
 
-  More rigorous:
-  % multiclosure test
+  \vspace*{1em}
+  Preliminary results suggest both proposed methodologies faithfully determine $\alpha_s$.
 \end{frame}
 
 
