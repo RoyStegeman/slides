@@ -1,0 +1,246 @@
+\documentclass[aspectratio=43, 8pt,t]{beamer}
+\graphicspath{{figures/}} % Setting the graphicspath
+
+% Theme settings
+\usetheme{Madrid}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}   % removes navigation symbols such as 'next page'
+\setbeamertemplate{footline}{}             % remove line with name, date, page nr.
+\setbeamercolor*{frametitle}{bg=white}     % remove background from frametitle
+\usepackage{caption}
+% \captionsetup[figure]{labelformat=empty}% redefines the caption setup of the figures environment in the beamer class.
+\setbeamersize{text margin left=20pt,text margin right=10pt}
+\usefonttheme[onlymath]{serif} % makes beamer math look like article math
+\usepackage{hyperref}
+%======================= title page info =======================
+\title{Intrinsic charm quark valence distribution of the proton}
+\date{Flavoured Jets at the LHC  \\[0.1cm] 12 June 2024, Durham}
+\author{Roy Stegeman}
+\institute{\small The University of Edinburgh}
+
+
+%======================= page numbering =======================
+\addtobeamertemplate{navigation symbols}{}{%
+  \ifnum\thepage>1% don't display frame number on the first slide
+    \usebeamerfont{footline}\insertframenumber\hspace*{2em}\vspace*{2em}% display frame number
+  \fi%
+}
+
+%=================================== colors ====================================
+\definecolor{RoyBlue}{RGB}{22, 46, 69}
+\definecolor{RoyGrey}{RGB}{64, 88, 128}
+
+\newcommand{\hlme}[1]{{\color{red}\bf #1}} % highlight me
+
+\setbeamercolor{structure}{fg=RoyBlue} % itemize, enumerate, etc
+\setbeamercolor{frametitle}{fg=RoyGrey}
+\setbeamercolor{section in head/foot}{bg=RoyBlue}
+
+
+%======================= add progress dots to headline =========================
+% \setbeamertemplate{headline}{%
+%     \begin{beamercolorbox}[ht=4mm,dp=4mm]{section in head/foot}
+%         \insertnavigation{\paperwidth}
+%     \end{beamercolorbox}%
+% }%
+% \makeatother
+
+
+%======================= add section title page ================================
+\newcommand{\SectionTitleFrame}[1][]{%
+  \begin{frame}
+    \vfill
+    \centering
+    \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+      \usebeamerfont{title}\insertsection\par
+    \end{beamercolorbox}
+    % Include optional text if provided
+    \ifx\relax#1\relax\else
+      \vspace{0.5cm}
+      \textbf{#1}
+    \fi
+    \vfill
+  \end{frame}
+}
+
+% Use \SectionTitleFrame in \AtBeginSection
+\AtBeginSection[]{
+  \SectionTitleFrame
+}
+
+
+%=================================== titlepage =================================
+\titlegraphic{\vspace*{6mm}
+  \includegraphics[height=1.5cm]{logos/edi_logo.png} \hspace{10mm}
+  \includegraphics[height=0.8cm]{logos/nnpdf_logo_official.pdf} \hspace{10mm}
+  \includegraphics[height=1.5cm]{logos/higgs_logo.jpg}
+}
+
+\defbeamertemplate{title page}{noinstitute}[1][]
+{
+  \vbox{}
+  \vfill
+  \begingroup
+    \centering
+    \begin{beamercolorbox}[sep=8pt,center,#1]{title}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi%
+    \end{beamercolorbox}%
+    \vskip2em\par
+    \begin{beamercolorbox}[sep=0pt,center,#1]{author}
+      \usebeamerfont{author}\insertauthor
+    \end{beamercolorbox}
+  \begin{beamercolorbox}[sep=0pt,center,#1]{author}
+    \usebeamerfont{institute}\insertinstitute
+  \end{beamercolorbox}
+  \vspace*{8pt}
+  \vspace*{16pt}
+    \begin{beamercolorbox}[sep=0pt,center,#1]{date}
+      \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}\vskip0.5em
+    {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+  \endgroup
+  \vfill
+}
+
+\makeatletter
+\setbeamertemplate{title page}[noinstitute][colsep=-4bp,rounded=true,shadow=\beamer@themerounded@shadow]
+\makeatother
+
+
+\begin{document}
+{
+\setbeamertemplate{headline}{} % remove headline from titlepage
+\begin{frame}
+  \titlepage
+\end{frame}
+}
+
+\setbeamertemplate{enumerate items}[default]
+
+\pgfdeclarelayer{bg}    % declare background layer
+\pgfsetlayers{bg,main}  % set the order of the layers (main is the standard layer)
+
+
+% SLIDES =======================================================================
+\newcommand{\nn}{\vspace*{1em}}
+
+
+% W+c-jet to probe strange PDF: https://arxiv.org/pdf/2009.00014
+% contain [ATLAS (1402.6263)] and  [CMS (1310.1138)] 7 TeV data
+% see Stagnitto GGI talk: https://www.ggi.infn.it/talkfiles/slides/slides6682.pdf
+
+% D-meson asymmetries in Z+c-jet to probe IC valence PDF: https://arxiv.org/pdf/2311.00743
+% The paper also suggests flavor-tagged structure functions at EIC, but that's not jets at LHC
+
+% Z+c-jet for IC: https://arxiv.org/pdf/2208.08372
+
+
+\begin{frame}{Perturbative charm}
+  A common assumtption in PDF fits is that the proton wave function does not contain charm quarks but only light quarks
+
+  \vspace*{1em}
+  Charm pairs are perturbatively generated in DGLAP evolution\\
+  $f_c^{(4)}\propto \alpha_s \log\left(\frac{Q^2}{m_c^2}\right)P_{qg} \bigotimes f_g^{(4)} + \mathcal{O}(\alpha_s^2)$
+
+  \vspace*{1em}
+  In the $n_f=3$ scheme charm doesn't run and $f_c^{(3)}=0$ \\
+  In $nf=3$, charm can be perturbatively generated in the coefficient function
+
+  \vspace*{1em}
+  Generally 3FNS is used where $Q<m_c$ and 4FNS where $Q>m_c$
+
+  % matching elements known up to N3LO
+
+  \vspace*{1em}
+  \only<2>{However instead of assuming charm completely perturbativel, one may determine it on the same footing as the light quarks}
+\end{frame}
+
+
+\begin{frame}{Fitted charm}
+  $f_c^{(4)} = A_{ci}f_i^{(3)}+A_{cc}f_c^{}$
+  \begin{itemize}
+    \item 4FNS charm is not fixed by light flavour PDFs
+    \item Instead it is independently parametrized and fitted from data
+    \item[$\Rightarrow$] PDF is a combination of perturbative and intrinsic component
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{How to determine intrinsic charm?}
+  \vspace*{1em}
+  The intrinsic charm component is determined by:
+  \begin{enumerate}
+    \item performing a PDF fit with fitted charm
+    \item going to the $nf=3$ scheme
+    \item $f_c^{(3)}\neq 0$ $\Leftrightarrow$ intrinsic charm
+  \end{enumerate}
+
+  % show figure from JR slides
+
+\end{frame}
+
+
+\section{Evidence for intrinsic charm}
+
+
+\begin{frame}{NNPDF3.1 vs NNPDF4.0 charm determination}
+
+\end{frame}
+
+\begin{frame}{4FNS to 3FNS transformation}
+
+\end{frame}
+
+
+
+\begin{frame}{Intrinsic charm}
+  % MHOU estimated from matching difference N3LO-NNLO
+  % Large matching undertainty at small-x
+  % unc is pdf dominated at large x
+  % valence like peak
+  % show nf=3 plot of charm
+\end{frame}
+
+\begin{frame}{Intrinsic charm}
+  % evidence increased upon incluson of EMC F2c and LHCb Z+c
+\end{frame}
+
+\begin{frame}{Intrinsic charm at approximate N3LO}
+
+\end{frame}
+
+
+\begin{frame}{MHOUs from scale variation}
+
+\end{frame}
+
+\section{Valence charm}
+
+\begin{frame}{numerical FONLL}
+
+\end{frame}
+
+
+\begin{frame}{Valence charm}
+  % independent parametrization for sea and valence PDFs
+  % total charm unchanged
+\end{frame}
+
+
+\section{Pheno study}
+
+
+
+
+
+
+
+
+
+
+\end{document}
