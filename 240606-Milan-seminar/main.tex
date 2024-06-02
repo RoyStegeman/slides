@@ -180,53 +180,443 @@
 \SectionTitleFrame[\hyperlink{https://arxiv.org/abs/2402.18635}{arXiv: 2402.18635}]
 
 
-\begin{frame}{What do we need for N3LO}
-  % GLAP
-  % Heavy flavor number scheme
-  % DIS coeffs
-  % Hadronic coeffs
+\begin{frame}{Theory requirements for PDFs at N3LO}
+  Several theory inputs are needed in a PDF fit:
+  \begin{itemize}
+    \item Splitting functions for DGLAP evolution \\
+
+    \item Matching conditions for heavy-quark mass schemes \\
+    $ f_i^{\left(n_f+1\right)}\left(x, Q^2\right)=A_{i j}\left(x, \alpha_s\right) f_j^{\left(n_f\right)}\left(x, Q^2\right) $
+    \item DIS coefficient functions
+    \item Hadronic cross sections,
+  \end{itemize}
+
+  \vspace*{1em}
+  Not all available at N3LO, but information is available for all. What is the best we can do?
+  \begin{itemize}
+    \item Use N3LO calculations where known
+    \item Construct approximate results where possible
+    \item Account for theory uncertainties of the missing or incomplete higher order
+  \end{itemize}
+
+  \vspace*{0.5em}
+  No need to wait for complete N3LO results and more information can be included as it becomes available
 \end{frame}
 
-\begin{frame}{aN3LO splitting functions}
-  % construct approximations from known results
-  % show impact on evolution of gluon PDF
-  % account for MHOUs and INHOUs
+
+\begin{frame}{Splitting functions}
+  Complete results for the N3LO splitting functions are not yet available, but a lot of information exists (with important contributions from Liverpool and Edinburgh):
+  \begin{itemize}
+    \item Small-x limits (BFKL resummation) {\color{gray}\small [Bonvini and Marzani: 1805.06460] [Davies, Kom, Moch, Vogt: 2202.10362]}
+    \item Large-x limits (threshold resummation) {\color{gray}\small [Soar, Moch, Vermaseren, Vogt: 0912.0369], [Henn, Korchemsky, Mistlberger: 1911.10174], [Duhr, Mistlberger, Vita 2205.04493]}
+    \item Large-$n_f$ limit {\color{gray}\small [Davies, Ruijl, Ueda, Vermaseren, Vogt: 1610.0744], [Gehrmann, Manteuffel, Sotnikov, Yan: 2308.07958]}
+    \item Mellin moments
+    {\color{gray}\small [Falcioni, Herzog, Moch, Ruijl, Ueda, Vermaseren, Vogt: 1707.08315, 2111.15561, 2302.07593, 2307.04158]}
+  \end{itemize}
+
+  \vspace*{2em}
+  \begin{center}
+    How can we use this information to construct approximate splitting functions?
+  \end{center}
+
 \end{frame}
 
 
-\begin{frame}{N3LO corrections to DIS}
-  % massive contributions can be approximated from known limits
-  % extension of FONLL
+\begin{frame}{Splitting functions}
+
+  \begin{enumerate}
+    \item   The approximation is performed in Mellin space as an expansion in $n_f$, where any double counting terms present in the resummed small-$x$ and large-$x$ expressions are removed
+
+    $$\gamma_{i j}^{(3)}=\gamma_{i j, n_f}^{(3)}+\gamma_{i j, N \rightarrow \infty}^{(3)}+\gamma_{i j, N \rightarrow 0}^{(3)}+\gamma_{i j, N \rightarrow 1}^{(3)}+\widetilde{\gamma}_{i j}^{(3)}$$
+
+    \item   The remainder term $\widetilde{\gamma}_{i j}^{(3)}$ is constructed as a linear combination of interpolating functions:
+    \begin{itemize}
+      \item A function for the leading unknown large-N contribution
+      \item A function for the two leading unknown small-N contribution
+      \item Functions for the subleading small-N and large-N contributions
+    \end{itemize}
+
+    \item The weights of these interpolating functions are determined by equating to the known moments
+    \item Then, vary the subleading contributions included in the basis of interpolating functions to estimate incomplete higher order uncertainties (IHOU) on the splitting functions
+  \end{enumerate}
+
+  \vspace*{1em}
+  More details on how to account for IHOUs in a fit follows later
 \end{frame}
 
-\begin{frame}{Inclusion of theory uncertainties}
-  % covtot = covexp + covmhou + covihou
-  % NNLO MHOU from ren scale var if N3LO not available
-  % show chi2 as function of perturbative order plot
+
+\begin{frame}{Splitting functions}
+  \begin{figure}
+    \centering
+    \includegraphics[width=.4\textwidth]{figures/gamma_gg_totu_logx.pdf}
+    % \includegraphics[width=.4\textwidth]{figures/gamma_gq_totu_logx.pdf} \\
+    \includegraphics[width=.4\textwidth]{figures/gamma_qg_totu_logx.pdf}
+    % \includegraphics[width=.4\textwidth]{figures/gamma_qq_totu_logx.pdf}
+  \end{figure}
+  \begin{itemize}
+    \item Dark blue band is IHOU only, light blue is sum in quadrature of MHOU and IHOU
+    \item Good perturbative agreement at large-$x$
+    \item IHOU are not negligible
+  \end{itemize}
 \end{frame}
 
-\begin{frame}{Impact on LHC cross sections}
-  % show the pheno plots for Higgs and DY
-  % improve perturbative convergence
+
+
+\begin{frame}{DGLAP evolution}
+  NNPDF4.0 evolved from $Q=1.65$ GeV to $Q=100$ GeV
+
+  \begin{columns}
+    \begin{column}{0.59\textwidth}
+      \begin{figure}[!t]
+        \centering
+        \includegraphics[width=0.49\textwidth]{figures/N3LOevolution-q100gev-ratios_expanded_0.pdf}
+        \includegraphics[width=0.49\textwidth]{figures/N3LOevolution-q100gev-ratios_expanded_1.pdf}\\
+        \includegraphics[width=0.49\textwidth]{figures/N3LOevolution-q100gev-ratios_expanded_2.pdf}
+        \includegraphics[width=0.49\textwidth]{figures/N3LOevolution-q100gev-ratios_expanded_3.pdf}
+      \end{figure}
+    \end{column}
+    \begin{column}{0.39\textwidth}
+      \begin{itemize}
+        \item Effects of N3LO corrections to DGLAP evolution at most percent level, except at small-$x$ and large-$x$
+        \item Good perturbative convergence
+      \end{itemize}
+    \end{column}
+  \end{columns}
 \end{frame}
+
+\begin{frame}{DIS coefficient functions}
+  \begin{itemize}
+    \item DIS coefficient functions are known up to N3LO in the massless limit (again with contributions from Liverpool) {\color{gray}\small [Larin, Nogueira, Van Ritbergen, Vermaseren: 9605317], [Moch Vermaseren Vogt: 0411112, 0504242], [Davies, Moch, Vermaseren, Vogt: 0812.4168, 1606.08907]}
+    \item Massive coefficient functions can be constructed by smoothly joining the known limits from high energy and threshold resummations and the massless limit ($Q^2 \rightarrow m_h^2$, $x\rightarrow 0$, and $Q^2\gg m_h^2$) {\color{gray}\small [Barontini, Bonvini, Laurenti: in preparation]}
+  \end{itemize}
+
+  \vspace*{-0.5em}
+  \begin{columns}
+    \begin{column}{0.49\textwidth}
+      \begin{equation*}
+        C^{(3)}(x,m_h^2/Q^2) = C^{(3),{\rm thr}}(x,m_h^2/Q^2) f_1(x) + C^{(3),{\rm asy}}(x,m_h^2/Q^2) f_2(x)
+      \end{equation*}
+      \begin{align*}
+        \begin{split}
+            f_1(x) \xrightarrow[x \to 0]{} 0, & \quad  f_1(x) \xrightarrow[x \to x_{\rm max}]{} 1 \, , \\
+            f_2(x) \xrightarrow[x \to 0]{} 1, & \quad  f_1(x) \xrightarrow[x \to x_{\rm max}]{} 0 \, ,
+        \end{split}
+      \end{align*}
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \vspace*{1.5em}
+      \begin{figure}[!t]
+        \centering
+        \includegraphics[width=.7\textwidth]{figures/C2g_2_Q2m2_2.0.pdf}
+        \caption*{We can validate the procedure at NNLO}
+      \end{figure}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}{DIS variable flavor number scheme (VFNS)}
+  \begin{columns}
+    \begin{column}{0.59\textwidth}
+      \begin{itemize}
+        \item In a PDF fit different flavour number schemes are joined in a variable flavour number scheme (VFNS) to ensure reliable results from $Q^2\sim m_h^2$ up to $Q^2\gg m_h^2$
+        \item The matching conditions encoding the transition between schemes have almost completely been computed up to N3LO
+        \item The VFNS used in NNPDF is the FONLL scheme below
+        \item FONLL extended for arbitrary number of mass scales in the recent \texttt{EKO} (DGLAP) and \texttt{yadism} (DIS) codes
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.39\textwidth}
+      \vspace*{-2em}
+      \begin{figure}[!t]
+        \centering
+        \includegraphics[width=0.89\textwidth]{figures/F2_charm_n3lo.pdf}
+        \caption*{$F_2^{(c)}$}
+      \end{figure}
+    \end{column}
+  \end{columns}
+
+  \vspace*{1em}
+  \begin{equation*}
+    F_\mathrm{FONLL}(Q^2,m_c) =F^{(n_f+1)}(Q^2,m_h=0)
+    +F^{(n_f)}(Q^2,m_c)-\lim_{m_c\rightarrow 0}F^{(n_f)}(Q^2,m_h)
+  \end{equation*}
+  % Up to NNLO, FONLL was implemented expressing the terms in the r.h.s in terms of $\alpha_s$ and PDFs defined in the massless scheme
+
+  % FONLL is now implemented at ``observable level'' with simultaneous PDFs in different flavour number schemes, made possible thanks to the new \texttt{EKO} evolution code and \texttt{yadism} DIS library
+
+
+\end{frame}
+
+
+
+
+\begin{frame}{DIS structure functions}
+  \begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figures/F2_total.pdf}
+  \end{figure}
+  \begin{itemize}
+    \item The uncertainty band corresponds to IHOU of the massive coefficient functions
+    \item N3LO corrections are significant at low-$Q$
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Hadronic processes}
+  \begin{itemize}
+    \item Corrections to collider DY and $W$ production can be included through k-factors
+    \item N3LO effects around 1 to 2\% for LHC observables
+    \item For many processes N3LO corrections are not available, for those we introduce account for MHOU through $\mu_r$ variations
+  \end{itemize}
+  \begin{figure}[!t]
+    \centering
+    \includegraphics[width=.80\textwidth]{figures/kfactor_ATLASZHIGHMASS49FB.pdf}
+  \end{figure}
+\end{frame}
+
+% \begin{frame}{Theory errors from scale variations}
+%   \begin{itemize}
+%     \item Missing higher order uncertainties are estimated through variations of the nonphysical factorization ($\mu_f$) and renormalization ($\mu_r$) scales
+%     \item $\mu_r$ and $\mu_f$ are varied sumultaneously following the 7-point prescription
+%   \end{itemize}
+%   \begin{figure}
+%     \includegraphics[width=.2\textwidth]{figures/5point.png}
+%     \includegraphics[width=.2\textwidth]{figures/7point.png}
+%     \includegraphics[width=.2\textwidth]{figures/9point.png}
+%     \caption*{5,7,9 point prescription}
+%   \end{figure}
+%   \begin{itemize}
+%     \item Factorization scale variations estimate MHOUs in DGLAP evolution
+%     \item Renormalization scale variations estimate MHOUs in matrix elements
+%   \end{itemize}
+% \end{frame}
+
+\begin{frame}{Missing higher order uncertainties covmat}
+  How can we account for theory uncertainties in a PDF fit?
+
+  \vspace*{1em}
+  \begin{itemize}
+    \item In a fit we minimize the $\chi^2$: \\
+    $P(T|D) \propto \exp\left[-\frac{1}{2}\left(T-D\right)C_\mathrm{exp}^{-1}\left(T-D\right)\right] \propto \exp\left[-\frac{1}{2}\chi^2\right]$
+    \item Include theory covmat $C_\mathrm{MHOU}$ at same footing as exp covmat $C_\mathrm{exp}$: $C_\mathrm{exp}\rightarrow C_\mathrm{exp}+C_\mathrm{MHOU}$ \\
+    $$C_{\mathrm{MHOU},ij} = n_{m}\sum_{V_{m}}\left(T_{i}(\rho_f, \rho_r) - T_{i}(0, 0)\right)\left(T_{j}(\rho_f, \rho_r) - T_{j}(0, 0)\right)$$
+  \end{itemize}
+
+  \vspace*{1em}
+  \begin{center}
+    Can we trust the faithfulness of these uncertainties on the unknown order?
+  \end{center}
+
+\end{frame}
+
+
+\begin{frame}{Missing higher order uncertainties covmat}
+  Validate the MHOU procedure by testing the NLO MHOU covmat
+  \begin{figure}[!t]
+    \centering
+      \includegraphics[width=0.8\textwidth]{figures/shift_validation.pdf}
+  \end{figure}
+\end{frame}
+
+
+\begin{frame}{Fit quality}
+  \begin{figure}[!t]
+    \includegraphics[width=.4\textwidth]{figures/chi2_n3lo_summary.pdf}
+  \end{figure}
+  \begin{itemize}
+    \item Without MHOUs the $\chi^2$ improves with the perturbative accuracy
+    \item With MHOUs the $\chi^2$ stabilizes significantly
+    \item At N3LO MHOUs have a small impact on the $\chi^2$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Perturbative convergence}
+  \begin{figure}[!t]
+    \includegraphics[width=.4\textwidth]{figures/gg_plot_lumi1d_convergence.pdf}
+    \includegraphics[width=.4\textwidth]{figures/qqbar_plot_lumi1d_convergence.pdf}
+  \end{figure}
+  \begin{itemize}
+    \item Good perturbative convergence
+    \item Moderate impact of N3LO corrections, especially for the quark luminosities
+    \item $\sim2\%$ suppression of $gg$ luminosity around the Higgs mass
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Higgs production}
+  \begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.49\linewidth]{figures/higgs-ggF-n3lo.pdf}
+    \includegraphics[width=0.49\linewidth]{figures/H_VBF-n3lo.pdf}
+  \end{figure}
+  \begin{itemize}
+    \item Matrix elements for both Higgs in gluon fusiona and VBF available at N3LO
+    \item N3LO correction to Higgs in gluon fusion, small suppression compared to NNLO
+    \item Higgs in VBF perturbatively stable
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Drell-Yan}
+  \begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.49\linewidth]{figures/Z_60_120-n3lo.pdf}
+    \includegraphics[width=0.49\linewidth]{figures/Wp_60_120-n3lo.pdf}
+  \end{figure}
+  \begin{itemize}
+    \item Good convergence also for quark initiated processes
+  \end{itemize}
+\end{frame}
+
+
+
 
 \section*{QED}
 \SectionTitleFrame[\hyperlink{https://arxiv.org/abs/2401.08749}{arXiv: 2401.08749}]
 
 
-\begin{frame}{What is needed for a QED PDF set?}
-  % Photon PDF for photon initiated states
-    % modifies sum rule
-  % NLO QED (and NNLO QCD) DGLAP running for radiatively generated photons
+\begin{frame}{Including QED corrections in a PDF set}
+  The current standard for PDFs determination is at NNLO in QCD, however  $\alpha(M_z) \sim \alpha_s^2(M_Z)$
+
+  \begin{columns}
+    \begin{column}{0.49\textwidth}
+
+      \vspace*{1em}
+      Including QED corrections in PDFs consists of \vspace*{0.5em}
+      \begin{itemize}
+        \item QED corrections to DGLAP (at $\mathcal{O}(\alpha)$, $\mathcal{O}(\alpha \alpha_s)$ and $\mathcal{O}(\alpha^2))$: \\
+        $P_{QED}=\alpha P_{ij}^{(0,1)}+\alpha \alpha_s P_{ij}^{(1,1)}+\alpha^2 P_{ij}^{(0,2)}+\ldots$
+        \vspace*{0.5em}
+        \item Adding a photon PDF and including photon initiated contributions to cross-sections \\
+        The momenum sumrule is modified accordingly:
+        \begin{equation*}
+          \int_0^1 dx\, \left(  x\Sigma(x,Q^2) + xg(x,Q^2) + x\gamma(x,Q^2) \right) =1
+        \end{equation*}
+      \end{itemize}
+    \end{column}
+
+    \begin{column}{0.49\textwidth}
+      \begin{figure}
+        \includegraphics[width=0.99\textwidth]{figures/ewcorrections_dy.png}
+        \caption*{Example: EW corrections in DY\\ {\color{gray}\small [C. Schwan DIS 2021]}}
+      \end{figure}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{Constructing the photon PDF}
-  % data not very constraining so fit is not practical
-  % compute from structure functions
-    % structure functions obtained from pQCD and experiment
+
+\begin{frame}{Determination of the photon PDF}
+  \begin{columns}[T]
+    \begin{column}{0.59\textwidth}
+      Initially the photon PDF has been determined in different ways:
+      \begin{itemize}
+        \item physical model: sensitive to underlying model
+        \item fitting: data does not provide strong constraints
+      \end{itemize}
+
+      \vspace*{0.5em}
+      However with the LUXqed approach it can be computed perturbatively \\
+      based on the observation that the heavy-lepton production cross-section can be written in two ways:
+      \begin{itemize}
+        \item in terms of structure functions $F_2$, $F_L$
+        \item in terms of PDFs (including the photon)
+      \end{itemize}
+
+      \vspace*{0.5em}
+      luxQED result {\color{gray}\small[Manohar, Nason, Salam, Zanderighi: 1607.04266, 1708.01256]}:
+      \vspace*{-0.8em}
+      \begin{equation*}
+        \begin{split}
+          & x \gamma(x, \mu^2)
+          =
+          \frac{2}{\alpha (\mu^2)} \int\limits_x^1 \frac{dz}{z}
+          \Biggl\{ \int_{m_p^2x^2 \over 1-z}^{\mu^2 \over 1-z} \frac{dQ^2}{Q^2}
+          \alpha^2(Q^2) \Biggl[ -z^2 F_L(x/z, Q^2) \\
+          & + \left( z P_{\gamma q}(z) + \frac{2 x^2 m_p^2}{Q^2} \right)
+          F_2(x/z, Q^2)\Biggr] - \alpha^2(\mu^2) z^2 F_2(x/z, \mu^2)\Biggr\}
+        \end{split}
+      \end{equation*}
+    \end{column}
+
+    \begin{column}{0.39\textwidth}
+      \vspace*{-2.5em}
+      \begin{figure}
+        \includegraphics[width=0.89\textwidth]{figures/dataluxqed.png}
+        \caption*{Input to construct $F_2$ and $F_L$}
+        \includegraphics[width=0.89\textwidth]{figures/luxQED_uncs.png}
+        \caption*{Sources of uncertainty}
+      \end{figure}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{Impact on LHC cross sections}
+
+
+\begin{frame}{The photon PDF}
+  \begin{columns}[T]
+    \begin{column}{0.59\textwidth}
+      An iterative procedure  is used to address the interplay between the photon and other PDFs due to the momentum sumrule
+      \begin{equation*}
+        \int_0^1 dx\, \left(  x\Sigma(x,Q^2) + xg(x,Q^2) + x\gamma(x,Q^2) \right) =1
+      \end{equation*}
+    \end{column}
+
+    \begin{column}{0.39\textwidth}
+      \vspace*{-1.5em}
+      \begin{figure}
+        \includegraphics[width=0.9\textwidth]{figures/luxqed_iteration.pdf}
+        \caption*{\color{gray}\small [NNPDF3.1QED: 1712.07053]}
+      \end{figure}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+
+\begin{frame}{Results: Impact of the photon on other PDFs}
+
+  \begin{figure}[!t]
+    \centering
+    \includegraphics[width=.49\textwidth]{figures/plot_pdfs_u_qed.pdf}
+    \includegraphics[width=.49\textwidth]{figures/plot_pdfs_g_qed.pdf}\\
+  \end{figure}
+
+  \begin{itemize}
+    \item Non-negligible impact, but PDFs are in agreement within uncertainty
+    \item Gluon reduced due to momentum sum rule with photon carrying additional momentum
+  \end{itemize}
+\end{frame}
+
+
+% \begin{frame}{Results: photon PDF and luminosity}
+%   \begin{center}
+%     \includegraphics[width=0.3\textwidth]{figures/photon_comparison.pdf}
+%     \includegraphics[width=0.3\textwidth]{figures/pp_lumi_comparison.png}
+%     \includegraphics[width=0.3\textwidth]{figures/gp_lumi_comparison.pdf}
+%   \end{center}
+%   \begin{itemize}
+%     \item Because all groups use the luxQED formalism, the photon PDFs agree at percent level
+%     \item Luminosity generally in agreement, but differ at very small and very large invariant mass
+%   \end{itemize}
+% \end{frame}
+
+
+\begin{frame}{Results: phenomenological impact}
+  \begin{columns}[T]
+    \begin{column}{0.49\textwidth}
+      \includegraphics[width=0.9\textwidth]{figures/NNPDF_WPWM_14TEV_40_PHENO-internal.pdf}
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \includegraphics[width=0.9\textwidth]{figures/NNPDF_DY_14TEV_40_PHENO-internal.pdf}
+    \end{column}
+  \end{columns}
+
+  \vspace*{1em}
+  \begin{itemize}
+    \item NLO in both QCD and QED, only PDF uncertainties are shown
+    \item Non-negligable QED corrections (up to 5\%) in the large invariant mass and large-$p_T$ regions relevant for new physics searches
+    \item In most other cases studied, QED corrections are at the percent level
+  \end{itemize}
 \end{frame}
 
 
@@ -270,9 +660,6 @@
       \only<1>{\includegraphics[width=0.7\textwidth]{exp_method.png}}
     \end{column}
   \end{columns}
-  % cite Forte, Kassabov
-  % explain usual methodology
-  % explain correlated replicas method
 \end{frame}
 
 \begin{frame}{Correlations between $\alpha_s$ and the PDFs}
@@ -287,9 +674,6 @@
       \includegraphics[width=0.9\textwidth]{ellipse.pdf}
     \end{column}
   \end{columns}
-  % cite Forte, Kassabov
-  % explain usual methodology
-  % explain correlated replicas method
 \end{frame}
 
 
@@ -369,10 +753,36 @@
 \end{frame}
 
 
-\begin{frame}{NNPDF4.0 results - preliminary}
-  % Results with and without MHOU
+\begin{frame}{Process sensitivity}
 \end{frame}
 
+
+\begin{frame}{NNPDF4.0 results - preliminary}
+  Only PDF uncertainty: \\
+  NNPDF3.1-like dataset: $\alpha_s(m_Z) = 0.1185 \pm 0.0006$ (same as NNPDF3.1 result of https://arxiv.org/pdf/1802.03398)\\
+  NNPDF4.0 dataset: $\alpha_s(m_Z) = 0.1204 ± 0.0004$
+
+  \vspace*{1em}
+  MHOUs can be included though the covariance matrix method on the same footing as experimental uncertainties.\\
+  PDF uncertainty + MHOU: \\
+  NNPDF4.0 dataset, MHOU: $\alpha_s(m_Z)=0.1194 \pm 0.0007$ \\
+  NNPDF3.1 dataset, MHOU: $\alpha_s(m_Z) = 0.1182 \pm 0.0008$
+
+  \vspace*{1em}
+  Other sources of uncertainty that need to be studied:
+  \begin{itemize}
+    \item methodological
+    \item Higher twist
+    \item Nuclear corrections
+  \end{itemize}
+
+\end{frame}
+
+
+\section{Summary}
+
+\begin{frame}{Summary}
+\end{frame}
 
 
 \appendix
