@@ -59,21 +59,6 @@
   \end{itemize}
 \end{frame}
 
-% \begin{frame}{Results: photon PDF and luminosity}
-%   \begin{center}
-%     \includegraphics[width=0.3\textwidth]{figures/photon_comparison.pdf}
-%     \includegraphics[width=0.3\textwidth]{figures/pp_lumi_comparison.png}
-%     \includegraphics[width=0.3\textwidth]{figures/gp_lumi_comparison.pdf}
-%   \end{center}
-%   \begin{itemize}
-%     \item Because all groups use the luxQED formalism, the photon PDFs agree at percent level
-%     \item Luminosity generally in agreement, but differ at very small and very large invariant mass
-%   \end{itemize}
-% \end{frame}
-
-
-% ============================================================================
-
 
 \begin{frame}{Incomplete higher order uncertainties covmat}
   \begin{itemize}
@@ -105,11 +90,6 @@
 
 \end{frame}
 
-% \begin{frame}{Magnitude of theory uncertainties}
-% % show that for certain processes th unc is of same size as exp unc.
-% \end{frame}
-
-% ============================================================================
 
 \begin{frame}{Impact of MHOUs at N3LO}
   \begin{figure}[!t]
@@ -124,16 +104,194 @@
 \end{frame}
 
 
-% \begin{frame}{Comparison to MSHT20}
-%   \begin{figure}[!t]
-%     \centering
-%     \includegraphics[width=0.45\textwidth]{figures/gg_plot_lumi1d_msht20.pdf}
-%     \includegraphics[width=0.45\textwidth]{figures/qqbar_plot_lumi1d_msht20.pdf}
-%   \end{figure}
-%   \begin{itemize}
-%     \item Good agreement with MSHT20 for the quark luminosities
-%     \item Also for gluon luminosities, except around the Higgs mass and high-mass
-%     \item Similar data but different methodology (including splitting function parametrization)
-%   \end{itemize}
-% \end{frame}
+\begin{frame}[t]{Data in NNPDF4.0}
+  \begin{center}
+    \includegraphics[width=0.7\textwidth]{NNPDF_data_history.pdf}
+  \end{center}
+  Better data $\rightarrow$ higher precision and accuracy
+\end{frame}
+
+
+\begin{frame}[t]{Data in NNPDF4.0}
+  \begin{columns}
+      \column{0.7\linewidth}
+          \includegraphics[width=1.0\textwidth]{Markers0_plot_xq2}
+      \column{0.3\linewidth}
+          More than 4000 datapoints\\
+          and 13 processes!\\
+          \vspace*{1em}
+          New processes:
+          \begin{itemize}
+              \item direct photon
+              \item single top
+              \item dijets
+              \item W+jet
+              \item DIS jet
+          \end{itemize}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[t]{The NNPDF approach: an importance sampling}
+  \begin{itemize}
+    \item Importance sampling produces Gaussian posterior distribution
+    \item All replicas equally likely
+  \end{itemize}
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{nnpdf40_dist.pdf}
+  \end{center}
+\end{frame}
+
+
+
+\begin{frame}[t]{Parametrization}
+  \begin{columns}[T]
+      \begin{column}{0.48\textwidth}
+        Neural network: universal interpolator
+        \vspace*{0.3cm}
+        \includegraphics[width=1.0\textwidth]{NNarch}
+        \begin{equation*}
+            f_{i}\left(x, Q_{0}\right)=x^{-\alpha_{i}}(1-x)^{\beta_{i}} \mathrm{NN}_{i}(x)
+        \end{equation*}
+      \end{column}
+      \begin{column}{0.48\textwidth}
+        Physical constraints:
+        \begin{itemize}
+            \item PDF positivity [JHEP 11 (2020)]
+            \item Integrability of nonsinglet distributions (Gottfried sum rules)
+        \end{itemize}
+        \vspace*{0.3cm}
+        \begin{itemize}
+          \item Train by minimizing $\chi^2$ loss function comparing data to prediction\\
+        \end{itemize}
+      \end{column}
+  \end{columns}
+\end{frame}
+
+
+\usetikzlibrary{shapes, arrows}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{positioning, calc}
+\tikzstyle{fitted} = [rectangle, minimum width=5cm, minimum height=1cm, text centered, draw=black, fill=red!30]
+\tikzstyle{operations} = [rectangle, rounded corners, minimum width=2cm,text centered, draw=black, fill=red!30]
+\tikzstyle{roundtext} = [rectangle, rounded corners, minimum width=2cm, minimum height=0.8cm, text centered, draw=black, fill=red!30]
+\tikzstyle{n3py} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{myarrow} = [thick,->,>=stealth]
+\tikzstyle{line} =[draw, -latex']
+\tikzstyle{decision} = [diamond, draw, fill=red!20, text width=7.5em, text centered,  inner sep=0pt, minimum height=2em, aspect=4]
+\tikzstyle{cloud} = [draw, ellipse,fill=green!20, minimum height=2em]
+\tikzstyle{inout} = [rectangle, draw, fill=green!20, text width=9.5em, text centered, rounded corners, minimum height=2em, minimum width=10em]
+\tikzstyle{block}=[rectangle, draw, fill=blue!20, text width=9.5em,
+                   text centered, rounded corners, minimum height=2em,
+                   minimum width=10em]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\pgfdeclarelayer{bg}    % declare background layer
+\pgfsetlayers{bg,main}  % set the order of the layers (main is the standard layer)
+
+\begin{frame}[t]{Training the neural network}
+  \begin{itemize}
+    \item Optimize using a gradient descent algorithm
+    \item NN should generalize the underlying law, but if trained to long noise is fitted
+  \end{itemize}
+  \begin{columns}[T]
+    \begin{column}[T]{0.49\textwidth}
+      Cross-validation
+      \begin{itemize}
+        \item Divide data into {\color{blue} training} and {\color{orange} validation}
+        \item Minimize training $\chi^2$
+        \item {\color{red} Stop} if {\color{orange} validation} $\chi^2$ no longer improves
+      \end{itemize}
+      \includegraphics[width=0.9\textwidth]{trvl.pdf}
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \begin{figure}
+        \centering
+        \resizebox{\columnwidth}{!}{
+        \begin{tikzpicture}[node distance = 1.5cm, scale=0.1]\small
+            \definecolor{vp1}{RGB}{102,194,165}
+            \definecolor{vp2}{RGB}{252,141,98}
+            % Middle column
+            \node (init) [roundtext, fill=vp1!30, minimum width=5.2cm] {next training step};
+            \node (ccheck) [roundtext, fill=vp2!30, minimum width=4cm, minimum height=0.8cm, below of = init] {counter
+                $>$ max};
+            \node (pcheck) [roundtext, fill=vp2!30, minimum width=4cm, minimum height=0.8cm, below of = ccheck]
+                {positivity fulfilled?};
+            \node (xcheck) [roundtext, fill=vp2!30, minimum width=4cm, minimum height=0.8cm, below of = pcheck]
+                {$\chi^2_\text{val}$ $<$ best $\chi^2$};
+            \node (reset) [roundtext, fill=vp1!30, minimum width=5.2cm, below of = xcheck] {reset counter $\rightarrow$  best
+                $\chi^2 = \chi^2_\text{val}$};Q
+
+            % Off-center nodes
+            \node (cplus) [roundtext, fill=vp2!30, left = 0.9cm of ccheck]
+                {\ttfamily counter ++};
+            \node (end) [roundtext, fill=vp2!30, right = 0.9cm of ccheck]
+                {\ttfamily END};
+
+            % Coordinates
+            \coordinate[above of = cplus] (li);
+            \coordinate[below of = cplus] (lp);
+            \coordinate[below of = lp] (lx);
+            \coordinate[below of = lx] (lr);
+
+
+            % Arrows center
+            \draw[myarrow] (init) -- (ccheck);
+            \draw[myarrow] (ccheck) -- node[right] {No} (pcheck);
+            \draw[myarrow] (pcheck) -- node[right] {Yes}(xcheck);
+            \draw[myarrow] (xcheck) -- node[right] {Yes}(reset);
+
+            % Arrows off-center
+            \draw[myarrow] (ccheck) --  node[above] {Yes} (end);
+
+            \draw[myarrow] (reset) -- (lr) -- (lx);
+            \draw[myarrow] (xcheck) -- node[above] {No} (lx) -- (lp);
+            \draw[myarrow] (pcheck) --  node[above] {No} (lp) -- (cplus);
+            \draw[myarrow] (cplus) -- (li) -- (init);
+        \end{tikzpicture}
+        }
+      \end{figure}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[t]{Verify the importance sampling assumption}
+  \includegraphics[width=0.49\textwidth]{chi2_training_chi2.pdf}
+  \includegraphics[width=0.49\textwidth]{chi2_validation_chi2.pdf}
+  \begin{itemize}
+    \item All PDF replicas are fitted equally well to their data replica
+    \item Thus outliers correspond to unlikely data replicas
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Automated model selection}
+  NNPDF aims to minimize sources of bias in the PDF:
+  \begin{itemize}
+      \item Functional form $\rightarrow$ Neural Network
+      \item Model parameters $\rightarrow$ \textbf{Hyperoptimization}
+  \end{itemize}
+    \begin{columns}
+        \begin{column}{0.48\textwidth}
+            Scan over thousands of hyperparameter combinations and select the best one \\
+            \vspace*{0.8em}
+            {\bf k-fold cross-validation}: used to define the reward function based on a {\bf test dataset}\\
+            \vspace*{0.8em}
+            Objective function: \\
+            $L=\textrm{mean}(\chi_1^2,\chi_3^2,\chi_2^2,\ldots, \chi_k^2)$
+
+            \vspace*{0.3cm}
+            Final step requires human input
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{center}
+                \includegraphics[width=0.48\textwidth]{sec_methodology_hyperopt_plot_initializer.pdf}
+                \includegraphics[width=0.48\textwidth]{sec_methodology_hyperopt_plot_lr.pdf} \\
+                \includegraphics[width=0.48\textwidth]{sec_methodology_hyperopt_plot_number_of_layers.pdf}
+                \includegraphics[width=0.48\textwidth]{sec_methodology_hyperopt_plot_optimizers.pdf}
+            \end{center}
+        \end{column}
+    \end{columns}
+\end{frame}
+
 

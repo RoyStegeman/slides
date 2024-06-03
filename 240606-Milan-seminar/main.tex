@@ -13,6 +13,7 @@
 \setbeamersize{text margin left=20pt,text margin right=10pt}
 \usefonttheme[onlymath]{serif} % makes beamer math look like article math
 \usepackage{hyperref}
+\usepackage{tikz}
 
 %======================= title page info =======================
 \title{The proton content at approximate N3LO accuracy}
@@ -657,7 +658,12 @@
       \end{itemize}
     \end{column}
     \begin{column}{0.49\textwidth}
-      \only<1>{\includegraphics[width=0.7\textwidth]{exp_method.png}}
+      \only<1>{
+      \begin{figure}
+        \includegraphics[width=0.7\textwidth]{exp_method.png}
+        \caption*{\color{gray}\footnotesize \hyperlink{https://arxiv.org/pdf/1110.2483}{NNPDF, 1110.2483}}
+      \end{figure}
+      }
     \end{column}
   \end{columns}
 \end{frame}
@@ -743,22 +749,54 @@
   We thus have two possible methodologies to determine $\alpha_s$, but how can we trust they give the correct answer?
 
   \vspace*{1em}
-  Basic idea is that of a closure test:
-  \begin{enumerate}
-    \item generate data with theory predictions $T_0$ for a given value of $\alpha_s$, e.g. $0.118$
-    \item Add noise to simulate experimental sampling $\eta_1$ and the NNPDF replica sampling $\eta_2$ \\
-    $D_\mathrm{fake} = T_0 + \eta_1 + \eta_2$ \\
-    $\eta_1, \eta_2  \overset{\text{i.i.d.}}{\sim} \mathcal{N}(0,\mathrm{Cov})$
-    \item perform determinations of $\alpha_s$ for many different simulated experimental samplings of $\eta_1$
-    \item for 68\% of $\eta_1$ samples, 0.118 should be within 1$\sigma$ from the value determined with the tested methodology
-  \end{enumerate}
+  \begin{columns}
 
-  \vspace*{1em}
-  Preliminary results suggest both proposed methodologies faithfully determine $\alpha_s$.
+    \begin{column}{0.49\textwidth}
+      Basic idea is that of a closure test:
+      \begin{enumerate}
+        \item generate data with theory predictions $T_0$ for a given value of $\alpha_s$, e.g. $0.118$ -- centre of the diagram
+
+        \item sample the covariance matrix to simulate experimental sampling $\eta$ \\
+        $y_0 = T_0 + \eta$, \quad $\eta  \overset{\text{i.i.d.}}{\sim} \mathcal{N}(0,\mathrm{Cov})$
+
+        \item create many replicas by sampling on top of $y_0$ \\
+        $y_\mathrm{rep} = y_0 + \delta$, \quad $\delta  \overset{\text{i.i.d.}}{\sim} \mathcal{N}(0,\mathrm{Cov})$ -- the green circle
+
+        \item perform fits to all replicas $y_\mathrm{rep}$ -- the blue circle
+
+        \item repeat for many $y_0$
+
+        \item[$\bullet$] usual PDF-level closure test: check if for 68\% of $y_0$ samples, $E_\eta$ is within 1$\sigma$ from $T0$
+
+        \item closure test of $\alpha_s$: check if the same applies for the predictions of the $\alpha_s$ value. Remember: we constructed our data samples to know the answer should be $\alpha_s = 0.118$!
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \begin{figure}
+        \includegraphics[width=0.99\textwidth]{geometric_closure_test.png}
+        \caption*{\color{gray} \footnotesize Del Debbio, Giani, Wilson, \hyperlink{https://arxiv.org/abs/2111.05787}{2111.05787}}
+
+      \end{figure}
+    \end{column}
+  \end{columns}
+
+  \begin{center}
+    \vspace*{1em}
+    \only<2>{\textbf{Preliminary results suggest both proposed methodologies faithfully determine $\alpha_s$}}
+  \end{center}
 \end{frame}
 
 
 \begin{frame}{Process sensitivity}
+  \begin{itemize}
+    \item Impact of PDF-$\alpha_s$ correlations
+    \item Estimate the pull from different processes by comparing $\alpha_s$ determinations from $\chi^2$ calculated to a subset of the data
+    \item Global fits account for the effects of all data!
+  \end{itemize}
+  \begin{figure}
+    \includegraphics[width=0.7\textwidth]{as_determination_central_NNLO.pdf}
+    \caption*{\color{gray} \footnotesize NNPDF, \hyperlink{https://arxiv.org/abs/1802.03398}{1802.03398}}
+  \end{figure}
 \end{frame}
 
 
@@ -788,8 +826,21 @@
 
 \section{Summary}
 
-\begin{frame}{Summary}
+\begin{frame}[c]{Summary}
+  \begin{itemize}
+    \item N3LO PDFs and QED corrections are a requirement for LHC predictions at 1\% accuracy
+    \item A PDF determination at aN3LO QCD and NLO QED to appear soon
+    \item An $\alpha_s$ determination with estimated MHOU and validated methodologies is underway
+  \end{itemize}
+
+  \vspace*{2em}
+  \only<2>{
+  \begin{center}
+      {\Large \textbf{Thank you for your attention!}}
+  \end{center}
+  }
 \end{frame}
+
 
 
 \appendix
