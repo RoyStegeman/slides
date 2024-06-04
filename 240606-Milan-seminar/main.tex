@@ -15,6 +15,7 @@
 \usepackage{hyperref}
 \usepackage{tikz}
 \usepackage{amsmath}
+\usepackage{xcolor}
 
 %======================= title page info =======================
 \title{The proton content at approximate N3LO accuracy}
@@ -207,43 +208,35 @@
 
 
 \begin{frame}{Splitting functions}
-  Complete results for the N3LO splitting functions are not yet available, but a lot of information exists (with important contributions from Liverpool and Edinburgh):
+  Complete results for the N3LO splitting functions are not yet available, but some information exists:
   \begin{itemize}
-    \item Small-x limits (BFKL resummation) {\color{gray}\footnotesize [Bonvini and Marzani: 1805.06460] [Davies, Kom, Moch, Vogt, 2202.10362]}
-    \item Large-x limits (threshold resummation) {\color{gray}\footnotesize [Soar, Moch, Vermaseren, Vogt: 0912.0369], [Henn, Korchemsky, Mistlberger, 1911.10174], [Duhr, Mistlberger, Vita 2205.04493]}
-    \item Large-$n_f$ limit {\color{gray}\footnotesize [Davies, Ruijl, Ueda, Vermaseren, Vogt: 1610.0744], [Gehrmann, Manteuffel, Sotnikov, Yan, 2308.07958]}
     \item Mellin moments
-    {\color{gray}\footnotesize [Falcioni, Herzog, Moch, Ruijl, Ueda, Vermaseren, Vogt, 1707.08315, 2111.15561, 2302.07593, 2307.04158]}
+    \item Small-$x$ limit (threshold resummation)
+    \item Large-$x$ limit (BFKL resummation)
+    \item Large-$nf$ limit
   \end{itemize}
 
-  \vspace*{2em}
-  \begin{center}
-    How can we use this information to construct approximate splitting functions?
-  \end{center}
-
-\end{frame}
-
-
-\begin{frame}{Splitting functions}
-
-  \begin{enumerate}
-    \item   The approximation is performed in Mellin space as an expansion in $n_f$, where any double counting terms present in the resummed small-$x$ and large-$x$ expressions are removed
-
-    $$\gamma_{i j}^{(3)}=\gamma_{i j, n_f}^{(3)}+\gamma_{i j, N \rightarrow \infty}^{(3)}+\gamma_{i j, N \rightarrow 0}^{(3)}+\gamma_{i j, N \rightarrow 1}^{(3)}+\widetilde{\gamma}_{i j}^{(3)}$$
-
-    \item   The remainder term $\widetilde{\gamma}_{i j}^{(3)}$ is constructed as a linear combination of interpolating functions:
-    \begin{itemize}
-      \item A function for the leading unknown large-N contribution
-      \item A function for the two leading unknown small-N contribution
-      \item Functions for the subleading small-N and large-N contributions
-    \end{itemize}
-
-    \item The weights of these interpolating functions are determined by equating to the known moments
-    \item Then, vary the subleading contributions included in the basis of interpolating functions to estimate incomplete higher order uncertainties (IHOU) on the splitting functions
-  \end{enumerate}
+  \vspace*{1em}
+    \textbf{Idea: combine these limits to construct splitting functions at approximate N3LO}
 
   \vspace*{1em}
-  More details on how to account for IHOUs in a fit follows later
+  \only<2>{
+    \begin{enumerate}
+      \item The approximation is constructed in Mellin space, independently for each order in $n_f$
+
+      $$\gamma_{i j}^{(3)}=\gamma_{i j, n_f}^{(3)}+\gamma_{i j, N \rightarrow \infty}^{(3)}+\gamma_{i j, N \rightarrow 0}^{(3)}+\gamma_{i j, N \rightarrow 1}^{(3)}+\widetilde{\gamma}_{i j}^{(3)}$$
+
+      \item   The remainder term $\widetilde{\gamma}_{i j}^{(3)}$ is constructed as a linear combination of interpolating functions equal to the number of known Mellin moments
+      \begin{itemize}
+        \item A function for the leading unknown large-N contribution
+        \item A function for each of the two leading unknown small-N contribution
+        \item 5 functions for the subleading small-N and large-N contributions
+      \end{itemize}
+
+      \item The weights of these interpolating functions are determined by equating to the known moments
+      \item Then, vary the subleading contributions included in the basis of interpolating functions to estimate incomplete higher order uncertainties (IHOU) on the splitting functions
+    \end{enumerate}
+  }
 \end{frame}
 
 
@@ -288,8 +281,8 @@
 
 \begin{frame}{DIS coefficient functions}
   \begin{itemize}
-    \item DIS coefficient functions are known up to N3LO in the massless limit (again with contributions from Liverpool) {\color{gray}\small [Larin, Nogueira, Van Ritbergen, Vermaseren: 9605317], [Moch Vermaseren Vogt: 0411112, 0504242], [Davies, Moch, Vermaseren, Vogt: 0812.4168, 1606.08907]}
-    \item Massive coefficient functions can be constructed by smoothly joining the known limits from high energy and threshold resummations and the massless limit ($Q^2 \rightarrow m_h^2$, $x\rightarrow 0$, and $Q^2\gg m_h^2$) {\color{gray}\small [Barontini, Bonvini, Laurenti: in preparation]}
+    \item DIS coefficient functions are known up to N3LO in the massless limit {\color{gray}\footnotesize [Larin, Nogueira, Van Ritbergen, Vermaseren, 9605317], [Moch Vermaseren Vogt, 0411112, 0504242], [Davies, Moch, Vermaseren, Vogt, 0812.4168, 1606.08907]}
+    \item Massive coefficient functions can be constructed by smoothly joining the known limits from high energy and threshold resummations and the massless limit ($Q^2 \rightarrow m_h^2$, $x\rightarrow 0$, and $Q^2\gg m_h^2$) {\color{gray}\footnotesize [Barontini, Bonvini, Laurenti, in preparation]}
   \end{itemize}
 
   \vspace*{-0.5em}
@@ -306,61 +299,15 @@
       \end{align*}
     \end{column}
     \begin{column}{0.49\textwidth}
-      \vspace*{1.5em}
-      \begin{figure}[!t]
+
+      \vspace*{2.5em}
+      \begin{figure}
         \centering
-        \includegraphics[width=.7\textwidth]{figures/C2g_2_Q2m2_2.0.pdf}
-        \caption*{We can validate the procedure at NNLO}
+        \includegraphics[width=.9\textwidth]{figures/C2g_2_Q2m2_2.0.pdf}
+        \caption*{Validate the procedure at NNLO}
       \end{figure}
     \end{column}
   \end{columns}
-\end{frame}
-
-
-\begin{frame}{DIS variable flavor number scheme (VFNS)}
-  \begin{columns}
-    \begin{column}{0.59\textwidth}
-      \begin{itemize}
-        \item In a PDF fit different flavour number schemes are joined in a variable flavour number scheme (VFNS) to ensure reliable results from $Q^2\sim m_h^2$ up to $Q^2\gg m_h^2$
-        \item The matching conditions encoding the transition between schemes have almost completely been computed up to N3LO
-        \item The VFNS used in NNPDF is the FONLL scheme below
-        \item FONLL extended for arbitrary number of mass scales in the recent \texttt{EKO} (DGLAP) and \texttt{yadism} (DIS) codes
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.39\textwidth}
-      \vspace*{-2em}
-      \begin{figure}[!t]
-        \centering
-        \includegraphics[width=0.89\textwidth]{figures/F2_charm_n3lo.pdf}
-        \caption*{$F_2^{(c)}$}
-      \end{figure}
-    \end{column}
-  \end{columns}
-
-  \vspace*{1em}
-  \begin{equation*}
-    F_\mathrm{FONLL}(Q^2,m_c) =F^{(n_f+1)}(Q^2,m_h=0)
-    +F^{(n_f)}(Q^2,m_c)-\lim_{m_c\rightarrow 0}F^{(n_f)}(Q^2,m_h)
-  \end{equation*}
-  % Up to NNLO, FONLL was implemented expressing the terms in the r.h.s in terms of $\alpha_s$ and PDFs defined in the massless scheme
-
-  % FONLL is now implemented at ``observable level'' with simultaneous PDFs in different flavour number schemes, made possible thanks to the new \texttt{EKO} evolution code and \texttt{yadism} DIS library
-
-
-\end{frame}
-
-
-
-
-\begin{frame}{DIS structure functions}
-  \begin{figure}[!t]
-    \centering
-    \includegraphics[width=0.75\textwidth]{figures/F2_total.pdf}
-  \end{figure}
-  \begin{itemize}
-    \item The uncertainty band corresponds to IHOU of the massive coefficient functions
-    \item N3LO corrections are significant at low-$Q$
-  \end{itemize}
 \end{frame}
 
 
@@ -376,44 +323,37 @@
   \end{figure}
 \end{frame}
 
-% \begin{frame}{Theory errors from scale variations}
-%   \begin{itemize}
-%     \item Missing higher order uncertainties are estimated through variations of the nonphysical factorization ($\mu_f$) and renormalization ($\mu_r$) scales
-%     \item $\mu_r$ and $\mu_f$ are varied sumultaneously following the 7-point prescription
-%   \end{itemize}
-%   \begin{figure}
-%     \includegraphics[width=.2\textwidth]{figures/5point.png}
-%     \includegraphics[width=.2\textwidth]{figures/7point.png}
-%     \includegraphics[width=.2\textwidth]{figures/9point.png}
-%     \caption*{5,7,9 point prescription}
-%   \end{figure}
-%   \begin{itemize}
-%     \item Factorization scale variations estimate MHOUs in DGLAP evolution
-%     \item Renormalization scale variations estimate MHOUs in matrix elements
-%   \end{itemize}
-% \end{frame}
 
-\begin{frame}{Missing higher order uncertainties covmat}
-  How can we account for theory uncertainties in a PDF fit?
-
+\begin{frame}{Theory uncertainties in PDFs}
   \vspace*{1em}
   \begin{itemize}
+    \item MHOUs are estimated through 7 point factorization and renormalization scale variations \\
+    \begin{figure}
+      \includegraphics[width=.2\textwidth]{figures/5point.png}
+      \includegraphics[width=.2\textwidth]{figures/7point.png}
+      \includegraphics[width=.2\textwidth]{figures/9point.png}
+      \caption*{5,7,9 point prescription}
+    \end{figure}
     \item In a fit we minimize the $\chi^2$: \\
-    $P(T|D) \propto \exp\left[-\frac{1}{2}\left(T-D\right)C_\mathrm{exp}^{-1}\left(T-D\right)\right] \propto \exp\left[-\frac{1}{2}\chi^2\right]$
-    \item Include theory covmat $C_\mathrm{MHOU}$ at same footing as exp covmat $C_\mathrm{exp}$: $C_\mathrm{exp}\rightarrow C_\mathrm{exp}+C_\mathrm{MHOU}$ \\
-    $$C_{\mathrm{MHOU},ij} = n_{m}\sum_{V_{m}}\left(T_{i}(\rho_f, \rho_r) - T_{i}(0, 0)\right)\left(T_{j}(\rho_f, \rho_r) - T_{j}(0, 0)\right)$$
+    $$P(T|D) \propto \exp\left[-\frac{1}{2}\left(T-D\right)C^{-1}\left(T-D\right)\right] \propto \exp\left[-\frac{1}{2}\chi^2\right]$$
+    \item Include theory covmat $C_\mathrm{MHOU}$ at same footing as exp covmat $C = C_\mathrm{exp}+C_\mathrm{MHOU}$ \\
+    $$C_{\mathrm{MHOU},ij} = n_{m}\sum_{V_{m}}\left(T_{i}(\kappa_f, \kappa_r) - T_{i}(0, 0)\right)\left(T_{j}(\kappa_f, \kappa_r) - T_{j}(0, 0)\right)$$
+    \item Incomplete higher order uncertainties on the approximation of the DGLAP splitting kernels are independent and added in quadrature: \\
+    $$C = C_\mathrm{exp}+C_\mathrm{MHOU} + C_\mathrm{IHOU} $$
   \end{itemize}
 
   \vspace*{1em}
-  \begin{center}
-    Can we trust the faithfulness of these uncertainties on the unknown order?
-  \end{center}
+  \only<2>{
+    \begin{center}
+      Can we trust the faithfulness of these uncertainties on the unknown order?
+    \end{center}
+  }
 
 \end{frame}
 
 
-\begin{frame}{Missing higher order uncertainties covmat}
-  Validate the MHOU procedure by testing the NLO MHOU covmat
+\begin{frame}{Validating the MHOU covmat}
+  \textbf{Validate the MHOU procedure} by comparing the NLO covmat with estimated MHOUs to the known NNLO-NLO shifts
   \begin{figure}[!t]
     \centering
       \includegraphics[width=0.8\textwidth]{figures/shift_validation.pdf}
@@ -438,7 +378,6 @@
     \includegraphics[width=.4\textwidth]{figures/qqbar_plot_lumi1d_convergence.pdf}
   \end{figure}
   \begin{itemize}
-    \item Good perturbative convergence
     \item Moderate impact of N3LO corrections, especially for the quark luminosities
     \item $\sim2\%$ suppression of $gg$ luminosity around the Higgs mass
   \end{itemize}
@@ -452,8 +391,8 @@
     \includegraphics[width=0.49\linewidth]{figures/H_VBF-n3lo.pdf}
   \end{figure}
   \begin{itemize}
-    \item Matrix elements for both Higgs in gluon fusiona and VBF available at N3LO
-    \item N3LO correction to Higgs in gluon fusion, small suppression compared to NNLO
+    \item Matrix elements for both Higgs in gluon fusion and VBF available at N3LO
+    \item N3LO correction to Higgs in gluon fusion, small suppression compared to NNLO PDF (purple vs orange)
     \item Higgs in VBF perturbatively stable
   \end{itemize}
 \end{frame}
@@ -477,33 +416,31 @@
 \SectionTitleFrame[\hyperlink{https://arxiv.org/abs/2401.08749}{arXiv: 2401.08749}]
 
 
-\begin{frame}{Including QED corrections in a PDF set}
-  The current standard for PDFs determination is at NNLO in QCD, however  $\alpha(M_z) \sim \alpha_s^2(M_Z)$
+\begin{frame}{A QED PDF set}
+  The QED PDF set extends the NNLO QCD PDF in two ways:
+  \begin{itemize}
+    \item Add a photon PDF since processes can be sensitive to photon initiated channels \\
+    The momenum sumrule is modified accordingly:
+    \begin{equation*}
+      \int_0^1 dx\, x \left(  \Sigma(x) + g(x) + \gamma(x) \right) =1
+    \end{equation*}
 
-  \begin{columns}
-    \begin{column}{0.49\textwidth}
 
-      \vspace*{1em}
-      Including QED corrections in PDFs consists of \vspace*{0.5em}
-      \begin{itemize}
-        \item QED corrections to DGLAP (at $\mathcal{O}(\alpha)$, $\mathcal{O}(\alpha \alpha_s)$ and $\mathcal{O}(\alpha^2))$: \\
-        $P_{QED}=\alpha P_{ij}^{(0,1)}+\alpha \alpha_s P_{ij}^{(1,1)}+\alpha^2 P_{ij}^{(0,2)}+\ldots$
-        \vspace*{0.5em}
-        \item Adding a photon PDF and including photon initiated contributions to cross-sections \\
-        The momenum sumrule is modified accordingly:
-        \begin{equation*}
-          \int_0^1 dx\, s \left(  \Sigma(x) + g(x) + \gamma(x) \right) =1
-        \end{equation*}
-      \end{itemize}
-    \end{column}
+    \item Modify the DGLAP running to account for photon radiation: \\
+    $P=P_{QCD}(\alpha_s) + P_{QCD\otimes QED}(\alpha_s,\alpha)$\\
+  \end{itemize}
 
-    \begin{column}{0.49\textwidth}
-      \begin{figure}
-        \includegraphics[width=0.99\textwidth]{figures/ewcorrections_dy.png}
-        \caption*{Example: EW corrections in DY\\ {\color{gray}\footnotesize [C. Schwan DIS 2021]}}
-      \end{figure}
-    \end{column}
-  \end{columns}
+  \begin{figure}
+    \includegraphics[width=0.6\textwidth]{qed_splitting.png}
+    \caption*{$P_{QCD\otimes QED}=\alpha P^{(0,1)}+\alpha \alpha_s P^{(1,1)}+\alpha^2 P^{(0,2)}$}
+  \end{figure}
+
+    % \begin{column}{0.49\textwidth}
+    %   \begin{figure}
+    %     \includegraphics[width=0.99\textwidth]{figures/ewcorrections_dy.png}
+    %     \caption*{Example: EW corrections in DY\\ {\color{gray}\footnotesize [C. Schwan DIS 2021]}}
+    %   \end{figure}
+    % \end{column}
 \end{frame}
 
 
@@ -545,7 +482,7 @@
 \end{frame}
 
 
-\begin{frame}{Results: Impact of the photon on other PDFs}
+\begin{frame}{Impact of the photon on other PDFs}
 
   \begin{figure}[!t]
     \centering
@@ -573,7 +510,7 @@
 % \end{frame}
 
 
-\begin{frame}{Results: phenomenological impact}
+\begin{frame}{Phenomenological impact}
   \begin{columns}[T]
     \begin{column}{0.49\textwidth}
       \includegraphics[width=0.9\textwidth]{figures/NNPDF_WPWM_14TEV_40_PHENO-internal.pdf}
@@ -585,9 +522,9 @@
 
   \vspace*{1em}
   \begin{itemize}
-    \item NLO in both QCD and QED, only PDF uncertainties are shown
-    \item Non-negligable QED corrections (up to 5\%) in the large invariant mass and large-$p_T$ regions relevant for new physics searches
-    \item In most other cases studied, QED corrections are at the percent level
+    % \item NLO in both QCD and QED, only PDF uncertainties are shown
+    \item Photon induced effects are up to 5\% in the high $Q^2$ region (blue vs orange)
+    \item The QED corrections to the quarks and gluon are at most 1\% (red vs orange)
   \end{itemize}
 \end{frame}
 
@@ -684,35 +621,42 @@
 
 \begin{frame}{$\alpha_s$ from correlated theory uncertainties}
 
-  In a PDF fit we minimize $\chi^2$:\\
-  $P(T|D) \propto \exp\left[-\frac{1}{2}\left(T-D\right)^T\left(\mathrm{Cov}_\mathrm{exp}+\mathrm{Cov}_\mathrm{th}\right)^{-1}\left(T-D\right)\right]
+  Remember, in a PDF fit we minimize $\chi^2$:\\
+  $P(T|D) \propto \exp\left[-\frac{1}{2}\left(T-D\right)^T\mathrm{Cov}^{-1}\left(T-D\right)\right]
   = \exp\left[-\frac{1}{2}\chi^2\right]$
 
   \vspace*{1em}
   We can model the theory uncertainty as a correlated shift: \\
   $T \rightarrow T + \lambda \beta $, \quad $\beta=\frac{\partial}{\partial \alpha_s}T$ (numerically, $\beta$ is constructed form discrete shifts)\\
-  $P(T|D,\lambda) \propto \exp\left[-\frac{1}{2}\left(T+\lambda\beta-D\right)^T\mathrm{Cov}_\mathrm{exp}^{-1}\left(T+\lambda\beta-D\right)\right]$
+  ${\color{red}P(T|D,\lambda) }\propto \exp\left[-\frac{1}{2}\left(T+\lambda\beta-D\right)^T\mathrm{Cov}_\mathrm{exp}^{-1}\left(T+\lambda\beta-D\right)\right]$
 
   \vspace*{1em}
   We want to find $P(T|D)$ using Bayes' theorem, so we have to choose a prior for $\lambda$. Let us take a unit-width Gaussian\\
-  $P(\lambda) \propto \exp\left[-\frac{1}{2}\lambda^2\right]$
+  ${\color{blue} P(\lambda)} \propto \exp\left[-\frac{1}{2}\lambda^2\right]$
 
   \vspace*{1em}
   Marginalizing over $\lambda$ we find \\
-  $P(T|D) \propto \int d\lambda \exp\left[Z^{-1}\left(\lambda-\bar{\lambda}\right)^2\right] \exp\left[-\frac{1}{2}\left(T-D\right)^T\left(\mathrm{Cov}_\mathrm{exp}+\beta\beta^T\right)^{-1}\left(T-D\right)\right]$ \\
+  ${\color{green} P(T|D)} \propto \int d\lambda \exp\left[Z^{-1}\left(\lambda-\bar{\lambda}\right)^2\right] \exp\left[-\frac{1}{2}\left(T-D\right)^T\left(\mathrm{Cov}_\mathrm{exp}+\beta\beta^T\right)^{-1}\left(T-D\right)\right]$ \\
   for some functions $Z$ and $\bar{\lambda}$,
 
-  \vspace*{1em}
-  Taking $\mathrm{Cov_\mathrm{th}}=\beta\beta^T$, we thus recover \\
-  $P(T|D)\propto \exp\left[-\frac{1}{2}\chi^2\right]$
+  % \vspace*{1em}
+  % Taking $\beta\beta^T=\mathrm{Cov_\mathrm{th}}$, we thus recover \\
+  % $P(T|D)\propto \exp\left[-\frac{1}{2}\chi^2\right]$
 
   \vspace*{1em}
-  Finally, we can compute
-  $P(\lambda|T,D) = \frac{P(T|D,\lambda)P(\lambda)}{P(T|D)}=\exp\left[-\frac{1}{2}Z^{-1}(\lambda - \bar{\lambda})\right]$
+  We thus have all the ingredients to compute the posterior for the parameter encoding a shift in $\alpha_s$: \\
+  $$P(\lambda|T,D) = \frac{{\color{red}P(T|D,\lambda) }{\color{blue} P(\lambda)}}{{\color{green} P(T|D)}}=\exp\left[-\frac{1}{2}Z^{-1}(\lambda - \bar{\lambda})\right]$$
 
+  \vspace*{1em}
+  {\color{gray} \footnotesize Ball, Pearson, \hyperlink{https://arxiv.org/abs/2105.05114}{2105.05114}}
 
   \vfill
-  {\color{gray} \footnotesize Ball, Pearson, \hyperlink{https://arxiv.org/abs/2105.05114}{2105.05114}}
+  \textbf{Idea:}
+  \begin{enumerate}
+    \item Construct a (prior) $\alpha_s$ theory covariance matrix from variations around a fixed value of $\alpha_s$
+    \item Include this covariance matrix in a fit
+    \item Compute the posterior distribution of $\alpha_s$
+  \end{enumerate}
 \end{frame}
 
 
@@ -728,18 +672,18 @@
         \item generate data with theory predictions $T_0$ for a given value of $\alpha_s$, e.g. $0.118$ -- centre of the diagram
 
         \item sample the covariance matrix to simulate experimental sampling $\eta$ \\
-        $y_0 = T_0 + \eta$, \quad $\eta  \overset{\text{i.i.d.}}{\sim} \mathcal{N}(0,\mathrm{Cov})$
+        $\color{green}y_0 = T_0 + \eta$, \quad $\eta  \overset{\text{i.i.d.}}{\sim} \mathcal{N}(0,\mathrm{Cov})$
 
-        \item create many replicas by sampling on top of $y_0$ \\
-        $y_\mathrm{rep} = y_0 + \delta$, \quad $\delta  \overset{\text{i.i.d.}}{\sim} \mathcal{N}(0,\mathrm{Cov})$ -- the green circle
+        \item create many replicas by sampling on top of ${\color{green}}$ \\
+        $y_\mathrm{rep} = {\color{green}} + \delta$, \quad $\delta  \overset{\text{i.i.d.}}{\sim} \mathcal{N}(0,\mathrm{Cov})$ -- the green circle
 
         \item perform fits to all replicas $y_\mathrm{rep}$ -- the blue circle
 
-        \item repeat for many $y_0$
+        \item repeat for many ${\color{green}}$
 
-        \item[$\bullet$] usual PDF-level closure test: check if for 68\% of $y_0$ samples, $E_\eta$ is within 1$\sigma$ from $T0$
+        \item[$\bullet$] usual \textbf{data-level closure test:} check if for 68\% of ${\color{green}}$ samples, $\color{blue}E_\epsilon$ is within 1$\sigma$ from $T0$
 
-        \item closure test of $\alpha_s$: check if the same applies for the predictions of the $\alpha_s$ value. Remember: we constructed our data samples to know the answer should be $\alpha_s = 0.118$!
+        \item \textbf{closure test of $\alpha_s$:} check if the same applies for the predictions of the $\alpha_s$ value.
       \end{enumerate}
     \end{column}
     \begin{column}{0.49\textwidth}
@@ -760,7 +704,7 @@
 
 \begin{frame}{Process sensitivity}
   \begin{itemize}
-    \item Impact of PDF-$\alpha_s$ correlations
+    \item Impact of PDF-$\alpha_s$ correlations can be up to a factor 2
     \item Estimate the pull from different processes by comparing $\alpha_s$ determinations from $\chi^2$ calculated to a subset of the data
     \item Global fits account for the effects of all data!
   \end{itemize}
@@ -772,22 +716,28 @@
 
 
 \begin{frame}{PRELIMINARY NNPDF4.0 results at NNLO}
-  Only \textbf{PDF uncertainty:} \\
-  NNPDF3.1-like dataset: $\alpha_s(m_Z) = 0.1185 \pm 0.0006$ (same as 2018 NNPDF3.1 result)\\
-  NNPDF4.0 dataset: $\alpha_s(m_Z) = 0.1204 ± 0.0004$
+  Only \textbf{PDF uncertainty:}
+  \begin{itemize}
+    \item NNPDF3.1 result (2018): $\alpha_s(m_Z) = 0.1185 \pm 0.0005$
+    \item NNPDF3.1-like dataset: $\alpha_s(m_Z) = 0.1185 \pm 0.0006$
+    \item[$\Rightarrow$] Perfect agreement between NNPDF4.0 and NNPDF3.1 methodologies!
+    \item NNPDF4.0 dataset: $\alpha_s(m_Z) = 0.1204 \pm 0.0004$
+  \end{itemize}
 
   \vspace*{1em}
-  \textbf{PDF uncertainty + MHOU:} \\
-  NNPDF4.0 dataset: $\alpha_s(m_Z)=0.1194 \pm 0.0007$ \\
-  NNPDF3.1 dataset: $\alpha_s(m_Z) = 0.1182 \pm 0.0008$
+  \textbf{PDF uncertainty + MHOU:}
+  \begin{itemize}
+    \item NNPDF4.0 dataset: $\alpha_s(m_Z)=0.1194 \pm 0.0007$
+    \item NNPDF3.1 dataset: $\alpha_s(m_Z) = 0.1182 \pm 0.0008$
+  \end{itemize}
 
   \vspace*{1em}
-  LHC data seems to prefer a larger value of $\alpha_s$
+  \textbf{LHC data seems to prefer a larger value of $\alpha_s$}
 
   \vspace*{1em}
   Other sources of uncertainty that need to be studied:
   \begin{itemize}
-    \item Methodological
+    \item Methodological (e.g. is there dependence on $f$ for $\chi^2(f(\alpha_s))$?)
     \item Higher twist
     \item Nuclear corrections
   \end{itemize}

@@ -1,4 +1,68 @@
 
+\begin{frame}{Splitting functions}
+  Complete results for the N3LO splitting functions are not yet available, but a lot of information exists (with important contributions from Liverpool and Edinburgh):
+  \begin{itemize}
+    \item Small-x limits (BFKL resummation) {\color{gray}\footnotesize [Bonvini and Marzani: 1805.06460] [Davies, Kom, Moch, Vogt, 2202.10362]}
+    \item Large-x limits (threshold resummation) {\color{gray}\footnotesize [Soar, Moch, Vermaseren, Vogt: 0912.0369], [Henn, Korchemsky, Mistlberger, 1911.10174], [Duhr, Mistlberger, Vita 2205.04493]}
+    \item Large-$n_f$ limit {\color{gray}\footnotesize [Davies, Ruijl, Ueda, Vermaseren, Vogt: 1610.0744], [Gehrmann, Manteuffel, Sotnikov, Yan, 2308.07958]}
+    \item Mellin moments
+    {\color{gray}\footnotesize [Falcioni, Herzog, Moch, Ruijl, Ueda, Vermaseren, Vogt, 1707.08315, 2111.15561, 2302.07593, 2307.04158]}
+  \end{itemize}
+
+  \vspace*{2em}
+  \begin{center}
+    How can we use this information to construct approximate splitting functions?
+  \end{center}
+
+\end{frame}
+
+
+\begin{frame}{DIS variable flavor number scheme (VFNS)}
+  \begin{columns}
+    \begin{column}{0.59\textwidth}
+      \begin{itemize}
+        \item In a PDF fit different flavour number schemes are joined in a variable flavour number scheme (VFNS) to ensure reliable results from $Q^2\sim m_h^2$ up to $Q^2\gg m_h^2$
+        \item The matching conditions encoding the transition between schemes have almost completely been computed up to N3LO
+        \item The VFNS used in NNPDF is the FONLL scheme
+        % \item FONLL extended for arbitrary number of mass scales in the recent \texttt{EKO} (DGLAP) and \texttt{yadism} (DIS) codes
+      \end{itemize}
+
+      \vspace*{1em}
+      \begin{equation*}
+        F_\mathrm{FONLL}(m_c) =F^{(n_f+1)}(m_h=0)
+        +F^{(n_f)}(m_c)-\lim_{m_c\rightarrow 0}F^{(n_f)}(m_h)
+      \end{equation*}
+    \end{column}
+    \begin{column}{0.39\textwidth}
+      \vspace*{-2em}
+      \begin{figure}[!t]
+        \centering
+        \includegraphics[width=0.89\textwidth]{figures/F2_charm_n3lo.pdf}
+        \caption*{$F_2^{(c)}$}
+      \end{figure}
+    \end{column}
+  \end{columns}
+
+  % Up to NNLO, FONLL was implemented expressing the terms in the r.h.s in terms of $\alpha_s$ and PDFs defined in the massless scheme
+
+  % FONLL is now implemented at ``observable level'' with simultaneous PDFs in different flavour number schemes, made possible thanks to the new \texttt{EKO} evolution code and \texttt{yadism} DIS library
+
+
+\end{frame}
+
+
+\begin{frame}{DIS structure functions}
+  \begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figures/F2_total.pdf}
+  \end{figure}
+  \begin{itemize}
+    \item The uncertainty band corresponds to IHOU of the massive coefficient functions
+    \item N3LO corrections are significant at low-$Q$
+  \end{itemize}
+\end{frame}
+
+
 \begin{frame}{Determination of the photon PDF}
   \begin{columns}[T]
     \begin{column}{0.59\textwidth}
