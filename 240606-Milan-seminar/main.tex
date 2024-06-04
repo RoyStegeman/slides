@@ -160,20 +160,26 @@
       \end{itemize}
 
       \vspace*{0.5em}
-      Progress towards improved theoretical accuracy:
+      Progress towards improved theoretical accuracy in this talk:
       \begin{itemize}
-        \item QED effects
-        \item approximate N3LO
+        \item Approximate N3LO
         \item Accounting for missing higher order uncertainties
-        \item A simultaneous determination of the PDFs and $\alpha_s$
+        \item Including a photon PDF
+        \item An $\alpha_s$ determination from PDFs
       \end{itemize}
     \end{column}
     \begin{column}{0.44\textwidth}
       \begin{figure}
         \centering
         \includegraphics[width=0.99\textwidth]{figures/sources_of_unc_higgs.png}
-        \caption*{ \small Uncertainties for inclusive Higgs production \\  {\color{gray}\footnotesize Dulat, Lazopoulos, Mistleberger, 1802.00827}}
+        \caption*{ \small Uncertainties for inclusive Higgs production \\  {\color{gray}\footnotesize [Dulat, Lazopoulos, Mistleberger, 1802.00827]}}
       \end{figure}
+
+      Since this plot much improvement in:
+      \begin{itemize}
+        \item NNLO top quark corrections {\color{gray}\footnotesize[Czakon, Harlander, Klappert, Niggetiedt, 2105.04436]}
+        \item Mixed QCD-EW corrections {\color{gray}\footnotesize[Becchetti, Bonciani, del Duca, Hirschi, Moriello, Schweitzer, 2010.09451] [Bonetti, Panzer, Smirnov, Tancredi, 2007.09813]}
+      \end{itemize}
     \end{column}
   \end{columns}
 \end{frame}
@@ -533,26 +539,19 @@
 \SectionTitleFrame[In preparation]
 
 \begin{frame}{Propagating uncertainties in NNPDF}
-  \begin{columns}
-    \begin{column}{0.49\textwidth}
+
       Data is fully defined by central values $\mu_i$ and covariance matrix $\operatorname{cov}_{ij}$
       \begin{enumerate}
-        \item Generate $N_{\rm rep}$ { Monte Carlo data} ``replicas'' $\hat{\mu}_i$ such that as $N_{\rm rep}\to \infty$ \\
-        $\mu_i = \frac{1}{N_{\rm rep}}\sum_{i=1}^{N_{\rm rep}} \hat{\mu}_i$\\
-        $\operatorname{cov}_{ij} = \operatorname{cov}[\hat{\mu}_i, \hat{\mu}_j]$
-        \item Perform a { PDF fit} to each replica
-        \item Compute observables $X$ and their uncertainties\\
-        $\left\langle X\left[f\right]\right\rangle=\frac{1}{N_{\rm rep}} \sum_{r=1}^N X\left[f^{(r)}\right]$\\
-        $\operatorname{Var}\left[X\left[f\right]\right] = \frac{1}{N_{\rm rep}} \sum_{r=1}^{N_{\rm rep}}\left(X\left[f^{(r)}\right]-\left\langle X\left[f\right]\right\rangle\right)^2$
+        \item Produce a Monte Carlo sample of data replicas
+        \item Perform a PDF fit to each replica
+        \item[$\Rightarrow$] PDF replicas now encode experimental uncertainties!
       \end{enumerate}
-    \end{column}
-    \begin{column}{0.49\textwidth}
+
+      \vspace*{2em}
       \begin{center}
-        \includegraphics[width=0.7\textwidth]{replicas_g.pdf}\\
-        \includegraphics[width=0.7\textwidth]{band_g.pdf}
+        \includegraphics[width=0.4\textwidth]{replicas_g.pdf}
+        \includegraphics[width=0.4\textwidth]{band_g.pdf}
       \end{center}
-    \end{column}
-  \end{columns}
 \end{frame}
 
 
@@ -621,97 +620,65 @@
 
 \begin{frame}{$\alpha_s$ from correlated theory uncertainties}
 
-  Remember, in a PDF fit we minimize $\chi^2$:\\
-  $P(T|D) \propto \exp\left[-\frac{1}{2}\left(T-D\right)^T\mathrm{Cov}^{-1}\left(T-D\right)\right]
-  = \exp\left[-\frac{1}{2}\chi^2\right]$
+  % Remember, in a PDF fit we minimize $\chi^2$:\\
+  % $P(T|D) \propto \exp\left[-\frac{1}{2}\left(T-D\right)^T\mathrm{Cov}^{-1}\left(T-D\right)\right]
+  % = \exp\left[-\frac{1}{2}\chi^2\right]$
 
-  \vspace*{1em}
-  We can model the theory uncertainty as a correlated shift: \\
-  $T \rightarrow T + \lambda \beta $, \quad $\beta=\frac{\partial}{\partial \alpha_s}T$ (numerically, $\beta$ is constructed form discrete shifts)\\
-  ${\color{red}P(T|D,\lambda) }\propto \exp\left[-\frac{1}{2}\left(T+\lambda\beta-D\right)^T\mathrm{Cov}_\mathrm{exp}^{-1}\left(T+\lambda\beta-D\right)\right]$
+  We can also determine $\alpha_s$ in a Bayesian way from a nuisance parameter
 
-  \vspace*{1em}
-  We want to find $P(T|D)$ using Bayes' theorem, so we have to choose a prior for $\lambda$. Let us take a unit-width Gaussian\\
-  ${\color{blue} P(\lambda)} \propto \exp\left[-\frac{1}{2}\lambda^2\right]$
+  \begin{itemize}
+    \item Model theory uncertainty as a correlated shift: \\
+    $T \rightarrow T + \lambda \beta $, \quad $\beta=\frac{\partial}{\partial \alpha_s}T$ ($\beta$ is constructed form discrete shifts)\\
+    ${\color{red}P(T|D,\lambda) }\propto \exp\left[-\frac{1}{2}\left(T+\lambda\beta-D\right)^T\mathrm{Cov}_\mathrm{exp}^{-1}\left(T+\lambda\beta-D\right)\right]$
 
-  \vspace*{1em}
-  Marginalizing over $\lambda$ we find \\
-  ${\color{green} P(T|D)} \propto \int d\lambda \exp\left[Z^{-1}\left(\lambda-\bar{\lambda}\right)^2\right] \exp\left[-\frac{1}{2}\left(T-D\right)^T\left(\mathrm{Cov}_\mathrm{exp}+\beta\beta^T\right)^{-1}\left(T-D\right)\right]$ \\
-  for some functions $Z$ and $\bar{\lambda}$,
+    \item Choose a unit-width Gaussian prior\\
+    ${\color{blue} P(\lambda)} \propto \exp\left[-\frac{1}{2}\lambda^2\right]$
 
-  % \vspace*{1em}
-  % Taking $\beta\beta^T=\mathrm{Cov_\mathrm{th}}$, we thus recover \\
-  % $P(T|D)\propto \exp\left[-\frac{1}{2}\chi^2\right]$
+    \item Marginalizing over $\lambda$ to get  ${\color{green} P(T|D)}$ \\
+    % ${\color{green} P(T|D)} \propto \int d\lambda \exp\left[Z^{-1}\left(\lambda-\bar{\lambda}\right)^2\right] \exp\left[-\frac{1}{2}\left(T-D\right)^T\left(\mathrm{Cov}_\mathrm{exp}+\beta\beta^T\right)^{-1}\left(T-D\right)\right] \propto \exp\left[\chi^2\right]$  \\
 
-  \vspace*{1em}
+  \end{itemize}
+
   We thus have all the ingredients to compute the posterior for the parameter encoding a shift in $\alpha_s$: \\
-  $$P(\lambda|T,D) = \frac{{\color{red}P(T|D,\lambda) }{\color{blue} P(\lambda)}}{{\color{green} P(T|D)}}=\exp\left[-\frac{1}{2}Z^{-1}(\lambda - \bar{\lambda})\right]$$
+  $$P(\lambda|T,D) = \frac{{\color{red}P(T|D,\lambda) }{\color{blue} P(\lambda)}}{{\color{green} P(T|D)}} \propto \exp\left[-\frac{1}{2}Z^{-1}(\lambda - \bar{\lambda})\right]$$
+  for some functions $0<Z<1$ and $\bar{\lambda}$.
+
+  \vspace{1em}
+  \begin{center}
+    The prior for $\alpha_s$ can be updated by the addition of new information!
+  \end{center}
+
 
   \vspace*{1em}
   {\color{gray} \footnotesize Ball, Pearson, \hyperlink{https://arxiv.org/abs/2105.05114}{2105.05114}}
 
-  \vfill
-  \textbf{Idea:}
-  \begin{enumerate}
-    \item Construct a (prior) $\alpha_s$ theory covariance matrix from variations around a fixed value of $\alpha_s$
-    \item Include this covariance matrix in a fit
-    \item Compute the posterior distribution of $\alpha_s$
-  \end{enumerate}
+  % \vfill
+  % \textbf{Idea:}
+  % \begin{enumerate}
+  %   \item Construct a (prior) $\alpha_s$ theory covariance matrix from variations around a fixed value of $\alpha_s$
+  %   \item Include this covariance matrix in a fit
+  %   \item Compute the posterior distribution of $\alpha_s$
+  % \end{enumerate}
 \end{frame}
 
 
 \begin{frame}{Validating the methodology}
-  We thus have two possible methodologies to determine $\alpha_s$, but how can we trust they give the correct answer?
+  We use ``closure tests'' to validate our methodology:
+  \begin{enumerate}
+    \item Take a given value of $\alpha_s$
+    \item Make theoretical predictions for all data
+    \item Generate data replicas distributed according to the covariance matrix
+    \item Test statistics on these ``simulated experimental samplings''
+    \begin{itemize}
+      \item Is the chosen value of $\alpha_s$ within 1$\sigma$ for 68\% of cases?
+    \end{itemize}
+  \end{enumerate}
 
-  \vspace*{1em}
-  \begin{columns}
+  \vspace{1em}
+  Preliminary results suggests the “correlated replicas” method \textbf{faithfully determines $\alpha_s$}!
 
-    \begin{column}{0.49\textwidth}
-      Basic idea is that of a closure test:
-      \begin{enumerate}
-        \item generate data with theory predictions $T_0$ for a given value of $\alpha_s$, e.g. $0.118$ -- centre of the diagram
-
-        \item sample the covariance matrix to simulate experimental sampling $\eta$ \\
-        $\color{green}y_0 = T_0 + \eta$, \quad $\eta  \overset{\text{i.i.d.}}{\sim} \mathcal{N}(0,\mathrm{Cov})$
-
-        \item create many replicas by sampling on top of ${\color{green}}$ \\
-        $y_\mathrm{rep} = {\color{green}} + \delta$, \quad $\delta  \overset{\text{i.i.d.}}{\sim} \mathcal{N}(0,\mathrm{Cov})$ -- the green circle
-
-        \item perform fits to all replicas $y_\mathrm{rep}$ -- the blue circle
-
-        \item repeat for many ${\color{green}}$
-
-        \item[$\bullet$] usual \textbf{data-level closure test:} check if for 68\% of ${\color{green}}$ samples, $\color{blue}E_\epsilon$ is within 1$\sigma$ from $T0$
-
-        \item \textbf{closure test of $\alpha_s$:} check if the same applies for the predictions of the $\alpha_s$ value.
-      \end{enumerate}
-    \end{column}
-    \begin{column}{0.49\textwidth}
-      \begin{figure}
-        \includegraphics[width=0.99\textwidth]{geometric_closure_test.png}
-        \caption*{\color{gray} \footnotesize Del Debbio, Giani, Wilson, \hyperlink{https://arxiv.org/abs/2111.05787}{2111.05787}}
-
-      \end{figure}
-    \end{column}
-  \end{columns}
-
-  \begin{center}
-    \vspace*{1em}
-    \only<2>{\textbf{Preliminary results based on 25 sampled $y_0$ suggests the ``correlated replicas'' method faithfully determines $\alpha_s$}}
-  \end{center}
-\end{frame}
-
-
-\begin{frame}{Process sensitivity}
-  \begin{itemize}
-    \item Impact of PDF-$\alpha_s$ correlations can be up to a factor 2
-    \item Estimate the pull from different processes by comparing $\alpha_s$ determinations from $\chi^2$ calculated to a subset of the data
-    \item Global fits account for the effects of all data!
-  \end{itemize}
-  \begin{figure}
-    \includegraphics[width=0.7\textwidth]{as_determination_central_NNLO.pdf}
-    \caption*{\color{gray} \footnotesize NNPDF, \hyperlink{https://arxiv.org/abs/1802.03398}{1802.03398}}
-  \end{figure}
+  \vspace{1em}
+  A test of the theory uncertainties method is ongoing
 \end{frame}
 
 
@@ -742,9 +709,9 @@
     \item Nuclear corrections
   \end{itemize}
 
-  \vspace*{5em}
+  \vspace*{3em}
   \begin{center}
-    \textbf{Finally, extend up to aN3LO}
+    Finally, \textbf{extend up to aN3LO}
   \end{center}
 
 \end{frame}

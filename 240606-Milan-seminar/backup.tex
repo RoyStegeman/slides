@@ -195,6 +195,60 @@
   \end{columns}
 \end{frame}
 
+\begin{frame}{Validating the methodology}
+  We thus have two possible methodologies to determine $\alpha_s$, but how can we trust they give the correct answer?
+
+  \vspace*{1em}
+  \begin{columns}
+
+    \begin{column}{0.49\textwidth}
+      Basic idea is that of a closure test:
+      \begin{enumerate}
+        \item generate data with theory predictions $T_0$ for a given value of $\alpha_s$, e.g. $0.118$ -- centre of the diagram
+
+        \item sample the covariance matrix to simulate experimental sampling $\eta$ \\
+        $\color{green}y_0 = T_0 + \eta$, \quad $\eta  \overset{\text{i.i.d.}}{\sim} \mathcal{N}(0,\mathrm{Cov})$
+
+        \item create many replicas by sampling on top of ${\color{green}}$ \\
+        $y_\mathrm{rep} = {\color{green}} + \delta$, \quad $\delta  \overset{\text{i.i.d.}}{\sim} \mathcal{N}(0,\mathrm{Cov})$ -- the green circle
+
+        \item perform fits to all replicas $y_\mathrm{rep}$ -- the blue circle
+
+        \item repeat for many ${\color{green}}$
+
+        \item[$\bullet$] usual \textbf{data-level closure test:} check if for 68\% of ${\color{green}}$ samples, $\color{blue}E_\epsilon$ is within 1$\sigma$ from $T0$
+
+        \item \textbf{closure test of $\alpha_s$:} check if the same applies for the predictions of the $\alpha_s$ value.
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \begin{figure}
+        \includegraphics[width=0.99\textwidth]{geometric_closure_test.png}
+        \caption*{\color{gray} \footnotesize Del Debbio, Giani, Wilson, \hyperlink{https://arxiv.org/abs/2111.05787}{2111.05787}}
+
+      \end{figure}
+    \end{column}
+  \end{columns}
+
+  \begin{center}
+    \vspace*{1em}
+    \only<2>{\textbf{Preliminary results based on 25 sampled $y_0$ suggests the ``correlated replicas'' method faithfully determines $\alpha_s$}}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Process sensitivity}
+  \begin{itemize}
+    \item Impact of PDF-$\alpha_s$ correlations can be up to a factor 2
+    \item Estimate the pull from different processes by comparing $\alpha_s$ determinations from $\chi^2$ calculated to a subset of the data
+    \item Global fits account for the effects of all data!
+  \end{itemize}
+  \begin{figure}
+    \includegraphics[width=0.7\textwidth]{as_determination_central_NNLO.pdf}
+    \caption*{\color{gray} \footnotesize NNPDF, \hyperlink{https://arxiv.org/abs/1802.03398}{1802.03398}}
+  \end{figure}
+\end{frame}
+
+
 
 \begin{frame}[t]{The NNPDF approach: an importance sampling}
   \begin{itemize}
