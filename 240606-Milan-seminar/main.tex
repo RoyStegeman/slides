@@ -197,7 +197,7 @@
     $ f_i^{\left(n_f+1\right)}=A_{i j} f_j^{\left(n_f\right)} $
 
     \item DIS coefficient functions
-    \item Hadronic cross sections,
+    \item Hadronic cross sections
   \end{itemize}
 
   \vspace*{2em}
@@ -219,7 +219,7 @@
     \item Mellin moments
     \item Small-$x$ limit (threshold resummation)
     \item Large-$x$ limit (BFKL resummation)
-    \item Large-$nf$ limit
+    \item Large-$n_f$ limit
   \end{itemize}
 
   \vspace*{1em}
@@ -265,30 +265,25 @@
 
 \begin{frame}{DGLAP evolution}
   NNPDF4.0 evolved from $Q=1.65$ GeV to $Q=100$ GeV
+  \begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures/N3LOevolution-q100gev-ratios_expanded_0.pdf}
+    \includegraphics[width=0.4\textwidth]{figures/N3LOevolution-q100gev-ratios_expanded_1.pdf}\\
+    % \includegraphics[width=0.49\textwidth]{figures/N3LOevolution-q100gev-ratios_expanded_2.pdf}
+    % \includegraphics[width=0.49\textwidth]{figures/N3LOevolution-q100gev-ratios_expanded_3.pdf}
+  \end{figure}
 
-  \begin{columns}
-    \begin{column}{0.59\textwidth}
-      \begin{figure}[!t]
-        \centering
-        \includegraphics[width=0.49\textwidth]{figures/N3LOevolution-q100gev-ratios_expanded_0.pdf}
-        \includegraphics[width=0.49\textwidth]{figures/N3LOevolution-q100gev-ratios_expanded_1.pdf}\\
-        \includegraphics[width=0.49\textwidth]{figures/N3LOevolution-q100gev-ratios_expanded_2.pdf}
-        \includegraphics[width=0.49\textwidth]{figures/N3LOevolution-q100gev-ratios_expanded_3.pdf}
-      \end{figure}
-    \end{column}
-    \begin{column}{0.39\textwidth}
-      \begin{itemize}
-        \item Effects of N3LO corrections to DGLAP evolution at most percent level, except at small-$x$ and large-$x$
-        \item Good perturbative convergence
-      \end{itemize}
-    \end{column}
-  \end{columns}
+  \begin{itemize}
+    \item Effects of N3LO corrections to DGLAP evolution at most percent level, except at small-$x$ and large-$x$
+    \item Good perturbative convergence
+  \end{itemize}
+
 \end{frame}
 
 \begin{frame}{DIS coefficient functions}
   \begin{itemize}
     \item DIS coefficient functions are known up to N3LO in the massless limit {\color{gray}\footnotesize [Larin, Nogueira, Van Ritbergen, Vermaseren, 9605317], [Moch Vermaseren Vogt, 0411112, 0504242], [Davies, Moch, Vermaseren, Vogt, 0812.4168, 1606.08907]}
-    \item Massive coefficient functions can be constructed by smoothly joining the known limits from high energy and threshold resummations and the massless limit ($Q^2 \rightarrow m_h^2$, $x\rightarrow 0$, and $Q^2\gg m_h^2$) {\color{gray}\footnotesize [Barontini, Bonvini, Laurenti, in preparation]}
+    \item Massive coefficient functions can be constructed by smoothly joining the known limits from threshold and high energy resummation, and the massless limit {\color{gray}\footnotesize [Barontini, Bonvini, Laurenti, in preparation]}
   \end{itemize}
 
   \vspace*{-0.5em}
@@ -299,8 +294,8 @@
       \end{equation*}
       \begin{align*}
         \begin{split}
-            f_1(x) \xrightarrow[x \to 0]{} 0, & \quad  f_1(x) \xrightarrow[x \to x_{\rm max}]{} 1 \, , \\
-            f_2(x) \xrightarrow[x \to 0]{} 1, & \quad  f_1(x) \xrightarrow[x \to x_{\rm max}]{} 0 \, ,
+          f_1(x) \xrightarrow[x \to x_{\rm max}]{} 1, & \quad  f_2(x) \xrightarrow[x \to x_{\rm max}]{} 0 \\
+          f_1(x) \xrightarrow[x \to 0]{} 0, & \quad  f_2(x) \xrightarrow[x \to 0]{} 1
         \end{split}
       \end{align*}
     \end{column}
@@ -310,7 +305,10 @@
       \begin{figure}
         \centering
         \includegraphics[width=.9\textwidth]{figures/C2g_2_Q2m2_2.0.pdf}
-        \caption*{Validate the procedure at NNLO}
+        \caption*{
+          Validate the procedure at NNLO \\
+          Uncertainty band is obtained by varying interpolation functions
+        }
       \end{figure}
     \end{column}
   \end{columns}
@@ -341,7 +339,7 @@
       \caption*{5,7,9 point prescription}
     \end{figure}
     \item In a fit we minimize the $\chi^2$: \\
-    $$P(T|D) \propto \exp\left[-\frac{1}{2}\left(T-D\right)C^{-1}\left(T-D\right)\right] \propto \exp\left[-\frac{1}{2}\chi^2\right]$$
+    $$P(T|D) \propto \exp\left[-\frac{1}{2}\left(T-D\right)C^{-1}\left(T-D\right)\right] = \exp\left[-\frac{1}{2}\chi^2\right]$$
     \item Include theory covmat $C_\mathrm{MHOU}$ at same footing as exp covmat $C = C_\mathrm{exp}+C_\mathrm{MHOU}$ \\
     $$C_{\mathrm{MHOU},ij} = n_{m}\sum_{V_{m}}\left(T_{i}(\kappa_f, \kappa_r) - T_{i}(0, 0)\right)\left(T_{j}(\kappa_f, \kappa_r) - T_{j}(0, 0)\right)$$
     \item Incomplete higher order uncertainties on the approximation of the DGLAP splitting kernels are independent and added in quadrature: \\
@@ -377,18 +375,6 @@
     \item At N3LO MHOUs have a small impact on the $\chi^2$
   \end{itemize}
 \end{frame}
-
-\begin{frame}{Perturbative convergence}
-  \begin{figure}[!t]
-    \includegraphics[width=.4\textwidth]{figures/gg_plot_lumi1d_convergence.pdf}
-    \includegraphics[width=.4\textwidth]{figures/qqbar_plot_lumi1d_convergence.pdf}
-  \end{figure}
-  \begin{itemize}
-    \item Moderate impact of N3LO corrections, especially for the quark luminosities
-    \item $\sim2\%$ suppression of $gg$ luminosity around the Higgs mass
-  \end{itemize}
-\end{frame}
-
 
 \begin{frame}{Higgs production}
   \begin{figure}[!t]
@@ -529,7 +515,7 @@
   \vspace*{1em}
   \begin{itemize}
     % \item NLO in both QCD and QED, only PDF uncertainties are shown
-    \item Photon induced effects are up to 5\% in the high $Q^2$ region (blue vs orange)
+    \item Photon induced effects are up to 5\% in the large invariant mass and large-$p_T$ region (blue vs orange)
     \item The QED corrections to the quarks and gluon are at most 1\% (red vs orange)
   \end{itemize}
 \end{frame}
@@ -537,23 +523,6 @@
 
 \section*{$\alpha_s$ from NNPDF4.0}
 \SectionTitleFrame[In preparation]
-
-\begin{frame}{Propagating uncertainties in NNPDF}
-
-      Data is fully defined by central values $\mu_i$ and covariance matrix $\operatorname{cov}_{ij}$
-      \begin{enumerate}
-        \item Produce a Monte Carlo sample of data replicas
-        \item Perform a PDF fit to each replica
-        \item[$\Rightarrow$] PDF replicas now encode experimental uncertainties!
-      \end{enumerate}
-
-      \vspace*{2em}
-      \begin{center}
-        \includegraphics[width=0.4\textwidth]{replicas_g.pdf}
-        \includegraphics[width=0.4\textwidth]{band_g.pdf}
-      \end{center}
-\end{frame}
-
 
 
 
@@ -587,6 +556,22 @@
       \includegraphics[width=0.9\textwidth]{ellipse.pdf}
     \end{column}
   \end{columns}
+\end{frame}
+
+\begin{frame}{Propagating uncertainties in NNPDF}
+
+  Data is fully defined by central values $\mu_i$ and covariance matrix $\operatorname{cov}_{ij}$
+  \begin{enumerate}
+    \item Produce a Monte Carlo sample of data replicas
+    \item Perform a PDF fit to each replica
+    \item[$\Rightarrow$] PDF replicas now encode experimental uncertainties!
+  \end{enumerate}
+
+  \vspace*{2em}
+  \begin{center}
+    \includegraphics[width=0.4\textwidth]{replicas_g.pdf}
+    \includegraphics[width=0.4\textwidth]{band_g.pdf}
+  \end{center}
 \end{frame}
 
 
@@ -668,6 +653,7 @@
     \item Take a given value of $\alpha_s$
     \item Make theoretical predictions for all data
     \item Generate data replicas distributed according to the covariance matrix
+    \item Perform the usual fits and analysis
     \item Test statistics on these ``simulated experimental samplings''
     \begin{itemize}
       \item Is the chosen value of $\alpha_s$ within 1$\sigma$ for 68\% of cases?
