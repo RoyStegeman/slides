@@ -74,6 +74,50 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Impact of MHOUs at N3LO}
+  \begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.45\textwidth]{figures/gg_plot_lumi1d.pdf}
+    \includegraphics[width=0.45\textwidth]{figures/qqbar_plot_lumi1d.pdf}
+  \end{figure}
+  \begin{itemize}
+    \item Non-negligible impact of MHOUs even at N3LO
+    \item[$\Rightarrow$] reason to include exact N3LO calculations for hadronic processes
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Incomplete higher order uncertainties covmat}
+  \begin{itemize}
+    \item We construct an IHOU matrix following a similar approach by varying the subleading functions
+    \item IHOU are independent of MHOU so the uncertainties are added in quadrature
+    $$C = C_\mathrm{exp}+C_\mathrm{MHOU}+C_\mathrm{IHOU}$$
+  \end{itemize}
+
+  \begin{columns}
+    \begin{column}{0.49\textwidth}
+      \begin{figure}[!t]
+        \centering
+        \includegraphics[width=.9\textwidth]{figures/diag_cov_dis_ihou.pdf}
+        \caption*{IHOU have a large effect on small-$x$, low-$Q$ DIS data
+        }
+      \end{figure}
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \begin{figure}[!t]
+        \centering
+        \includegraphics[width=.9\textwidth]{figures/diag_cov_dy_ihou_3pt_mhou.pdf}
+        \caption*{NNLO MHOU included where N3LO not available \\
+          MHOU can similar magnitude as the experimental uncertainty
+        }
+      \end{figure}
+    \end{column}
+  \end{columns}
+
+
+\end{frame}
+
+
 
 \begin{frame}{Determination of the photon PDF}
   \begin{columns}[T]
@@ -136,50 +180,6 @@
 \end{frame}
 
 
-\begin{frame}{Incomplete higher order uncertainties covmat}
-  \begin{itemize}
-    \item We construct an IHOU matrix following a similar approach by varying the subleading functions
-    \item IHOU are independent of MHOU so the uncertainties are added in quadrature
-    $$C = C_\mathrm{exp}+C_\mathrm{MHOU}+C_\mathrm{IHOU}$$
-  \end{itemize}
-
-  \begin{columns}
-    \begin{column}{0.49\textwidth}
-      \begin{figure}[!t]
-        \centering
-        \includegraphics[width=.9\textwidth]{figures/diag_cov_dis_ihou.pdf}
-        \caption*{IHOU have a large effect on small-$x$, low-$Q$ DIS data
-        }
-      \end{figure}
-    \end{column}
-    \begin{column}{0.49\textwidth}
-      \begin{figure}[!t]
-        \centering
-        \includegraphics[width=.9\textwidth]{figures/diag_cov_dy_ihou_3pt_mhou.pdf}
-        \caption*{NNLO MHOU included where N3LO not available \\
-          MHOU can similar magnitude as the experimental uncertainty
-        }
-      \end{figure}
-    \end{column}
-  \end{columns}
-
-
-\end{frame}
-
-
-\begin{frame}{Impact of MHOUs at N3LO}
-  \begin{figure}[!t]
-    \centering
-    \includegraphics[width=0.45\textwidth]{figures/gg_plot_lumi1d.pdf}
-    \includegraphics[width=0.45\textwidth]{figures/qqbar_plot_lumi1d.pdf}
-  \end{figure}
-  \begin{itemize}
-    \item Non-negligible impact of MHOUs even at N3LO
-    \item[$\Rightarrow$] reason to include exact N3LO calculations for hadronic processes
-  \end{itemize}
-\end{frame}
-
-
 \begin{frame}[t]{Data in NNPDF4.0}
   \begin{center}
     \includegraphics[width=0.7\textwidth]{NNPDF_data_history.pdf}
@@ -188,11 +188,15 @@
 \end{frame}
 
 
-\begin{frame}[t]{Data in NNPDF4.0}
+\begin{frame}{Data in NNPDF4.0}
   \begin{columns}
       \column{0.7\linewidth}
-          \includegraphics[width=1.0\textwidth]{Markers0_plot_xq2}
+          \begin{figure}
+              \includegraphics[width=0.9\textwidth]{Markers0_plot_xq2}
+          \end{figure}
       \column{0.3\linewidth}
+
+          \vspace*{2em}
           More than 4000 datapoints\\
           and 13 processes!\\
           \vspace*{1em}
