@@ -13,7 +13,7 @@
 \usefonttheme[onlymath]{serif} % makes beamer math look like article math
 \usepackage{hyperref}
 %======================= title page info =======================
-\title{Intrinsic charm quark valence distribution of the proton}
+\title{Intrinsic charm in the proton}
 \date{Flavoured Jets at the LHC  \\[0.1cm] 12 June 2024, Durham}
 \author{Roy Stegeman}
 \institute{\small The University of Edinburgh}
@@ -129,6 +129,13 @@
 % SLIDES =======================================================================
 \newcommand{\nn}{\vspace*{1em}}
 
+% PLAN FOR THE TALK
+
+% mostly IC talk
+% nFONLL thanks to simultaneous PDF feature in EKO
+% emphasize evidence increases at N3LO AND with MHOUs, while evidence for valence remains the same
+% a couple of slides on the pheno study
+% future developments and data?
 
 % W+c-jet to probe strange PDF: https://arxiv.org/pdf/2009.00014
 % contain [ATLAS (1402.6263)] and  [CMS (1310.1138)] 7 TeV data
@@ -140,100 +147,206 @@
 % Z+c-jet for IC: https://arxiv.org/pdf/2208.08372
 
 
+
+
+
+
 \begin{frame}{Perturbative charm}
-  A common assumtption in PDF fits is that the proton wave function does not contain charm quarks but only light quarks
+  A common assumption in PDF fits is that the proton wave function does not contain charm quarks but only light quarks
 
   \vspace*{1em}
-  Charm pairs are perturbatively generated in DGLAP evolution\\
-  $f_c^{(4)}\propto \alpha_s \log\left(\frac{Q^2}{m_c^2}\right)P_{qg} \otimes f_g^{(4)} + \mathcal{O}(\alpha_s^2)$
+  This assumption leads to a purely perturbative charm, namely:
+  \begin{itemize}
+    \item Charm quark pairs are perturbatively generated in DGLAP evolution\\
+    $f_c^{(4)}\propto \alpha_s \log\left(\frac{Q^2}{m_c^2}\right)P_{qg} \otimes f_g^{(4)} + \mathcal{O}(\alpha_s^2)$
+
+    \item Present only above the heavy quark threshold (in 4FNS)
+
+    \item Fixed by the light flavour and gluon PDFs
+  \end{itemize}
 
   \vspace*{1em}
-  In the $n_f=3$ scheme charm doesn't run and $f_c^{(3)}=0$ \\
-  In $nf=3$, charm can be perturbatively generated in the coefficient function
-
-  \vspace*{1em}
-  Generally 3FNS is used where $Q<m_c$ and 4FNS where $Q>m_c$
-
-  % matching elements known up to N3LO
-
-  \vspace*{1em}
-  \only<2>{However instead of assuming charm completely perturbativel, one may determine it on the same footing as the light quarks}
+  \only<2>{However instead of assuming charm completely perturbatively, one may determine it on the same footing as the light quarks}
 \end{frame}
 
 
 \begin{frame}{Fitted charm}
+  NNPDF4.0 independently parametrizes the total charm distribution $c^+=c+\bar{c}$
+
+  \vspace*{1em}
+  Fitted charm is a combination of perturbative and intrinsic charm : \\
   $f_c^{(4)} = A_{ci}f_i^{(3)}+A_{cc}f_c^{}$
   \begin{itemize}
-    \item 4FNS charm is not fixed by light flavour PDFs
-    \item Instead it is independently parametrized and fitted from data
-    \item[$\Rightarrow$] PDF is a combination of perturbative and intrinsic component
+    \item in 4FNS charm is not fixed by light flavour PDFs
+    \item Instead there is a contributing that is part of the static proton wave function
+    \item Intrinsic component is present at all scales
   \end{itemize}
 
+  \vspace*{1em}
+  Intrinsic charm is charm in the 3FNS!
 \end{frame}
+
+\begin{frame}{Fitted vs perturbative charm PDF}
+  \begin{figure}
+    \includegraphics[width=0.8\textwidth]{fitted_vs_perturbative_pdf.png}
+  \end{figure}
+
+  Fitted charm:
+  \begin{itemize}
+    \item independent of matching conditions
+    \item stable upon variations of $m_c$
+    \item Insensitive to MHOU
+    \item Bump at large-$x$ where radiative charm production is limited
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{EKO and nFONLL}
+  \begin{figure}
+    \includegraphics[width=0.8\textwidth]{eko_header.png}
+  \end{figure}
+  \begin{itemize}
+    \item Impements DGLAP solutions up to aN3LO QCD and NLO QEC
+    \item Supports coexising PDFs in different FNS at all scales
+    \item[$\Rightarrow$] Construct FONLL with coexisting FNS PDFs
+  \end{itemize}
+
+  $$F_{FONLL} = F^{(4)}(m_c=0) + F^{(3)}(m_c) - \lim_{x\rightarrow 0} F^{(3)}(m_c)$$
+\end{frame}
+
+
+\section*{Evidence for intrinsic charm quarks in the proton}
+\SectionTitleFrame[\hyperlink{https://arxiv.org/abs/2208.08372}{NNPDF, 2208.08372}]
 
 \begin{frame}{How to determine intrinsic charm?}
-  \vspace*{1em}
-  The intrinsic charm component is determined by:
-  \begin{enumerate}
-    \item performing a PDF fit with fitted charm
-    \item going to the $nf=3$ scheme
-    \item $f_c^{(3)}\neq 0$ $\Leftrightarrow$ intrinsic charm
-  \end{enumerate}
-
-  % show figure from JR slides
+  \begin{figure}
+    \includegraphics[width=0.8\textwidth]{ic_strategy.png}
+  \end{figure}
 
 \end{frame}
 
 
-\section{Evidence for intrinsic charm}
+\begin{frame}{Evidence for intrinsic charm}
+  \begin{figure}
+    \includegraphics[width=0.8\textwidth]{discovery_of_ic.png}
+  \end{figure}
+  \begin{itemize}
+    \item MHOU estimated from N3LO-NNLO matching difference
+    \item Large perturbative uncertainty for small-$x$
+    \item PDF dominated uncertainty at large-$x$
+    \item Non-zero intrinsic charm peak
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Z+charm at LHCb}
+  \begin{figure}
+    \includegraphics[width=0.8\textwidth]{zc_lhcb.png}
+  \end{figure}
+  Assuming intrinsic charm improves prediction of recent measurement
+\end{frame}
+
+\begin{frame}{Evidence for intrinsic charm}
+  \begin{figure}
+    \includegraphics[width=0.8\textwidth]{ic_f2c_zc.png}
+  \end{figure}
+  \begin{itemize}
+    \item Evidence increases upon inclusion of EMC $F_2^c$ and LHCb $Z+c$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Intrinsic charm at N3LO}
+  \begin{itemize}
+    \item Improved N3LO matching
+    \item approximate N3LO PDFs
+    \item theory covmat MHOU included in N3LO result
+  \end{itemize}
+  \begin{figure}
+    \includegraphics[width=0.45\textwidth]{n3lo_charm.png}
+    \includegraphics[width=0.45\textwidth]{n3lo_charm_mhou.png}
+    \caption*{left: no MHOU, right: with MHOU}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Intrinsic charm at N3LO}
+  \begin{figure}
+    \includegraphics[width=0.8\textwidth]{n3lo_charm_pull.png}
+  \end{figure}
+\end{frame}
+
+\section*{Intrinsic charm quark valence distribution of the proton}
+\SectionTitleFrame[\hyperlink{https://arxiv.org/abs/2311.00743}{NNPDF, 2311.00743}]
 
 
-\begin{frame}{NNPDF3.1 vs NNPDF4.0 charm determination}
+\begin{frame}{Fitting the valence charm distribution}
+  \begin{itemize}
+    \item Extend fitting basis with a valence charm distribution $c^-=c-\bar{c}$
+    \item Perturbative charm is generated in pair production
+    \item[$\Rightarrow$] Valence charm must be intrinsic
+  \end{itemize}
+  \begin{figure}
+    \includegraphics[width=0.8\textwidth]{valence_charm.png}
+  \end{figure}
+  \begin{itemize}
+    \item Total charm unchanged
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Mesuring the valence charm distribution at LHCb}
+  \begin{figure}
+    \includegraphics[width=0.8\textwidth]{valence_charm_lhcb.png}
+  \end{figure}
+\end{frame}
+
+
+
+\section*{Comparisons to data not included in the fit}
+\SectionTitleFrame[\textbf{Work in progress}]
+
+\begin{frame}{What is the impact of NNPDF4.0 uncertainties when comparing to dat not included in the fit?}
+  Systematically study the impact of PDF choice in the agreement between theory and data for datasets not included in the NNPDF4.0 analysis
+
+  \includegraphics[width=0.8\textwidth]{pheno_paper_datastes.png}
 
 \end{frame}
 
-\begin{frame}{4FNS to 3FNS transformation}
+\begin{frame}{What is the impact of NNPDF4.0 uncertainties when comparing to dat not included in the fit?}
+  \begin{itemize}
+    \item Results are full NNLO (no k-factor approximations)
+    \item Baseline NNLO NNPDF4.0 (no MHOU)
+  \end{itemize}
 
+            ref   computation  PDF4LHC21   NNPDF4.0
+  CMS TTB:  []    MATRIX
+
+  Impact of PDF uncertainties larger for PDF4LHC than NNPDF4.0
 \end{frame}
 
-
-
-\begin{frame}{Intrinsic charm}
-  % MHOU estimated from matching difference N3LO-NNLO
-  % Large matching undertainty at small-x
-  % unc is pdf dominated at large x
-  % valence like peak
-  % show nf=3 plot of charm
+\begin{frame}{A recent result from ATLAS}
+  Vector boson production
+  \begin{figure}
+    \includegraphics[width=0.8\textwidth]{atlas_vbf.png}
+    \caption*{\color{gray}\footnotesize ATLAS, 2403.12902}
+  \end{figure}
 \end{frame}
 
-\begin{frame}{Intrinsic charm}
-  % evidence increased upon incluson of EMC F2c and LHCb Z+c
+\section{Summary}
+\begin{frame}{Mesuring the valence charm distribution at LHCb}
+  \begin{itemize}
+    \item We fit charm to experimental data
+    \item We remove the perturbative component
+    \item Non-zero intrinsic charm with 3$\sigma$ significance
+    \item More data: $c^+$ with 5$\sigma$ significance
+    \item Need for better charmed jet definitions
+  \end{itemize}
+
+  \vspace*{5em}
+  \only<2>{
+    \begin{center}
+      \textbf{Thank you for your attention!}
+    \end{center}
+  }
 \end{frame}
-
-\begin{frame}{Intrinsic charm at approximate N3LO}
-
-\end{frame}
-
-
-\begin{frame}{MHOUs from scale variation}
-
-\end{frame}
-
-\section{Valence charm}
-
-\begin{frame}{numerical FONLL}
-
-\end{frame}
-
-
-\begin{frame}{Valence charm}
-  % independent parametrization for sea and valence PDFs
-  % total charm unchanged
-\end{frame}
-
-
-\section{Pheno study}
-
 
 
 
