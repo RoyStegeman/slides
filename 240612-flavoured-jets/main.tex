@@ -172,7 +172,7 @@
   \end{itemize}
 
   \vspace*{1em}
-  \only<2>{However instead of assuming charm completely perturbatively, one may determine it on the same footing as the light quarks}
+  However instead of assuming charm completely perturbatively, one may determine it on the same footing as the light quarks
 \end{frame}
 
 
@@ -180,10 +180,10 @@
   NNPDF4.0 independently parametrizes the total charm distribution $c^+=c+\bar{c}$
 
   \vspace*{1em}
-  Fitted charm is a combination of perturbative and intrinsic charm : \\
-  $f_c^{(4)} = A_{ci}f_i^{(3)}+A_{cc}f_c^{(3)}$
+  Fitted charm is a combination of perturbative and intrinsic charm: \\
+  % $f_c^{(4)} = A_{ci}f_i^{(3)}+A_{cc}f_c^{(3)}$
   \begin{itemize}
-    \item in 4FNS charm is not fixed by light flavour PDFs
+    \item Charm is not fixed by light flavour PDFs
     \item Instead there is a contributing that is part of the static proton wave function
     \item Intrinsic component is present at all scales
   \end{itemize}
@@ -213,7 +213,7 @@
 \end{frame}
 
 
-\begin{frame}{DGLAP evolution with EKO}{\color{gray}\footnotesize [\hyperlink{https://arxiv.org/abs/2202.02338}{Candido, Hekhorn, Magni, 2202.02338}]}
+\begin{frame}{Heavy quarks with EKO}{\color{gray}\footnotesize [\hyperlink{https://arxiv.org/abs/2202.02338}{Candido, Hekhorn, Magni, 2202.02338}]}
   \begin{figure}
     \includegraphics[width=0.6\textwidth]{eko_header.png}
   \end{figure}
@@ -223,7 +223,7 @@
     \item[$\Rightarrow$] Construct FONLL with coexisting FNS PDFs
   \end{itemize}
 
-  $$F_{FONLL} = F^{(4)}(m_c=0) + F^{(3)}(m_c) - \lim_{x\rightarrow 0} F^{(3)}(m_c)$$
+  $$F_{FONLL} = F^{(4)}(m_c=0) + F^{(3)}(m_c) - \lim_{m_c\rightarrow 0} F^{(3)}(m_c)$$
 \end{frame}
 
 
@@ -254,7 +254,7 @@
 \begin{frame}{Z+charm at LHCb}{\color{gray}\footnotesize [\hyperlink{https://arxiv.org/abs/2109.08084}{LHCb, 2109.08084}]}
 
   \begin{equation*}
-    \mathcal{R}_j^c\left(y_Z\right) =\frac{\sigma\left(p p \rightarrow Z+\text { charm jet; } y_Z\right)}{\sigma\left(p p \rightarrow Z+\text { jet } ; y_Z\right)}
+    \mathcal{R}_j^c \equiv \frac{N_{c \text { tagged jets }}}{N_\text { jets }  }=\frac{\sigma\left(p p \rightarrow Z+\text { charm jet } \right)}{\sigma\left(p p \rightarrow Z+\text { jet }  \right)}
   \end{equation*}
   \begin{figure}
     \includegraphics[width=0.45\textwidth]{lhcb_data.png}
@@ -273,13 +273,13 @@
   \end{figure}
   \begin{itemize}
     \item Local significance of 2.5$\sigma$ for IC at $x\simeq 0.5$
-    \item Evidence increases upon inclusion of EMC $F_2^c$ and LHCb $Z+c$ (by Bayesian reweighting)
+    \item Evidence increases upon inclusion of EMC $F_2^c$ and LHCb $Z+c$
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Intrinsic charm at N3LO}{\color{gray}\footnotesize [\hyperlink{https://arxiv.org/abs/2402.18635 }{NNPDF, 2402.18635 }]}
   \begin{itemize}
-    \item Improved N3LO matching {\color{gray}\footnotesize [\hyperlink{https://arxiv.org/abs/2211.05462}{Ablinger et al., 2211.05462}]}
+    % \item Improved N3LO matching {\color{gray}\footnotesize [\hyperlink{https://arxiv.org/abs/2211.05462}{Ablinger et al., 2211.05462}]}
     \item approximate N3LO PDFs $\Rightarrow$ True MHOU
     \item with MHOU: NNLO and aN3LO very close
   \end{itemize}
@@ -309,38 +309,57 @@
     \begin{column}{0.49\columnwidth}
       \begin{itemize}
         \item Extend fitting basis with a valence charm distribution $c^-=c-\bar{c}$
-        \item Perturbative charm is generated in pair production
+        \item Perturbative charm is generated in pair production, i.e. $c^-=0$
         \item[$\Rightarrow$] Valence charm must be intrinsic
       \end{itemize}
     \end{column}
     \begin{column}{0.49\columnwidth}
       \begin{figure}
         \includegraphics[width=0.8\textwidth]{CharmAsymmetry-q1p65gev-Fig1Main-noVSR.pdf}
-        \caption*{Total charm unchanged}
+        \caption*{$c^+$ stable around valance peak}
       \end{figure}
     \end{column}
   \end{columns}
 \end{frame}
 
 
-\begin{frame}{Valence charm}
-  \begin{itemize}
-    \item Nonvanishing valance charm PDF at large-$x$
-    % \item Matching to $n_f=3$ is perturbatively stable
-  \end{itemize}
-
-  \vspace*{1em}
+\begin{frame}{Intrinsic valence charm}
   \includegraphics[width=0.45\textwidth]{valence_3fns_vs_4fns.png}
   \includegraphics[width=0.45\textwidth]{valence_evidence.png}
+
+  \vspace*{1em}
+  \begin{itemize}
+    \item $c^{-,(3)} \simeq c^{-,(4)}$: smaller MHOU than $c^+$
+    \item Nonvanishing valance charm PDF at large-$x$
+    \item LHCb and EMC data increases local valance significance
+    \item Hints at possible nonzero intrinsic valence charm, but more data needed
+    % \item Matching to $n_f=3$ is perturbatively stable
+  \end{itemize}
 \end{frame}
 
 
 \begin{frame}{Measuring the valence charm distribution at LHCb}
-  \begin{figure}
-    \includegraphics[width=0.49\textwidth]{lhcb-zcharm-pheno-asymm.pdf}
-    \includegraphics[width=0.49\textwidth]{ICasym-main-Fig4-EIC.pdf}
-    \caption*{Charm asymmetries in Z+c at LHCb \hspace*{7em} Charm-tagged DIS at the EIC}
-  \end{figure}
+  \begin{columns}
+    \begin{column}{0.49\columnwidth}
+      \begin{figure}
+        \includegraphics[width=0.9\textwidth]{lhcb-zcharm-pheno-asymm.pdf}
+        \caption*{Charm asymmetries in Z+c at LHCb}
+      \end{figure}
+      \begin{equation*}
+        \mathcal{A}_c \equiv \frac{N_j^c-N_j^{\bar{c}}}{N_j^c+N_j^{\bar{c}}}
+        \end{equation*}
+    \end{column}
+    \begin{column}{0.49\columnwidth}
+      \begin{figure}
+        \includegraphics[width=0.9\textwidth]{ICasym-main-Fig4-EIC.pdf}
+        \caption*{Charm-tagged DIS at the EIC}
+      \end{figure}
+      \begin{equation*}
+        \mathcal{A}_{\sigma^{c c}} \equiv \frac{\sigma_{\text {red }}^c-\sigma_{\text {red }}^{\bar{c}}}{\sigma_{\text {red }}^{c \bar{c}}}
+        \end{equation*}
+    \end{column}
+  \end{columns}
+
 \end{frame}
 
 
@@ -351,45 +370,72 @@
 \begin{frame}{What is the impact of NNPDF4.0 uncertainties when comparing to dat not included in the fit?}
   Systematically study the impact of PDF choice in the agreement between theory and data for datasets not included in the NNPDF4.0 analysis
 
-  \includegraphics[width=0.6\textwidth]{pheno_paper_datastes.png}
+  \begin{figure}
+    \includegraphics[width=0.8\textwidth]{pheno_paper_datasets.png}
+  \end{figure}
 
 \end{frame}
 
 \begin{frame}{What is the impact of NNPDF4.0 uncertainties when comparing to data not included in the fit?}
   \begin{itemize}
-    \item Results are full NNLO (no k-factor approximations)
-    \item Baseline NNLO NNPDF4.0 (no MHOU)
+    \item Results are full NNLO, no k-factor approximations
+    \item NNPDF4.0 is baseline PDF without MHOUs
+    \item Shown are $\chi^2$ values with (without) PDF uncertainties
   \end{itemize}
 
   \begin{table}[]
-    \begin{tabular}{@{}lllll@{}}
+    \footnotesize
+    \begin{tabular}{@{}lll@{}}
     \toprule
-            & CMS top $\frac{d\sigma}{dpT_t}$ &  &  &  \\ \midrule
-    NNPDF4.0 & 0.768 (0.773)                        &  &  &  \\
-    CT18     & 0.712 (0.729)                        &  &  &  \\
-    MSHT20   & 0.699 (0.705)                        &  &  &  \\ \bottomrule
+             & CMS top $l$+jets $\frac{d\sigma}{dpT_t}$ & ATLAS top $l$+jets $\frac{d^2\sigma}{dm_{t\bar{t}}d|y_{t\bar{t}}|}$ \\ \midrule
+    NNPDF4.0 & 0.768 (0.773)                            & 1.297 (1.338)                                                       \\
+    CT18     & 0.712 (0.729)                            & 1.489 (2.347)                                                       \\
+    MSHT20   & 0.699 (0.705)                            & 1.585 (2.046)                                                       \\ \bottomrule
+    \end{tabular}
+  \end{table}
+
+  \begin{table}[]
+    \footnotesize
+    \begin{tabular}{@{}llll@{}}
+    \toprule
+            & ATLAS di-jet 2D & CMS inclusive jets R=0.7 & LHCb $\frac{d\sigma}{dy^Z}$ 13 TeV \\ \midrule
+    NNPDF4.0 & 1.82 (1.91)     & 2.35 (2.78)              & 2.21 (2.27)                        \\
+    CT18     & 1.79 (1.91)     & 2.16 (3.81)              & 2.19 (2.56)                        \\
+    MSHT20   & 1.65 (1.92)     & 2.47 (3.96)              & 2.24 (2.38)                        \\ \bottomrule
     \end{tabular}
   \end{table}
 
 
+  \begin{center}
+    {\color{gray}\footnotesize [Maria Ubiali, LHCP 2024]}
+  \end{center}
+
+  \vfill
+  \begin{center}
+    While PDFs have different uncertainties, data-theory description of unseen data is similar
+  \end{center}
+
 \end{frame}
 
-\begin{frame}{A recent result from ATLAS}
-  Vector boson production
-  \begin{figure}
-    \includegraphics[width=0.6\textwidth]{atlas_vbf.png}
-    \caption*{\color{gray}\footnotesize ATLAS, 2403.12902}
-  \end{figure}
-\end{frame}
+% \begin{frame}{A recent result from ATLAS}
+%   Vector boson production
+%   \begin{figure}
+%     \includegraphics[width=0.6\textwidth]{atlas_vbf.png}
+%     \caption*{\color{gray}\footnotesize [ATLAS, 2403.12902]}
+%   \end{figure}
+% \end{frame}
 
 \section{Summary}
-\begin{frame}{Mesuring the valence charm distribution at LHCb}
+\begin{frame}[c]{Mesuring the valence charm distribution at LHCb}
   \begin{itemize}
-    \item We fit charm to experimental data
-    \item We remove the perturbative component
-    \item Non-zero intrinsic charm with 3$\sigma$ significance
-    \item More data: $c^+$ with 5$\sigma$ significance
-    \item Need for better charmed jet definitions
+    \setlength\itemsep{1.5em} % space between items
+    \item Intrinsic charm is a non-perturbative component of the proton wave function
+    \item 3$\sigma$ local significance of intrinsic total charm
+    \item 1$\sigma$ for significance intrinsic valence charm
+    \item More data: $c^-$ with 2-4$\sigma$ significance and $c^+$ with 5$\sigma$
+
+    \vspace*{1em}
+    \item Description of unseen data is similar for various recent global PDF sets
   \end{itemize}
 
   \vspace*{5em}
