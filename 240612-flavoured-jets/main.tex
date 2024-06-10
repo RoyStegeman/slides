@@ -13,6 +13,7 @@
 \usefonttheme[onlymath]{serif} % makes beamer math look like article math
 \usepackage{hyperref}
 \usepackage{booktabs}
+\usepackage{tikz}
 
 %======================= title page info =======================
 \title{Intrinsic charm in the proton}
@@ -181,11 +182,10 @@
 
   \vspace*{1em}
   Fitted charm is a combination of perturbative and intrinsic charm: \\
-  % $f_c^{(4)} = A_{ci}f_i^{(3)}+A_{cc}f_c^{(3)}$
+  $c^{(4)} = c_{pert}^{(4)}+c_{intr}^{(4)}$
   \begin{itemize}
-    \item Charm is not fixed by light flavour PDFs
-    \item Instead there is a contributing that is part of the static proton wave function
-    \item Intrinsic component is present at all scales
+    \item $c^{(4)}$ extracted from data instead of fixed by light flavour PDFs
+    \item Intrinsic component is present at all scales, $c_{intr}^{(3)}\neq 0$
   \end{itemize}
 
   \vspace*{1em}
@@ -205,17 +205,100 @@
   Fitted charm:
   \begin{itemize}
     \item Independent of matching conditions
-    \item More realistic uncertainties
     \item Stable upon variations of $m_c$
-    \item Insensitive to MHOU
-    \item Bump at large-$x$ where radiative charm production is limited
+    \item More realistic uncertainties
+    % \item Insensitive to MHOU
+    % \item Bump at large-$x$ where radiative charm production is limited
   \end{itemize}
 \end{frame}
 
 
-\begin{frame}{Heavy quarks with EKO}{\color{gray}\footnotesize [\hyperlink{https://arxiv.org/abs/2202.02338}{Candido, Hekhorn, Magni, 2202.02338}]}
+\begin{frame}{DGLAP evolution with EKO}{\color{gray}\footnotesize [\hyperlink{https://arxiv.org/abs/2202.02338}{Candido, Hekhorn, Magni, 2202.02338}]}
   \begin{figure}
     \includegraphics[width=0.6\textwidth]{eko_header.png}
+  \end{figure}
+  \begin{itemize}
+    \item Implements DGLAP solutions up to aN3LO QCD and NLO QED
+    \item Supports output in pineappl grids (xFitter and NNPDF have pineappl interfaces)
+    \item Supports coexising PDFs in different FNS at all scales
+    % \item[$\Rightarrow$] Construct FONLL with coexisting FNS PDFs
+  \end{itemize}
+
+  % $$F_{FONLL} = F^{(4)}(m_c=0) + F^{(3)}(m_c) - \lim_{m_c\rightarrow 0} F^{(3)}(m_c)$$
+\end{frame}
+
+
+\begin{frame}{FONLL heavy quarks scheme with EKO}{\color{gray}\footnotesize [\hyperlink{https://arxiv.org/abs/2202.02338}{Candido, Hekhorn, Magni, 2202.02338}]}
+
+  \definecolor{mpl-blue}{RGB}{31, 119, 180}
+  \definecolor{mpl-orange}{RGB}{255, 127, 14}
+  \definecolor{mpl-green}{RGB}{44, 160, 44}
+  \definecolor{mpl-red}{RGB}{214, 39, 40}
+
+
+  \begin{figure}
+    \centering
+    \begin{tikzpicture}[xscale=1.5, yscale=0.5]
+
+      % Draw horizontal lines with different colors, extend them, and make them thicker
+
+      % nf=3
+      \draw[line width=3.5pt] (1, 1) -- (2, 1);
+      \draw[line width=3.5pt, opacity=0.4] (2, 1) -- (5, 1);
+      \draw[opacity=0.4, -stealth, line width=3.5pt] (5, 1) -- (5.3, 1);
+
+      % nf=4
+      \draw[line width=3.5pt, opacity=0.4] (1, 2) -- (3, 2);
+      \draw[line width=3.5pt] (2, 2) -- (3, 2);
+      \draw[line width=3.5pt, opacity=0.4] (3, 2) -- (5, 2);
+      \draw[opacity=0.4, -stealth, line width=3.5pt] (5, 2) -- (5.3, 2);
+
+      % nf=5
+      \draw[line width=3.5pt, opacity=0.4] (1, 3) -- (3, 3);
+      \draw[line width=3.5pt] (3, 3) -- (4, 3);
+      \draw[line width=3.5pt, opacity=0.4] (4, 3) -- (5, 3);
+      \draw[opacity=0.4, -stealth, line width=3.5pt] (5, 3) -- (5.3, 3);
+
+      % nf=6
+      \draw[line width=3.5pt, opacity=0.4] (1, 4) -- (4, 4);
+      \draw[line width=3.5pt] (4, 4) -- (5, 4);
+      \draw[-stealth, line width=3.5pt] (5, 4) -- (5.3, 4);
+
+      % Draw three horizontal lines
+      \draw[dotted, line width=1pt] (4, 1) -- (4, 4);
+      \draw[dotted, line width=1pt] (3, 1) -- (3, 4);
+      \draw[dotted, line width=1pt] (2, 1) -- (2, 4);
+
+      % Add labels to the horizontal lines
+      \node at (4, 4.5) {$m_t$};
+      \node at (3, 4.5) {$m_b$};
+      \node at (2, 4.5) {$m_c$};
+
+      % Add labels at the bottom of the horizontal lines
+      \node at (0.8, 1) {3};
+      \node at (0.8, 2) {4};
+      \node at (0.8, 3) {5};
+      \node at (0.8, 4) {6};
+
+      % % Add NNPDF PDF evolution (red dot)
+      % \node[circle, fill, mpl-blue, inner sep=2.5pt] at (2.5, 2) {};
+      % \node at (2.5, 2.4) {$e_f^\mathrm{NNPDF}$};
+
+      % % Add NNPDF alphas evolution point (blue dot)
+      % \node[circle, fill, mpl-red, inner sep=2.5pt] at (3.5, 3) {};
+      % \node at (3.5, 3.4) {$e_{\alpha_s}^\mathrm{NNPDF}$};
+
+      % % Add LH alphas and PDF evolution point (green dot)
+      % \node[circle, fill, mpl-green, inner sep=2.5pt] at (2, 1) {};
+      % \node at (1.8, 1.4) {$e_{\alpha_s}^\mathrm{LH}$};
+      % \node at (1.8, 0.6) {$e_f^\mathrm{LH}$};
+
+      % Draw a vertical arrow with the label "nf" to the left of the figure
+      \draw[->] (0.5, 3.5) -- (0.5, 4.5) node[midway, left] {$n_f$};
+
+      % Draw a horizontal arrow with the label "Q" below the figure
+      \draw[->] (4.4, .5) -- (5, .5) node[midway, below] {$Q$};
+    \end{tikzpicture}
   \end{figure}
   \begin{itemize}
     \item Implements DGLAP solutions up to aN3LO QCD and NLO QED
@@ -269,7 +352,7 @@
 \begin{frame}{Evidence for intrinsic charm}
   \begin{figure}
     \includegraphics[width=0.45\textwidth]{ic_f2c_zc.png}
-    \includegraphics[width=0.45\textwidth]{lhcb_reweithed.png}
+    % \includegraphics[width=0.45\textwidth]{lhcb_reweithed.png}
   \end{figure}
   \begin{itemize}
     \item Local significance of 2.5$\sigma$ for IC at $x\simeq 0.5$
@@ -280,8 +363,9 @@
 \begin{frame}{Intrinsic charm at N3LO}{\color{gray}\footnotesize [\hyperlink{https://arxiv.org/abs/2402.18635 }{NNPDF, 2402.18635 }]}
   \begin{itemize}
     % \item Improved N3LO matching {\color{gray}\footnotesize [\hyperlink{https://arxiv.org/abs/2211.05462}{Ablinger et al., 2211.05462}]}
-    \item approximate N3LO PDFs $\Rightarrow$ True MHOU
-    \item with MHOU: NNLO and aN3LO very close
+    % \item approximate N3LO PDFs $\Rightarrow$ true MHOU
+    \item With MHOU in fit: NNLO and aN3LO very close
+    \item Plots don't include MHOU due to backward matching
   \end{itemize}
 
   \begin{figure}
@@ -296,6 +380,7 @@
     \includegraphics[width=0.6\textwidth]{IC-Significance-N3LO.pdf}
   \end{figure}
   \begin{itemize}
+    \item Plot includes MHOU due to backward matching
     \item Evidence for IC stable upon change from NNLO to N3LO
   \end{itemize}
 \end{frame}
@@ -314,8 +399,9 @@
       \end{itemize}
     \end{column}
     \begin{column}{0.49\columnwidth}
+      \vspace*{-2em}
       \begin{figure}
-        \includegraphics[width=0.8\textwidth]{CharmAsymmetry-q1p65gev-Fig1Main-noVSR.pdf}
+        \includegraphics[width=0.9\textwidth]{CharmAsymmetry-q1p65gev-Fig1Main-noVSR.pdf}
         \caption*{$c^+$ stable around valance peak}
       \end{figure}
     \end{column}
@@ -367,7 +453,7 @@
 \section*{PDF generalization to unseen data}
 \SectionTitleFrame[\textbf{Ongoing}]
 
-\begin{frame}{What is the impact of NNPDF4.0 uncertainties when comparing to dat not included in the fit?}
+\begin{frame}{What is the impact of PDF uncertainties when comparing to data not included in the fit?}
   Systematically study the impact of PDF choice in the agreement between theory and data for datasets not included in the NNPDF4.0 analysis
 
   \begin{figure}
@@ -387,7 +473,7 @@
     \footnotesize
     \begin{tabular}{@{}lll@{}}
     \toprule
-             & CMS top $l$+jets $\frac{d\sigma}{dpT_t}$ & ATLAS top $l$+jets $\frac{d^2\sigma}{dm_{t\bar{t}}d|y_{t\bar{t}}|}$ \\ \midrule
+             & top $l$+jets $\frac{d\sigma}{dpT_t}$ {\color{gray}\footnotesize [CMS, 2108.02803]}& top $l$+jets $\frac{d^2\sigma}{dm_{t\bar{t}}d|y_{t\bar{t}}|}$  {\color{gray}\footnotesize [ATLAS, 1908.07305]}\\ \midrule
     NNPDF4.0 & 0.768 (0.773)                            & 1.297 (1.338)                                                       \\
     CT18     & 0.712 (0.729)                            & 1.489 (2.347)                                                       \\
     MSHT20   & 0.699 (0.705)                            & 1.585 (2.046)                                                       \\ \bottomrule
@@ -398,10 +484,10 @@
     \footnotesize
     \begin{tabular}{@{}llll@{}}
     \toprule
-            & ATLAS di-jet 2D & CMS inclusive jets R=0.7 & LHCb $\frac{d\sigma}{dy^Z}$ 13 TeV \\ \midrule
-    NNPDF4.0 & 1.82 (1.91)     & 2.35 (2.78)              & 2.21 (2.27)                        \\
-    CT18     & 1.79 (1.91)     & 2.16 (3.81)              & 2.19 (2.56)                        \\
-    MSHT20   & 1.65 (1.92)     & 2.47 (3.96)              & 2.24 (2.38)                        \\ \bottomrule
+    di-jet 2D {\color{gray}\footnotesize [ATLAS, 1711.02692]} & inclusive jets R=0.7 {\color{gray}\footnotesize [CMS, 2111.10431]}& $\frac{d\sigma}{dy^Z}$ 13 TeV {\color{gray}\footnotesize [LHCb, 2112.07458]}\\ \midrule
+    1.82 (1.91)     & 2.35 (2.78)              & 2.21 (2.27)                        \\
+    1.79 (1.91)     & 2.16 (3.81)              & 2.19 (2.56)                        \\
+    1.65 (1.92)     & 2.47 (3.96)              & 2.24 (2.38)                        \\ \bottomrule
     \end{tabular}
   \end{table}
 
