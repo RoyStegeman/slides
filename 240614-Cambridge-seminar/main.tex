@@ -178,7 +178,7 @@
         % \item What is the proton radius?
         \item How is proton dynamics modified in a bound nucleus?
         \item How do protons interact with dark matter?
-        \item Can BSM physics be absorbed in the proton structure? (here in Cambridge!)
+        \item Can new physics be absorbed in the proton structure? (here in Cambridge!)
       \end{itemize}
     \end{column}
   \end{columns}
@@ -219,36 +219,16 @@
 \end{frame}
 
 
-  % factorization equation
-  % probability of finding a gluon inside a proton
-  % fraction of proton momentum carried by the gluon
-  % Energy of the hard scattering reaction
-  % x->1 is eleastic scattering
-  % x->0 requires increasing center of mass energy
-  % Dependence on Q2 from DGLAP evolution
-  % Dependence on x extracted from experimental data
-  % energy conservation: momentum sum rule
-  % net charge of the proton: valence sum rule
-  % a proton structure snapshot
-  % Discrete data: Ill posed problem
-  % PDF univerality
-  % 1. Parametrize PDF at Q0
-  % 2. evaluate predictions for cross sections using DGLAP and factorization
-  % 3. extract PDF parameters by fitting to the data
-  % 4. propagate experimental uncertainties to the PDFs
-
-
-
 \begin{frame}{PDFs and factorization}
   Observables can be written as the convolution between PDFs and a partonic matrix element
 
   \vspace*{1em}
   Deep inelastic scattering (DIS):
   \begin{equation*}
-    \sigma\left(x, Q^2\right)=\sum_{i\in \{q,\bar{q},g\}} f_i\left(z, Q^2\right) \otimes \hat{\sigma}_i\left(\frac{x}{z}, \alpha_s(Q^2)\right)
+    \stackrel{\textbf{experiment}}{\sigma(x,Q^2)}=\sum_{i\in \{q,\bar{q},g\}} \stackrel{\textbf{non-perturbative}}{f_i\left(z, Q^2\right)} \otimes \stackrel{\textbf{pQCD}}{\hat{\sigma}_i\left(\frac{x}{z}, \alpha_s(Q^2)\right)}
   \end{equation*}
   \begin{itemize}
-    \item $f_i$: probability of finding parton $i$ inside a proton
+    \item $f_i(x,Q^2)$: probability of finding parton $i$ inside a proton
     \item $x$: fraction of proton momentum carried by the parton
     \item $Q^2$: energy scale of the interaction
   \end{itemize}
@@ -289,7 +269,7 @@
 
       \item $Q^2$ dependence can be computed in perturbative QCD (DGLAP equations)
         \begin{equation*}
-          Q^2 \frac{d}{d Q^2} f_i(x, Q)=P_{i j}\left(\frac{x}{z}, Q\right) \otimes f_j(x, Q)
+          Q^2 \frac{d}{d Q^2} f_i(x, Q)=P_{i j}\left(\frac{x}{z}, \alpha_s(Q^2)\right) \otimes f_j(z, Q)
         \end{equation*}
 
     \end{itemize}
@@ -313,12 +293,12 @@
         \includegraphics[width=0.99\textwidth]{pdffitflowchart.pdf}
       \end{figure}
 
-      \vspace*{1em}
-      \begin{enumerate}
-        \item Parametrize the PDFs a a scale $Q_0$
-        \item Evaluate predictions using QCD factorization and DGLAP evolution
-        \item Optimize the PDF parameters
-      \end{enumerate}
+      % \vspace*{1em}
+      % \begin{enumerate}
+      %   \item Parametrize the PDFs a a scale $Q_0$
+      %   \item Evaluate predictions using QCD factorization and DGLAP evolution
+      %   \item Optimize the PDF parameters
+      % \end{enumerate}
 
       The result of the fit can be used to make predictions of new processes!
     \end{column}
@@ -326,12 +306,12 @@
       \begin{figure}
         \includegraphics[width=0.99\textwidth]{pdg_100gev.pdf}
       \end{figure}
-      \begin{itemize}
-        \item We recognize the valence quarks!
-        \item $x\rightarrow 1$ corresponds to elastic scattering of a single parton
-        \item Accessing $x\rightarrow 1$ requires high center of mass energies
-        \item Rise of gluon and sea quarks at small-$x$
-      \end{itemize}
+      % \begin{itemize}
+      %   \item We recognize the valence quarks!
+      %   \item $x\rightarrow 1$ corresponds to elastic scattering of a single parton
+      %   \item Accessing $x\rightarrow 1$ requires high center of mass energies
+      %   \item Rise of gluon and sea quarks at small-$x$
+      % \end{itemize}
     \end{column}
   \end{columns}
 \end{frame}
@@ -402,10 +382,10 @@
 \begin{frame}{Splitting functions}
   Complete results for the N3LO splitting functions are not yet available, but some information exists:
   \begin{itemize}
-    \item Mellin moments
-    \item Small-$x$ limit (threshold resummation)
+    \item Large-$n_f$ terms
     \item Large-$x$ limit (BFKL resummation)
-    \item Large-$n_f$ limit
+    \item Small-$x$ limit (threshold resummation)
+    \item Mellin moments
   \end{itemize}
 
   \vspace*{1em}
@@ -463,7 +443,7 @@
 \begin{frame}{DIS coefficient functions}
   \begin{itemize}
     \item DIS coefficient functions are known up to N3LO in the massless limit {\color{gray}\footnotesize [Larin, Nogueira, Van Ritbergen, Vermaseren, 9605317], [Moch Vermaseren Vogt, 0411112, 0504242], [Davies, Moch, Vermaseren, Vogt, 0812.4168, 1606.08907]}
-    \item Massive coefficient functions can be constructed by smoothly joining the known limits from threshold and high energy resummation, and the massless limit {\color{gray}\footnotesize [Barontini, Bonvini, Laurenti, in preparation]}
+    \item Massive coefficient functions can be constructed by smoothly joining the known limits from threshold and high energy resummation, and the massless limit {\color{gray}\footnotesize [Laurenti, 2401.12139]}
   \end{itemize}
 
   \vspace*{-0.5em}
@@ -497,9 +477,9 @@
 
 \begin{frame}{Hadronic processes}
   \begin{itemize}
-    \item Corrections to collider DY and $W$ production can be included through k-factors
+    \item Corrections to collider DY (both CC and NC) production can be included through k-factors calculated using \texttt{N3LOXS} {\color{gray}\footnotesize [Baglio, Duhr, Mistlberger, Szafron, 2209.06138]}
     \item N3LO effects around 1 to 2\% for LHC observables
-    \item For many processes N3LO corrections are not available, for those we introduce account for MHOU through $\mu_r$ variations
+    \item For many other processes N3LO corrections are not available, for those we introduce account for MHOU through $\mu_r$ variations
   \end{itemize}
   \begin{figure}[!t]
     \centering
@@ -613,7 +593,7 @@
         \item Data does not provide strong constraints on the photon so fitting is not optimal
 
         \item The photon PDF can be computed from DIS structure functions using the luxQED result {\color{gray}\footnotesize[Manohar, Nason, Salam, Zanderighi, 1607.04266, 1708.01256]}
-        \begin{equation*}
+        \begin{equation*}\footnotesize
           \begin{split}
             & x \gamma(x, \mu^2)
             =
@@ -631,7 +611,7 @@
         \end{equation*}
 
         \begin{figure}
-          \includegraphics[width=.45\textwidth]{figures/plot_pdfs_g_qed.pdf}\\
+          \includegraphics[width=.55\textwidth]{figures/plot_pdfs_g_qed.pdf}\\
           \caption*{Gluon suppressed as a result of photon momentum}
         \end{figure}
       \end{itemize}
