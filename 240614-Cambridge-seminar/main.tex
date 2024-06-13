@@ -157,17 +157,28 @@
       \end{column}
     \begin{column}{0.5\textwidth}
     \vspace*{2em}
-      \begin{itemize}
-        \item Incoming protons
-        \item parton-parton collision
-        \item Initial- \& final state radiation
-        % \item Underlying event
-        \item Hadronization
-        \item Hadron decays
-      \end{itemize}
+      % \begin{itemize}
+      %   \item Incoming protons
+      %   \item parton-parton collision
+      %   \item Initial- \& final state radiation
+      %   % \item Underlying event
+      %   \item Hadronization
+      %   \item Hadron decays
+      % \end{itemize}
 
       \begin{itemize}
         \item This talk: Parton Distribution Functions (PDF) describe how quarks and gluons are distributed inside a hadron
+      \end{itemize}
+
+      \vspace*{2em}
+      Some open questions:
+      \begin{itemize}
+        \item What is the origin of proton spin?
+        \item What is the origin of the proton mass?
+        % \item What is the proton radius?
+        \item How is proton dynamics modified in a bound nucleus?
+        \item How do protons interact with dark matter?
+        \item Can BSM physics be absorbed in the proton structure? (here in Cambridge!)
       \end{itemize}
     \end{column}
   \end{columns}
@@ -515,24 +526,14 @@
     $$C = C_\mathrm{exp}+C_\mathrm{MHOU} + C_\mathrm{IHOU} $$
   \end{itemize}
 
-  \vspace*{1em}
-  \only<2>{
-    \begin{center}
-      Can we trust the faithfulness of these uncertainties on the unknown order?
-    \end{center}
-  }
+  % \vspace*{1em}
+  % \only<2>{
+  %   \begin{center}
+  %     Can we trust the faithfulness of these uncertainties on the unknown order?
+  %   \end{center}
+  % }
 
 \end{frame}
-
-
-\begin{frame}{Validating the MHOU covmat}
-  \textbf{Validate the MHOU procedure} by comparing the NLO covmat with estimated MHOUs to the known NNLO-NLO shifts
-  \begin{figure}[!t]
-    \centering
-      \includegraphics[width=0.8\textwidth]{figures/shift_validation.pdf}
-  \end{figure}
-\end{frame}
-
 
 \begin{frame}{Fit quality}
   \begin{figure}[!t]
@@ -628,6 +629,11 @@
         \begin{equation*}
           \int_0^1 dx\, x \left( \Sigma(x) + g(x) + \gamma(x) \right) =1
         \end{equation*}
+
+        \begin{figure}
+          \includegraphics[width=.45\textwidth]{figures/plot_pdfs_g_qed.pdf}\\
+          \caption*{Gluon suppressed as a result of photon momentum}
+        \end{figure}
       \end{itemize}
     \end{column}
 
@@ -639,11 +645,6 @@
       \end{figure}
     \end{column}
   \end{columns}
-
-  \begin{figure}[!t]
-    \includegraphics[width=.3\textwidth]{figures/plot_pdfs_g_qed.pdf}\\
-    \caption*{Gluon suppressed as a result of photon momentum}
-  \end{figure}
 
 \end{frame}
 
