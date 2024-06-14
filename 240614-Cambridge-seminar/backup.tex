@@ -436,4 +436,52 @@
     \end{columns}
 \end{frame}
 
+\begin{frame}{What is the impact of PDF uncertainties when comparing to data not included in the fit?}
+  Systematically study the impact of PDF choice in the agreement between theory and data for datasets not included in the NNPDF4.0 analysis
 
+  \begin{figure}
+    \includegraphics[width=0.8\textwidth]{pheno_paper_datasets.png}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}{What is the impact of NNPDF4.0 uncertainties when comparing to data not included in the fit?}
+  \begin{itemize}
+    \item Results are full NNLO, no k-factor approximations
+    \item NNPDF4.0 is baseline PDF without MHOUs
+    \item Shown are $\chi^2$ values with (without) PDF uncertainties
+  \end{itemize}
+
+  \begin{table}[]
+    \footnotesize
+    \begin{tabular}{@{}lll@{}}
+    \toprule
+             & top $l$+jets $\frac{d\sigma}{dpT_t}$ {\color{gray}\footnotesize [CMS, 2108.02803]}& top $l$+jets $\frac{d^2\sigma}{dm_{t\bar{t}}d|y_{t\bar{t}}|}$  {\color{gray}\footnotesize [ATLAS, 1908.07305]}\\ \midrule
+    NNPDF4.0 & 0.768 (0.773)                            & 1.297 (1.338)                                                       \\
+    CT18     & 0.712 (0.729)                            & 1.489 (2.347)                                                       \\
+    MSHT20   & 0.699 (0.705)                            & 1.585 (2.046)                                                       \\ \bottomrule
+    \end{tabular}
+  \end{table}
+
+  \begin{table}[]
+    \footnotesize
+    \begin{tabular}{@{}llll@{}}
+    \toprule
+    di-jet 2D {\color{gray}\footnotesize [ATLAS, 1711.02692]} & inclusive jets R=0.7 {\color{gray}\footnotesize [CMS, 2111.10431]}& $\frac{d\sigma}{dy^Z}$ 13 TeV {\color{gray}\footnotesize [LHCb, 2112.07458]}\\ \midrule
+    1.82 (1.91)     & 2.35 (2.78)              & 2.21 (2.27)                        \\
+    1.79 (1.91)     & 2.16 (3.81)              & 2.19 (2.56)                        \\
+    1.65 (1.92)     & 2.47 (3.96)              & 2.24 (2.38)                        \\ \bottomrule
+    \end{tabular}
+  \end{table}
+
+
+  \begin{center}
+    {\color{gray}\footnotesize [Maria Ubiali, LHCP 2024]}
+  \end{center}
+
+  \vfill
+  \begin{center}
+    While PDFs have different uncertainties, data-theory description of unseen data is similar
+  \end{center}
+
+\end{frame}
